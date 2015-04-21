@@ -1,3 +1,0 @@
-[submodule "externals/ics_bioloid"]
-	path = externals/ics_bioloid
-	url = git://github.com/brennand/ics_bioloid.git
