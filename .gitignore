@@ -1,3 +1,16 @@
 build
 devel
 .catkin_workspace
+
+# gedit backup files
+**/*.*~
+
+# CMake & catkin temp files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+catkin/
+catkin_generated/
+gtest/
