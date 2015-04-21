@@ -1,0 +1,11 @@
+<launch>
+ <rosparam ns="/bioloid/joints">
+  name: ['R_SAA','L_SAA','R_SFE','L_SFE','R_EB','L_EB','R_HAA','L_HAA','R_HR','L_HR','R_HFE','L_HFE','R_KFE','L_KFE','R_AFE','L_AFE','R_AR','L_AR' ]
+  servo_number: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 ]
+  joint_encoder_offset: [522, 500, 513, 502, 502, 504, 351, 657, 512, 513, 520, 496, 516, 502, 510, 503, 509, 511]
+  angle_max: [2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.5,2.5,2.5,2.5,2.0,2.0,2.0,2.0 ]
+  angle_min: [-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.8,-2.8,-2.0,-2.0,-2.0,-2.0 ]
+  sim: true
+  torque: true
+ </rosparam>
+</launch>
