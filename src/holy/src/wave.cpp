@@ -31,19 +31,15 @@ int main(int argc, char **argv)
     std::fill(js.effort.begin(), js.effort.end(), 0);
 
 
+    double t = 0;
     while (ros::ok()) {
 
         js.header.stamp = ros::Time::now();
-        js.position[2] = 1;
-        js.position[3] = 1;
+        js.position[2] = sin(t);
+        js.position[3] = -sin(t);
         pub.publish(js);
-        ros::Duration(1.0).sleep();
-
-        js.header.stamp = ros::Time::now();
-        js.position[2] = -1;
-        js.position[3] = -1;
-        pub.publish(js);
-        ros::Duration(1.0).sleep();
+        ros::Duration(0.05).sleep();
+        t+=0.05;
 
         ros::spinOnce();
     }
