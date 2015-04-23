@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
+  bioloid_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,15 +105,15 @@ include_directories(
 
 ## Declare a cpp executable
  add_executable(turtle_house src/test.cpp)
+ add_executable(wave src/wave.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(holy_node holy_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(turtle_house
-   ${catkin_LIBRARIES}
- )
+ target_link_libraries( turtle_house ${catkin_LIBRARIES} )
+ target_link_libraries( wave ${catkin_LIBRARIES} )
 
 #############
 ## Install ##
