@@ -14,3 +14,4 @@ Makefile
 catkin/
 catkin_generated/
 gtest/
+RemoteSystemsTempFiles/

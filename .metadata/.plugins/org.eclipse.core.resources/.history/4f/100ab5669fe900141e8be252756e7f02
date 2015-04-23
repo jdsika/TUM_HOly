@@ -110,7 +110,7 @@ include_directories(
 # add_dependencies(holy_node holy_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(turtle_house
+ target_link_libraries(holy_node
    ${catkin_LIBRARIES}
  )
 

@@ -23,8 +23,7 @@ int main(int argc, char **argv)
 	cmd.linear.y = 0.5;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
-    reset_cmd(cmd);
-
+    reset
     ros::spinOnce();
 	//loop_rate.sleep();
   }
