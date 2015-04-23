@@ -17,4 +17,5 @@ rostopic pub /bioloid_interface/command sensor_msgs/JointState '{header: {stamp:
 * <https://dxydas.wordpress.com/>
 * <http://web.ics.ei.tum.de/~bren/Teaching.php>
 * <https://github.com/brennand/bioloid_indigo.git>
+* [Paweł Wawrzyński: Autonomous Reinforcement Learning with Experience Replay for Humanoid Gait Optimization](http://www.sciencedirect.com/science/article/pii/S1877050912007375)
 
