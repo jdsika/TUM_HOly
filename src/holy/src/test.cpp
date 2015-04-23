@@ -1,6 +1,8 @@
 #include "ros/ros.h"
-
+#include <math.h>
 #include <geometry_msgs/Twist.h>
+
+const double PI = 3.14159265359;
 
 void reset_cmd(geometry_msgs::Twist& cmd) {
 	cmd.linear.x=0;
@@ -17,66 +19,100 @@ int main(int argc, char **argv)
   ros::Publisher chatter_pub = n.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1000);
   double velocity=1;
   while (ros::ok()) {
-	// 90 grad drehen und nach oben nach oben
-	/*ros::Duration(1).sleep();
-	ROS_INFO("90 Grad drehen");
-	reset_cmd(cmd);
-	ROS_INFO("%f", cmd.linear.x);
-	cmd.angular.z=velocity;
-    chatter_pub.publish(cmd);
-    ros::Duration(6).sleep();
-    reset_cmd(cmd);*/
+	// Fährt Nikolaus Haus ab
+	// Dummy Befehl, tut nichts bei der turtle
+
 	cmd.linear.x = velocity;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // nach rechts
-    cmd.linear.x = -velocity;
+    // 90 Grad drehen
+	cmd.angular.z = PI/2;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    chatter_pub.publish(cmd);
-    /*// nach unten
-    cmd.linear.y = -velocity;
+    // nach oben
+    cmd.linear.x = +velocity;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // schräg links unten
-    cmd.linear.y = -velocity;
-    cmd.linear.x=velocity;
+    // 90 Grad drehen nach rechts
+	cmd.angular.z = -PI/2;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
     // nach rechts
-    cmd.linear.x=velocity;
+    cmd.linear.x = +velocity;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // schräg links oben
-    cmd.linear.y = velocity;
-    cmd.linear.x = -velocity;
+    // 135 Grad drehen nach rechts
+	cmd.angular.z = -PI/2 - PI/4;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // schräg rechts oben
-    cmd.linear.y = velocity;
-    cmd.linear.x = velocity;
+    // nach links unten
+    cmd.linear.x = +velocity*sqrt(2);
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // schräg rechts unten
-    cmd.linear.y = -velocity;
-    cmd.linear.x = velocity;
+    // 135 Grad drehen nach links
+	cmd.angular.z = PI/4+PI/2;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
-    // unten
-    cmd.linear.y = -velocity;
+    // nach rechts
+    cmd.linear.x = +velocity;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // 135 Grad drehen nach links
+	cmd.angular.z = PI/4+PI/2;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // nach links oben
+    cmd.linear.x = +velocity*sqrt(2);
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // 90 grad nach rechts
+	cmd.angular.z = -PI/2;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // nach rechts oben
+    cmd.linear.x = +velocity*sqrt(2)/2;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // 90 grad nach rechts
+	cmd.angular.z = -PI/2;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // nach rechts oben
+    cmd.linear.x = +velocity*sqrt(2)/2;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // 45 grad nach rechts
+	cmd.angular.z = -PI/4;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // nach unten
+    cmd.linear.x = +velocity;
+    chatter_pub.publish(cmd);
+    ros::Duration(1).sleep();
+    reset_cmd(cmd);
+    // 90 grad nach links
+	cmd.angular.z = +PI/2;
     chatter_pub.publish(cmd);
     ros::Duration(1).sleep();
     reset_cmd(cmd);
     ros::spinOnce();
-	//loop_rate.sleep();*/
+	//loop_rate.sleep();
   }
 
   return 0;
