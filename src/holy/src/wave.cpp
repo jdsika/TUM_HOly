@@ -40,10 +40,12 @@ int main(int argc, char **argv)
 
         js.header.stamp = ros::Time::now();
         double t = ros::Time::now().toSec();
+        js.position[0] = sin(t);
+        js.position[1] = sin(t+M_PI);
         js.position[2] = sin(t);
         js.position[3] = sin(t+M_PI);
         js.position[4] = sin(t+M_PI_2);
-        js.position[5] = sin(t+M_PI+M_PI_2);
+        js.position[5] = -sin(t+M_PI+M_PI_2);
         pub.publish(js);
 
         rate.sleep();
