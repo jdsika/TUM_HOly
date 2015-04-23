@@ -14,6 +14,8 @@ int main(int argc, char **argv)
 
     ros::Publisher pub = n.advertise<sensor_msgs::JointState>("bioloid_interface/command", 1000);
 
+    ros::Rate rate(20);
+
     sensor_msgs::JointState js;
 
     js.header.frame_id = "/world";
@@ -22,24 +24,29 @@ int main(int argc, char **argv)
     js.name.push_back("R_SAA");
     js.name.push_back("L_SFE");
     js.name.push_back("R_SFE");
+    js.name.push_back("L_EB");
+    js.name.push_back("R_EB");
     js.position.push_back(1);
     js.position.push_back(1);
+    js.position.push_back(0);
+    js.position.push_back(0);
     js.position.push_back(0);
     js.position.push_back(0);
 
-    js.effort.resize(4);
+    js.effort.resize(6);
     std::fill(js.effort.begin(), js.effort.end(), 0);
 
-
-    double t = 0;
     while (ros::ok()) {
 
         js.header.stamp = ros::Time::now();
+        double t = ros::Time::now().toSec();
         js.position[2] = sin(t);
-        js.position[3] = -sin(t);
+        js.position[3] = sin(t+M_PI);
+        js.position[4] = sin(t+M_PI_2);
+        js.position[5] = sin(t+M_PI+M_PI_2);
         pub.publish(js);
-        ros::Duration(0.05).sleep();
-        t+=0.05;
+
+        rate.sleep();
 
         ros::spinOnce();
     }
