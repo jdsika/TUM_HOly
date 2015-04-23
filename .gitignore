@@ -14,5 +14,7 @@ Makefile
 catkin/
 catkin_generated/
 gtest/
+
+# Eclipse files
 RemoteSystemsTempFiles/
 .metadata/
