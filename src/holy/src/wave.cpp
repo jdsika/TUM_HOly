@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 
     js.header.frame_id = "/world";
 
+    // Add joints to vector
     js.name.push_back("L_SAA");
     js.name.push_back("R_SAA");
     js.name.push_back("L_SFE");
@@ -33,8 +34,9 @@ int main(int argc, char **argv)
     js.position.push_back(0);
     js.position.push_back(0);
 
+    // Set Bioloid effort
     js.effort.resize(6);
-    std::fill(js.effort.begin(), js.effort.end(), 0);
+    std::fill(js.effort.begin(), js.effort.end(), 200);
 
     while (ros::ok()) {
 
