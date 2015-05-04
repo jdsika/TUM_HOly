@@ -18,3 +18,6 @@ gtest/
 # Eclipse files
 RemoteSystemsTempFiles/
 .metadata/
+
+#QtCreator Files
+CMakeLists.txt.user
