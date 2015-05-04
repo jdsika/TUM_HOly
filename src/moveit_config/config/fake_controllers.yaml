@@ -1,0 +1,6 @@
+controller_list:
+  - name: fake_LeftArm_controller
+    joints:
+      - L_SAA
+      - L_SFE
+      - L_EB
