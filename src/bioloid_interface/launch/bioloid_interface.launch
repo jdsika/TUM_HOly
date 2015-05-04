@@ -3,11 +3,14 @@
     <include file="$(find bioloid_interface)/launch/bioloid_TypeA_para.launch"/>
 
     <!-- Communicates with the actual robot-->
-    <node name="bioloid_interface" pkg="bioloid_interface" type="bioloid_interface" required="true" output="screen"/>
+    <node name="bioloid_interface" pkg="bioloid_interface" type="bioloid_interface" required="true" output="screen">
+    <remap from="bioloid_interface/state" to="joint_states" /> 
+</node>
 
     <param name="robot_description" command="$(find xacro)/xacro.py $(find bioloid_interface)/urdf/TypeA.urdf.xacro" />
     <node pkg="robot_state_publisher" type="state_publisher" name="rob_st_pub" >
-        <remap from="joint_states" to="bioloid_interface/state" />
+       <remap from="joint_states" to="bioloid_interface/state" /> 
+	    <remap from="bioloid_interface/state" to="joint_states" /> 
     </node>
 
 </launch>
