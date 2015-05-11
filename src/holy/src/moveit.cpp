@@ -55,11 +55,11 @@ void controllerResultCallback(const moveit_msgs::MoveGroupResultConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "moveit-bioloid-controller");
+    ros::init(argc, argv, "moveit_controller");
     ros::NodeHandle n;
 
     pub = n.advertise<sensor_msgs::JointState>("bioloid_interface/command", 1000);
-    sub = n.subscribe("/move_group/result", 1000, controllerResultCallback);
+    sub = n.subscribe("move_group/result", 1000, controllerResultCallback);
 
     ros::Rate rate(20);
 

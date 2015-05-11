@@ -110,7 +110,7 @@ include_directories(
 ## Declare a cpp executable
  add_executable(turtle_house src/test.cpp)
  add_executable(wave src/wave.cpp)
- add_executable(moveit src/moveit.cpp)
+ add_executable(moveit_controller src/moveit.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -119,7 +119,7 @@ include_directories(
 ## Specify libraries to link a library or executable target against
  target_link_libraries( turtle_house ${catkin_LIBRARIES} )
  target_link_libraries( wave ${catkin_LIBRARIES} )
- target_link_libraries( moveit ${catkin_LIBRARIES} )
+ target_link_libraries( moveit_controller ${catkin_LIBRARIES} )
 
 #############
 ## Install ##
