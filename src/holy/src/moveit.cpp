@@ -1,57 +1,70 @@
-#include "ros/ros.h"
-
 #include <cmath>
 
 #include <vector>
+#include <unordered_map>
 
+#include <ros/ros.h>
 #include <bioloid_interface/bioloid_msg.h>
 #include <sensor_msgs/JointState.h>
+#include <std_msgs/String.h>
+
+#include <moveit_msgs/MoveGroupResult.h>
+
+
+/* L_EB  - Left Elbow
+ * L_SFE - Left Biceps (bends)
+ * L_SAA - Left Shoulder (rotates)
+ * L_HAA - Left Hip (rotates)
+ * L_HR  - Left Hip (bends)
+ * L_HFE - Left Hip abductor (sideways)
+ * L_KFE - Left Knee
+ * L_AFE - Left Ankle (bends)
+ * L_AR  - Left Foot (sideways rotate)
+ * R_EB  - Right Elbow
+ * R_SFE - Right Biceps (bends)
+ * R_SAA - Right Shoulder (rotates)
+ * R_HAA - Right Hip (rotates)
+ * R_HR  - Right Hip (bends)
+ * R_HFE - Right Hip abductor (sideways)
+ * R_KFE - Right Knee
+ * R_AFE - Right Ankle (bends)
+ * R_AR  - Right Foot (sideways rotate)
+ */
+
+ros::Publisher pub;
+ros::Subscriber sub;
+sensor_msgs::JointState js;
+
+void controllerResultCallback(const moveit_msgs::MoveGroupResultConstPtr& msg)
+{
+    auto jn = msg->planned_trajectory.joint_trajectory.joint_names;
+    auto jp = msg->planned_trajectory.joint_trajectory.points;
+
+    ROS_INFO("Got %d joints. Joint 0 has %d points", static_cast<int>(jn.size()), static_cast<int>(jp[0].positions.size()));
+
+    sensor_msgs::JointState js;
+    js.header.stamp = ros::Time::now();
+    js.header.frame_id = "/world";
+    for (int i=0; i<jn.size(); ++i) {
+        js.name.push_back(jn.at(i));
+        js.position.push_back(jp.at(i).positions.at(0));
+        js.effort.push_back(-1);
+    }
+    pub.publish(js);
+}
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "wave");
+    ros::init(argc, argv, "moveit-bioloid-controller");
     ros::NodeHandle n;
 
-    ros::Publisher pub = n.advertise<sensor_msgs::JointState>("bioloid_interface/command", 1000);
+    pub = n.advertise<sensor_msgs::JointState>("bioloid_interface/command", 1000);
+    sub = n.subscribe("/move_group/result", 1000, controllerResultCallback);
 
     ros::Rate rate(20);
 
-    sensor_msgs::JointState js;
-
-    js.header.frame_id = "/world";
-
-    // Add joints to vector
-    js.name.push_back("L_SAA");
-    js.name.push_back("R_SAA");
-    js.name.push_back("L_SFE");
-    js.name.push_back("R_SFE");
-    js.name.push_back("L_EB");
-    js.name.push_back("R_EB");
-    js.position.push_back(1);
-    js.position.push_back(1);
-    js.position.push_back(0);
-    js.position.push_back(0);
-    js.position.push_back(0);
-    js.position.push_back(0);
-
-    // Set Bioloid effort
-    js.effort.resize(6);
-    std::fill(js.effort.begin(), js.effort.end(), 200);
-
     while (ros::ok()) {
-
-        js.header.stamp = ros::Time::now();
-        double t = ros::Time::now().toSec();
-        js.position[0] = sin(t);
-        js.position[1] = sin(t+M_PI);
-        js.position[2] = sin(t);
-        js.position[3] = sin(t+M_PI);
-        js.position[4] = sin(t+M_PI_2);
-        js.position[5] = -sin(t+M_PI+M_PI_2);
-        pub.publish(js);
-
         rate.sleep();
-
         ros::spinOnce();
     }
 
