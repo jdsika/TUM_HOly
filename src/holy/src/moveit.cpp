@@ -39,17 +39,25 @@ void controllerResultCallback(const moveit_msgs::MoveGroupActionResultConstPtr& 
 {
     auto jn = msg->result.planned_trajectory.joint_trajectory.joint_names;
     auto jp = msg->result.planned_trajectory.joint_trajectory.points;
+    int numJoints = static_cast<int>(jn.size());
+    int numPoints = static_cast<int>(jp.size());
 
     ROS_INFO("%s", msg->status.text.c_str());
-    ROS_INFO("Got %d joints. Joint 0 has %d points", static_cast<int>(jn.size()), static_cast<int>(jp[0].positions.size()));
+
+
+    ROS_INFO("Got %d joints and %d points", numJoints, numPoints);
 
     sensor_msgs::JointState js;
     js.header.stamp = ros::Time::now();
     js.header.frame_id = "/world";
-    for (int i=0; i<jn.size(); ++i) {
-        js.name.push_back(jn.at(i));
-        js.position.push_back(jp.at(i).positions.at(0));
-        js.effort.push_back(-1);
+    for (int i=0; i<numPoints; ++i) {
+        for(int j=0; j<numJoints; ++j)
+        {
+            js.name.push_back(jn.at(j));
+            js.position.push_back(jp.at(i).positions.at(0));
+            js.effort.push_back(-1);
+        }
+
     }
     pub.publish(js);
 }
