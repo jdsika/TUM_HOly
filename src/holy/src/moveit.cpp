@@ -8,7 +8,7 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/String.h>
 
-#include <moveit_msgs/MoveGroupResult.h>
+#include <moveit_msgs/MoveGroupActionResult.h>
 
 
 /* L_EB  - Left Elbow
@@ -35,11 +35,12 @@ ros::Publisher pub;
 ros::Subscriber sub;
 sensor_msgs::JointState js;
 
-void controllerResultCallback(const moveit_msgs::MoveGroupResultConstPtr& msg)
+void controllerResultCallback(const moveit_msgs::MoveGroupActionResultConstPtr& msg)
 {
-    auto jn = msg->planned_trajectory.joint_trajectory.joint_names;
-    auto jp = msg->planned_trajectory.joint_trajectory.points;
+    auto jn = msg->result.planned_trajectory.joint_trajectory.joint_names;
+    auto jp = msg->result.planned_trajectory.joint_trajectory.points;
 
+    ROS_INFO("%s", msg->status.text.c_str());
     ROS_INFO("Got %d joints. Joint 0 has %d points", static_cast<int>(jn.size()), static_cast<int>(jp[0].positions.size()));
 
     sensor_msgs::JointState js;
