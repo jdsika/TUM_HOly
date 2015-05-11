@@ -21,3 +21,7 @@ RemoteSystemsTempFiles/
 
 #QtCreator Files
 CMakeLists.txt.user
+
+#Desktop default
+CATKIN_IGNORE
+*.cbp
