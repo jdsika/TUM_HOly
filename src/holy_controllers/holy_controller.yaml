@@ -1,0 +1,243 @@
+R_SAA_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_SAA
+    joint_speed: 1.0
+    motor:
+        id: 1
+        init: 512
+        min: 0
+        max: 1023
+
+L_SAA_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_SAA
+    joint_speed: 1.0
+    motor:
+        id: 2
+        init: 512
+        min: 0
+        max: 1023
+
+R_SFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_SFE
+    joint_speed: 1.0
+    motor:
+        id: 3
+        init: 512
+        min: 0
+        max: 1023
+
+L_SFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_SFE
+    joint_speed: 1.0
+    motor:
+        id: 4
+        init: 512
+        min: 0
+        max: 1023
+
+R_EB_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_EB
+    joint_speed: 1.0
+    motor:
+        id: 5
+        init: 512
+        min: 0
+        max: 1023
+
+L_EB_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_EB
+    joint_speed: 1.0
+    motor:
+        id: 6
+        init: 512
+        min: 0
+        max: 1023
+
+R_HAA_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_HAA
+    joint_speed: 1.0
+    motor:
+        id: 7
+        init: 512
+        min: 0
+        max: 1023
+
+L_HAA_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_HAA
+    joint_speed: 1.0
+    motor:
+        id: 8
+        init: 512
+        min: 0
+        max: 1023
+
+R_HR_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_HR
+    joint_speed: 1.0
+    motor:
+        id: 9
+        init: 512
+        min: 0
+        max: 1023
+
+L_HR_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_HR
+    joint_speed: 1.0
+    motor:
+        id: 10
+        init: 512
+        min: 0
+        max: 1023
+
+R_HFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_HFE
+    joint_speed: 1.0
+    motor:
+        id: 11
+        init: 512
+        min: 0
+        max: 1023
+
+L_HFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_HFE
+    joint_speed: 1.0
+    motor:
+        id: 12
+        init: 512
+        min: 0
+        max: 1023
+
+R_KFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_KFE
+    joint_speed: 1.0
+    motor:
+        id: 13
+        init: 512
+        min: 0
+        max: 1023
+
+L_KFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_KFE
+    joint_speed: 1.0
+    motor:
+        id: 14
+        init: 512
+        min: 0
+        max: 1023
+
+R_AFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_AFE
+    joint_speed: 1.0
+    motor:
+        id: 15
+        init: 512
+        min: 0
+        max: 1023
+
+L_AFE_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_AFE
+    joint_speed: 1.0
+    motor:
+        id: 16
+        init: 512
+        min: 0
+        max: 1023
+
+R_AR_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: R_AR
+    joint_speed: 1.0
+    motor:
+        id: 17
+        init: 512
+        min: 0
+        max: 1023
+
+L_AR_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: L_AR
+    joint_speed: 1.0
+    motor:
+        id: 18
+        init: 512
+        min: 0
+        max: 1023
+
+holy_joint_trajectory_action_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_trajectory_action_controller
+        type: JointTrajectoryActionController
+    joint_trajectory_action_node:
+        min_velocity: 0.25
+        constraints:
+            goal_time: 1.0

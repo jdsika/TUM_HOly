@@ -5,4 +5,4 @@ moveit_setup_assistant_config:
   SRDF:
     relative_path: config/awesome-o.srdf
   CONFIG:
-    generated_timestamp: 1430746874
+    generated_timestamp: 1431368360

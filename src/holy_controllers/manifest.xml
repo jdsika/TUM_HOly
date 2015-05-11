@@ -1,0 +1,15 @@
+<package>
+  <description brief="holy_controllers">
+
+     holy_controllers
+
+  </description>
+  <author>HOly</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/holy_controllers</url>
+  <depend package="dynamixel_controllers"/>
+
+</package>
+
+
