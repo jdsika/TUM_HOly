@@ -65,6 +65,8 @@ LeftArm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+  projection_evaluator: joints(L_SAA,L_SFE)
+  longest_valid_segment_fraction: 0.05
 RightArm:
   planner_configs:
     - SBLkConfigDefault
@@ -78,6 +80,8 @@ RightArm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+  projection_evaluator: joints(R_SAA,R_SFE)
+  longest_valid_segment_fraction: 0.05
 LeftLeg:
   planner_configs:
     - SBLkConfigDefault
@@ -91,6 +95,8 @@ LeftLeg:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+  projection_evaluator: joints(L_HAA,L_HR)
+  longest_valid_segment_fraction: 0.05
 RightLeg:
   planner_configs:
     - SBLkConfigDefault
@@ -104,6 +110,8 @@ RightLeg:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+  projection_evaluator: joints(R_HAA,R_HR)
+  longest_valid_segment_fraction: 0.05
 All:
   planner_configs:
     - SBLkConfigDefault
@@ -117,3 +125,5 @@ All:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+  projection_evaluator: joints(L_HAA,L_HR)
+  longest_valid_segment_fraction: 0.05

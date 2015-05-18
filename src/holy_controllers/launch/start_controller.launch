@@ -7,9 +7,7 @@
 		R_SAA_controller
 		R_SFE_controller
 		R_EB_controller
-		"
-        output="screen"/>
-<!--	R_HAA_controller
+		R_HAA_controller
 		R_HR_controller
 		R_HFE_controller
 		R_KFE_controller
@@ -23,7 +21,10 @@
 		L_HFE_controller
 		L_KFE_controller
 		L_AFE_controller
-		L_AR_controller //-->
+		L_AR_controller 
+		"
+        output="screen"/>
+
 
   <node name="holy_action_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
         args="--manager=holy_manager
@@ -32,6 +33,21 @@
               	R_SAA_controller
 		R_SFE_controller
 		R_EB_controller
+		R_HAA_controller
+		R_HR_controller
+		R_HFE_controller
+		R_KFE_controller
+		R_AFE_controller
+		R_AR_controller
+		L_SAA_controller
+		L_SFE_controller
+		L_EB_controller
+		L_HAA_controller
+		L_HR_controller
+		L_HFE_controller
+		L_KFE_controller
+		L_AFE_controller
+		L_AR_controller 
 		"
         output="screen"/>
 </launch>
