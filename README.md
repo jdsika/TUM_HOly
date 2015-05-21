@@ -15,4 +15,4 @@ rostopic pub /bioloid_interface/command sensor_msgs/JointState '{header: {stamp:
 * [Autonomous Reinforcement Learning with Experience Replay for Humanoid Gait Optimization](http://www.sciencedirect.com/science/article/pii/S1877050912007375)
 * [Explicit analytic solution for inverse kinematics of Bioloid
 humanoid robot](http://ieeexplore.ieee.org.eaccess.ub.tum.de/stamp/stamp.jsp?tp=&arnumber=6363315)
-* [center of gravity http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5937193&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5937193]
+* [center of gravity] (http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5937193&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5937htt)
