@@ -3,5 +3,4 @@
   <include file="$(find holy_controllers)/launch/init_controller.launch" /> 
 
   <include file="$(find moveit_config)/launch/move_group.launch" /> 
-  <include file="$(find moveit_config)/launch/moveit_rviz.launch" /> 
 </launch>

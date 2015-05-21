@@ -1,0 +1,5 @@
+<launch>
+<param name="robot_description" command="$(find xacro)/xacro.py $(find holy_controllers)/urdf/TypeA.urdf.xacro" />
+<node pkg="robot_state_publisher" type="state_publisher" name="rob_st_pub" >
+</node>
+</launch>
