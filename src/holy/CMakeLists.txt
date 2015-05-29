@@ -54,7 +54,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
  add_executable(turtle_house src/test.cpp)
  add_executable(wave src/wave.cpp)
  add_executable(moveit_controller src/moveit.cpp)
- add_executable(walk src/walk.cpp)
+ add_executable(walk src/walk_main.cpp src/core.cpp src/walk.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
