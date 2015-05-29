@@ -42,14 +42,7 @@ private:
 
     ros::NodeHandle *node_handle;
 
-    robot_model::RobotModelPtr robot_model;
-    planning_scene::PlanningScenePtr planning_scene;
-//    moveit::planning_interface::MoveGroup moveGroupAll;
-//    moveit::planning_interface::MoveGroup::Plan planner;
-    planning_interface::PlannerManagerPtr planner_instance;
-    planning_interface::MotionPlanRequest req;
-    planning_interface::MotionPlanResponse res;
-    planning_interface::PlanningContextPtr context;
+    moveit::planning_interface::MoveGroup *group;
 
     tf::TransformListener *listener;
     std::map<Limb, tf::StampedTransform*> transforms;
