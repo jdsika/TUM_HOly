@@ -16,6 +16,7 @@
 // Forward declarations
 namespace ros{
 class NodeHandle;
+class AsyncSpinner;
 }
 namespace tf{
 class TransformListener;
@@ -47,7 +48,7 @@ private:
     tf::TransformListener *listener;
     std::map<Limb, tf::StampedTransform*> transforms;
 
-
+    ros::AsyncSpinner *aSpin;
 };
 
 #endif

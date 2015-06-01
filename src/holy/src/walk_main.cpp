@@ -39,16 +39,20 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-//    Walk::pose ap = walk.getActualPose();
-////    ap.roll += 15*M_PI/180.0;
-//    ap.z += 0.03;
-//    geometry_msgs::Pose p = walk.transformToPlan(Core::Limb::RIGHT_FOOT, ap);
-//    core.setPoseTarget(Core::Limb::RIGHT_FOOT, p);
-//    core.move();
+    //    Walk::pose ap = walk.getActualPose();
+    ////    ap.roll += 15*M_PI/180.0;
+    //    ap.z += 0.03;
+    //    geometry_msgs::Pose p = walk.transformToPlan(Core::Limb::RIGHT_FOOT, ap);
+    //    core.setPoseTarget(Core::Limb::RIGHT_FOOT, p);
+    //    core.move();
 
+    // running the program at a rate of 20Hz
+    std::cout << "Test" << std::endl;
     ros::Rate rate(20);
     while (ros::ok()) {
+        // sleep as long as the 20Hz cycle frequency is met
         rate.sleep();
+        // process callbacks in custom loops
         ros::spinOnce();
     }
 

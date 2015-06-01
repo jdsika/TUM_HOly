@@ -1,5 +1,6 @@
 
 #include "core.h"
+#include <ros/spinner.h>
 
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
@@ -17,10 +18,13 @@
 Core::Core(int argc, char** argv)
 
 {
-
     // Initialize ROS System
     ros::init(argc, argv, "holy_walk");
     node_handle = new ros::NodeHandle;
+
+    // asychronous spinner
+    aSpin = new ros::AsyncSpinner(0);
+    aSpin->start();
 
     //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
@@ -46,7 +50,7 @@ Core::Core(int argc, char** argv)
             listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
         }
         catch (tf::TransformException ex){
-            std::cout << ex.what() << std::endl;
+            //std::cout << ex.what() << std::endl;
             std::cout << "." ;
             std::flush(std::cout);
             ros::Duration(1.0).sleep();
@@ -59,12 +63,15 @@ Core::Core(int argc, char** argv)
 
 Core::~Core()
 {
-    delete node_handle;
-    delete listener;
-    delete group;
+    ros::shutdown();
+
     for(auto tf : transforms){
         delete tf.second;
     }
+    delete listener;
+    delete group;
+    delete node_handle;
+    delete aSpin;
 }
 
 tf::StampedTransform *Core::getTF(Core::Limb limb)
@@ -109,6 +116,7 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
 void Core::moveto_default_state()
 {
     std::vector<double> group_variable_values;
+    group_variable_values.resize(18);
     //group.getCurrentState()->copyJointGroupPositions(group.getCurrentState()->getRobotModel()->getJointModelGroup(group.getName()), group_variable_values);
     moveit::planning_interface::MoveGroup::Plan my_plan;
     std::fill(group_variable_values.begin(), group_variable_values.end(), 0.0);

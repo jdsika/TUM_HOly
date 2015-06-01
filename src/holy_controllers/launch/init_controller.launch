@@ -1,4 +1,7 @@
 <launch>
+<rosparam>
+  /move_group/trajectory_execution/allowed_execution_duration_scaling: 100.0
+ </rosparam>
 <!-- Start controller manager -->
 <include file="$(find holy_controllers)/launch/holy_manager.launch">
 </include>
