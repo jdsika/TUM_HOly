@@ -16,24 +16,52 @@ Walk::~Walk()
 
 Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut)
 {
-    geometry_msgs::PoseStamped poseStamped = core->getMoveGroup().getCurrentPose(Core::getLimbString(limb));
+
+    geometry_msgs::Pose currPos;
+    tf::StampedTransform* transf = core->getTF(limb);
+    tf::Matrix3x3 matrixIstWerte;
+    matrixIstWerte.setRotation(transf->getRotation());
+    tf::Quaternion quat;
+    matrixIstWerte.getRotation(quat);
+    currPos.orientation.x = quat.getX();
+    currPos.orientation.y = quat.getY();
+    currPos.orientation.z = quat.getZ();
+    currPos.orientation.w = quat.getW();
+
+    // translation addieren
+    currPos.position.x = static_cast<double>(transf->getOrigin().x());
+    currPos.position.y = static_cast<double>(transf->getOrigin().y());
+    currPos.position.z = static_cast<double>(transf->getOrigin().z());
+
+
+
+
+//    geometry_msgs::PoseStamped poseStamped = core->getMoveGroup().getCurrentPose(Core::getLimbString(limb));
 
     double r,p,y;
-    tf::Matrix3x3(tf::Quaternion(poseStamped.pose.orientation.x,
-                                 poseStamped.pose.orientation.y,
-                                 poseStamped.pose.orientation.z,
-                                 poseStamped.pose.orientation.w)
+    tf::Matrix3x3(tf::Quaternion(currPos.orientation.x,
+                                 currPos.orientation.y,
+                                 currPos.orientation.z,
+                                 currPos.orientation.w)
                   ).getEulerYPR(y, p, r);
+//    tf::Matrix3x3(tf::Quaternion(currPos.pose.orientation.x,
+//                                 currPos.pose.orientation.y,
+//                                 currPos.pose.orientation.z,
+//                                 currPos.pose.orientation.w)
+//                  ).getEulerYPR(y, p, r);
 
     struct pose currentPose = {
         r, p, y,
-        poseStamped.pose.position.x,
-        poseStamped.pose.position.y,
-        poseStamped.pose.position.z
+//        currPos.pose.position.x,
+//        currPos.pose.position.y,
+//        currPos.pose.position.z
+        currPos.position.x,
+        currPos.position.y,
+        currPos.position.z
     };
 
     if(debugOut) {
-        std::cout << "Current pose of " << Core::getLimbString(limb) << "is \n  "
+        std::cout << "Current pose of " << Core::getLimbString(limb) << " is \n  "
                   << currentPose.roll/M_PI*180.0 << "° / " << currentPose.pitch/M_PI*180.0 << "° / " << currentPose.yaw/M_PI*180.0 << "°\n  "
                   << currentPose.x << "m / " << currentPose.y << "m / " << currentPose.z << "m" << std::endl;
     }

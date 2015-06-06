@@ -41,8 +41,9 @@ int main(int argc, char **argv)
 
     Walk::pose ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
 
-//    ap.pitch += +22.5*M_PI/180.0;
-//     ap.roll -= 5*M_PI/180.0;
+//    ap.pitch += +22.5*M_PI/180.0; // Hand Pitch: Queen-Winken
+//     ap.roll -= 5*M_PI/180.0; // Foot Roll (+): Fuß so drehen, dass Knie nach innen dreht.
+    
     ap.yaw = 5*M_PI/180.0;
     //ap.y += 0.03;
 //    ap.y += 0.05;

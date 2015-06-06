@@ -30,8 +30,8 @@ Core::Core(int argc, char** argv)
     group = new moveit::planning_interface::MoveGroup("All");
     //moveit::planning_interface::MoveGroup group_left_arm = moveit::planning_interface::MoveGroup("LeftArm");
     //moveit::planning_interface::MoveGroup group_right_arm = moveit::planning_interface::MoveGroup("RightArm");
-    //group->setGoalOrientationTolerance(2*M_PI);
-    //group->setGoalPositionTolerance(0.01);
+//    group->setGoalOrientationTolerance(5.0*M_PI/180.0);
+//    group->setGoalPositionTolerance(0.01);
 
 
 
@@ -121,10 +121,10 @@ const std::string Core::getLimbGroup(Core::Limb limb)
     switch(limb)
     {
     case Limb::LEFT_FOOT:
-        limb_str = "LeftFoot";
+        limb_str = "LeftLeg";
         break;
     case Limb::RIGHT_FOOT:
-        limb_str = "RightFoot";
+        limb_str = "RightLeg";
         break;
     case Limb::LEFT_HAND:
         limb_str = "LeftArm";
@@ -141,32 +141,49 @@ const std::string Core::getLimbGroup(Core::Limb limb)
 
 void Core::move()
 {
-       group->move();
+    group->move();
 }
 
 void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
 {
+
+    std::cout << "Pose Orient:\n  " << pose.orientation.x << " / " << pose.orientation.y << " / " << pose.orientation.z << " / " << pose.orientation.w << "\n  "
+              << pose.position.x << "m / " << pose.position.y << "m / " << pose.position.z  << "m\n";
+
     // this will ensure the movement of arms (same as checkbox in rvis)
     moveit::core::RobotStatePtr robot_state=group->getCurrentState();
     // enable Approximate IK solutions
     kinematics::KinematicsQueryOptions kQO;
     kQO.return_approximate_solution=true;
     //kQO.lock_redundant_joints=true;
-//    robot_state->printStatePositions();
+
+    std::cout << "Before" << std::endl;
+    robot_state->printStatePositions();
+
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
                                         pose, // pose
                                         3, // Attempts
-                                        1.0, // timeout
+                                        3.0, // timeout
                                         moveit::core::GroupStateValidityCallbackFn(), // Contraint
                                         kQO); // enable Approx IK
 
-//    std::cout<< success << std::endl;
-//    std::cout << *robot_state->getJointPositions("L_HAA");
+    std::cout<< "After ("<<(success?"OK":"Failed")<<")" << std::endl;
+    robot_state->printStatePositions();
+    //    std::cout << *robot_state->getJointPositions("L_HAA");
+
     std::vector<double> positions;
-//    robot_state->printStatePositions();
+    positions.resize(18);
+    std::fill(positions.begin(), positions.end(), 0.0);
     robot_state->copyJointGroupPositions(robot_state->getJointModelGroup("All"),positions);
+    std::cout << "Positions: ";
+    for (int i=0; i<positions.size(); ++i)
+    {
+        if(fabs(positions[i]) >= 0.999* M_PI) {positions[i]=0.0; std::cout << " changed: "; }
+        std::cout << positions[i]*180.0/M_PI << "°, ";
+    }
+    std::cout << std::endl;
     group->setJointValueTarget(positions);
-   // group->setPoseTarget(pose, getLimbString(limb));
+    // group->setPoseTarget(pose, getLimbString(limb));
 }
 
 
