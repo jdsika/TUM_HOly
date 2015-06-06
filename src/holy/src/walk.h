@@ -21,7 +21,7 @@ public:
     };
 
     struct pose getDefaultPose();
-    struct pose getCurrentPose(Core::Limb limb, bool debugOut);
+    struct pose getCurrentPose(Core::Limb limb, bool debugOut = false);
 
     geometry_msgs::Pose transformToPlan(Core::Limb limb, struct pose pose);
 

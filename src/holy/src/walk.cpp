@@ -20,7 +20,7 @@ Walk::pose Walk::getDefaultPose()
     return p;
 }
 
-Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut = false)
+Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut)
 {
     geometry_msgs::PoseStamped poseStamped = core->getMoveGroup().getCurrentPose(Core::getLimbString(limb));
 
