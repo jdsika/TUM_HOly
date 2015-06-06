@@ -128,7 +128,7 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     kinematics::KinematicsQueryOptions kQO;
     kQO.return_approximate_solution=true;
     //kQO.lock_redundant_joints=true;
-    robot_state->printStatePositions();
+//    robot_state->printStatePositions();
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup("RightArm"), // Group
                            pose, // pose
                            3, // Attempts
@@ -136,9 +136,9 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
                            moveit::core::GroupStateValidityCallbackFn(), // Contraint
                            kQO); // enable Approx IK
     std::cout<< success << std::endl;
-    std::cout << *robot_state->getJointPositions("L_HAA");
+//    std::cout << *robot_state->getJointPositions("L_HAA");
     std::vector<double> positions;
-    robot_state->printStatePositions();
+//    robot_state->printStatePositions();
     robot_state->copyJointGroupPositions(robot_state->getJointModelGroup("All"),positions);
     group->setJointValueTarget(positions);
    // group->setPoseTarget(pose, getLimbString(limb));

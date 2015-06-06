@@ -14,12 +14,6 @@ Walk::~Walk()
 
 }
 
-Walk::pose Walk::getDefaultPose()
-{
-    struct pose p = {0,0,0,0,0,0};
-    return p;
-}
-
 Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut)
 {
     geometry_msgs::PoseStamped poseStamped = core->getMoveGroup().getCurrentPose(Core::getLimbString(limb));
@@ -74,4 +68,20 @@ geometry_msgs::Pose Walk::transformToPlan(Core::Limb limb, Walk::pose pose)
     std::cout << "Transformation:\n  RPY: " << roll << " / " << pitch << " / " << yaw << "\n  XYZ: " << targetPose.position.x << " / " << targetPose.position.y  << " / " << targetPose.position.z << std::endl;
 
     return targetPose;
+}
+
+
+const geometry_msgs::Pose Walk::pose::toGeoPose() const
+{
+    tf::Quaternion q;
+    q.setRPY(roll, pitch, yaw);
+    geometry_msgs::Pose gpose;
+    gpose.orientation.x = q.getX();
+    gpose.orientation.y = q.getY();
+    gpose.orientation.z = q.getZ();
+    gpose.orientation.w = q.getW();
+    gpose.position.x = x;
+    gpose.position.y = y;
+    gpose.position.z = z;
+    return gpose;
 }

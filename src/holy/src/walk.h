@@ -18,9 +18,9 @@ public:
 
     struct pose {
         double roll, pitch, yaw, x, y, z;
+        const geometry_msgs::Pose toGeoPose() const;
     };
 
-    struct pose getDefaultPose();
     struct pose getCurrentPose(Core::Limb limb, bool debugOut = false);
 
     geometry_msgs::Pose transformToPlan(Core::Limb limb, struct pose pose);
