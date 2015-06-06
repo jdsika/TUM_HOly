@@ -37,7 +37,11 @@ public:
     moveit::planning_interface::MoveGroup & getMoveGroup();
 
     void setPoseTarget(Limb limb, geometry_msgs::Pose pose);
+
+    // static methods to identify Limbs and Groups by enum
     static const std::string getLimbString(Core::Limb limb);
+    static const std::string getLimbGroup(Core::Limb limb);
+
     void move();
     void moveto_default_state();
 
