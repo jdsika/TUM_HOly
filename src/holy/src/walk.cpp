@@ -20,10 +20,31 @@ Walk::pose Walk::getDefaultPose()
     return p;
 }
 
-Walk::pose Walk::getActualPose()
+Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut = false)
 {
-    struct pose p = {0,0,0,0,0,0};
-    return p;
+    geometry_msgs::PoseStamped poseStamped = core->getMoveGroup().getCurrentPose(Core::getLimbString(limb));
+
+    double r,p,y;
+    tf::Matrix3x3(tf::Quaternion(poseStamped.pose.orientation.x,
+                                 poseStamped.pose.orientation.y,
+                                 poseStamped.pose.orientation.z,
+                                 poseStamped.pose.orientation.w)
+                  ).getEulerYPR(y, p, r);
+
+    struct pose currentPose = {
+        r, p, y,
+        poseStamped.pose.position.x,
+        poseStamped.pose.position.y,
+        poseStamped.pose.position.z
+    };
+
+    if(debugOut) {
+        std::cout << "Current pose of " << Core::getLimbString(limb) << "is \n  "
+                  << currentPose.roll/M_PI*180.0 << "° / " << currentPose.pitch/M_PI*180.0 << "° / " << currentPose.yaw/M_PI*180.0 << "°\n  "
+                  << currentPose.x << "m / " << currentPose.y << "m / " << currentPose.z << "m" << std::endl;
+    }
+
+    return currentPose;
 }
 
 geometry_msgs::Pose Walk::transformToPlan(Core::Limb limb, Walk::pose pose)
@@ -31,7 +52,6 @@ geometry_msgs::Pose Walk::transformToPlan(Core::Limb limb, Walk::pose pose)
     geometry_msgs::Pose targetPose;
     tf::StampedTransform* transf = core->getTF(limb);
     tf::Matrix3x3 matrixZumDraufaddieren, matrixIstWerte;
-
     // winkel addieren
     matrixZumDraufaddieren.setRPY(pose.pitch, pose.roll, pose.yaw);
     matrixIstWerte.setRotation(transf->getRotation());

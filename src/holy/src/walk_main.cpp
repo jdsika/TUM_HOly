@@ -39,12 +39,19 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-    //    Walk::pose ap = walk.getActualPose();
-    ////    ap.roll += 15*M_PI/180.0;
-    //    ap.z += 0.03;
-    //    geometry_msgs::Pose p = walk.transformToPlan(Core::Limb::RIGHT_FOOT, ap);
-    //    core.setPoseTarget(Core::Limb::RIGHT_FOOT, p);
-    //    core.move();
+    Walk::pose ap = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
+
+    //ap.pitch += 45*M_PI/180.0;
+    // ap.roll += 45*M_PI/180.0;
+    //ap.yaw += 45*M_PI/180.0;
+    //ap.y += 0.03;
+    //ap.y += 3.00;
+    //ap.z += 0.03;
+
+    geometry_msgs::Pose p = walk.transformToPlan(Core::Limb::RIGHT_HAND, ap);
+
+    core.setPoseTarget(Core::Limb::RIGHT_HAND, p);
+    //core.move();
 
     // running the program at a rate of 20Hz
     std::cout << "Test" << std::endl;

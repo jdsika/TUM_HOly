@@ -34,8 +34,10 @@ public:
 
     tf::StampedTransform* getTF(Limb limb);
 
+    moveit::planning_interface::MoveGroup & getMoveGroup();
+
     void setPoseTarget(Limb limb, geometry_msgs::Pose pose);
-    std::string getLimbString(Core::Limb limb) const;
+    static const std::string getLimbString(Core::Limb limb);
     void move();
     void moveto_default_state();
 
