@@ -115,6 +115,30 @@ const std::string Core::getLimbString(Core::Limb limb)
     return limb_str;
 }
 
+const std::string Core::getLimbGroup(Core::Limb limb)
+{
+    std::string limb_str;
+    switch(limb)
+    {
+    case Limb::LEFT_FOOT:
+        limb_str = "LeftFoot";
+        break;
+    case Limb::RIGHT_FOOT:
+        limb_str = "RightFoot";
+        break;
+    case Limb::LEFT_HAND:
+        limb_str = "LeftArm";
+        break;
+    case Limb::RIGHT_HAND:
+        limb_str = "RightArm";
+        break;
+    default:
+        std::cerr << "unexpected limb enum " << static_cast<int>(limb) << std::endl;
+        break;
+    }
+    return limb_str;
+}
+
 void Core::move()
 {
        group->move();
@@ -129,13 +153,14 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     kQO.return_approximate_solution=true;
     //kQO.lock_redundant_joints=true;
 //    robot_state->printStatePositions();
-    bool success=robot_state->setFromIK(robot_state->getJointModelGroup("RightArm"), // Group
-                           pose, // pose
-                           3, // Attempts
-                           1.0, // timeout
-                           moveit::core::GroupStateValidityCallbackFn(), // Contraint
-                           kQO); // enable Approx IK
-    std::cout<< success << std::endl;
+    bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
+                                        pose, // pose
+                                        3, // Attempts
+                                        1.0, // timeout
+                                        moveit::core::GroupStateValidityCallbackFn(), // Contraint
+                                        kQO); // enable Approx IK
+
+//    std::cout<< success << std::endl;
 //    std::cout << *robot_state->getJointPositions("L_HAA");
     std::vector<double> positions;
 //    robot_state->printStatePositions();
