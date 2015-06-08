@@ -39,25 +39,41 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-    Walk::pose ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
+    std::cout << "testing... 1" << std::endl;
+    Walk::pose ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
+    std::cout << "testing... 2" << std::endl;
 
 //    ap.pitch += +22.5*M_PI/180.0; // Hand Pitch: Queen-Winken
 //     ap.roll -= 5*M_PI/180.0; // Foot Roll (+): Fuß so drehen, dass Knie nach innen dreht.
     
-    ap.yaw = 5*M_PI/180.0;
+//    ap.yaw = 5*M_PI/180.0;
     //ap.y += 0.03;
 //    ap.y += 0.05;
-    ap.z += 0.05;
+    ap.z += 99990.05;
+
+    std::cout<<"Desired pose  (before setPoseTarget) is:\n  "<<ap.roll*180.0/M_PI<<"° / "<<ap.pitch*180.0/M_PI<<"° / "<<ap.yaw*180.0/M_PI<<"° \n  "<<ap.x<<" / "<<ap.y<<" / "<<ap.z<<"\n";
+
     core.setPoseTarget(Core::Limb::RIGHT_FOOT, ap.toGeoPose());
+
+    std::cout<<"Desired pose (after setPoseTarget) is:\n  "<<ap.roll*180.0/M_PI<<"° / "<<ap.pitch*180.0/M_PI<<"° / "<<ap.yaw*180.0/M_PI<<"° \n  "<<ap.x<<" / "<<ap.y<<" / "<<ap.z<<"\n";
+
+
+    std::cout << "testing... 2.5" << std::endl;
+    walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
+
     core.move();
 
+    std::cout << "testing... 3" << std::endl;
+    walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
+    std::cout << "testing... 4" << std::endl;
+
 //    ap = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
-//    ap.pitch += -90*M_PI/180.0;
+////    ap.pitch += -90*M_PI/180.0;
 //    core.setPoseTarget(Core::Limb::RIGHT_HAND, ap.toGeoPose());
 //    core.move();
 
 //    ap = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
-//    ap.y += 0.1;
+////    ap.y += 0.1;
 //    core.setPoseTarget(Core::Limb::RIGHT_HAND, ap.toGeoPose());
 //    core.move();
 

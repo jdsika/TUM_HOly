@@ -12,9 +12,6 @@
 #include <moveit_msgs/DisplayRobotState.h>
 #include <moveit_msgs/DisplayTrajectory.h>
 
-//#include <moveit_msgs/AttachedCollisionObject.h>
-//#include <moveit_msgs/CollisionObject.h>
-
 Core::Core(int argc, char** argv)
 
 {
@@ -28,8 +25,6 @@ Core::Core(int argc, char** argv)
 
     //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
-    //moveit::planning_interface::MoveGroup group_left_arm = moveit::planning_interface::MoveGroup("LeftArm");
-    //moveit::planning_interface::MoveGroup group_right_arm = moveit::planning_interface::MoveGroup("RightArm");
 //    group->setGoalOrientationTolerance(5.0*M_PI/180.0);
 //    group->setGoalPositionTolerance(0.01);
 
@@ -45,25 +40,9 @@ Core::Core(int argc, char** argv)
     transforms[Limb::RIGHT_HAND] = new tf::StampedTransform;
     transforms[Limb::LEFT_HAND] = new tf::StampedTransform;
 
-    bool tryagain = true;
     ROS_INFO("Waiting for TF to appear");
-    while(tryagain)
-    {
-        try{
-            tryagain = false;
-            listener->lookupTransform("/base_link", "/R_foot_pad", ros::Time(0), *transforms[Limb::RIGHT_FOOT]);
-            listener->lookupTransform("/base_link", "/L_foot_pad", ros::Time(0), *transforms[Limb::LEFT_FOOT]);
-            listener->lookupTransform("/base_link", "/R_forearm", ros::Time(0), *transforms[Limb::RIGHT_HAND]);
-            listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
-        }
-        catch (tf::TransformException ex){
-            //std::cout << ex.what() << std::endl;
-            std::cout << "." ;
-            std::flush(std::cout);
-            ros::Duration(1.0).sleep();
-            tryagain = true;
-        }
-    }
+    listener->waitForTransform("/base_link", "/R_foot_pad",ros::Time(0), ros::Duration(5));
+    updateTF();
 
 
 }
@@ -83,6 +62,7 @@ Core::~Core()
 
 tf::StampedTransform *Core::getTF(Core::Limb limb)
 {
+    updateTF();
     return transforms[limb];
 }
 
@@ -150,40 +130,51 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     std::cout << "Pose Orient:\n  " << pose.orientation.x << " / " << pose.orientation.y << " / " << pose.orientation.z << " / " << pose.orientation.w << "\n  "
               << pose.position.x << "m / " << pose.position.y << "m / " << pose.position.z  << "m\n";
 
+    tf::Quaternion q(pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w);
+    double r,p,y;
+    tf::Matrix3x3(tf::Quaternion(pose.orientation.x,
+                                 pose.orientation.y,
+                                 pose.orientation.z,
+                                 pose.orientation.w)
+                  ).getEulerYPR(y, p, r);
+//    std::cout << "Pose Orient converted to R/P/Y:\n  " << r*180.0/M_PI << "° / " << p*180.0/M_PI << "° / " << y*180.0/M_PI << "°" << std::endl;
+
+
+    robot_state = group->getCurrentState();
+
     // this will ensure the movement of arms (same as checkbox in rvis)
-    moveit::core::RobotStatePtr robot_state=group->getCurrentState();
     // enable Approximate IK solutions
     kinematics::KinematicsQueryOptions kQO;
     kQO.return_approximate_solution=true;
-    //kQO.lock_redundant_joints=true;
 
     std::cout << "Before" << std::endl;
-    robot_state->printStatePositions();
+//    robot_state->printStatePositions();
+
+    robot_state->update(true);
 
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
                                         pose, // pose
-                                        3, // Attempts
+                                        333, // Attempts
                                         3.0, // timeout
                                         moveit::core::GroupStateValidityCallbackFn(), // Contraint
                                         kQO); // enable Approx IK
 
     std::cout<< "After ("<<(success?"OK":"Failed")<<")" << std::endl;
-    robot_state->printStatePositions();
+//    robot_state->printStatePositions();
     //    std::cout << *robot_state->getJointPositions("L_HAA");
 
     std::vector<double> positions;
     positions.resize(18);
     std::fill(positions.begin(), positions.end(), 0.0);
     robot_state->copyJointGroupPositions(robot_state->getJointModelGroup("All"),positions);
-    std::cout << "Positions: ";
-    for (int i=0; i<positions.size(); ++i)
-    {
-        if(fabs(positions[i]) >= 0.999* M_PI) {positions[i]=0.0; std::cout << " changed: "; }
-        std::cout << positions[i]*180.0/M_PI << "°, ";
-    }
-    std::cout << std::endl;
+//    std::cout << "Positions: ";
+//    for (int i=0; i<positions.size(); ++i)
+//    {
+//        if(fabs(positions[i]) >= 0.999* M_PI) {positions[i]=0.0; std::cout << " changed: "; }
+//        std::cout << positions[i]*180.0/M_PI << "°, ";
+//    }
+//    std::cout << std::endl;
     group->setJointValueTarget(positions);
-    // group->setPoseTarget(pose, getLimbString(limb));
 }
 
 
@@ -192,9 +183,15 @@ void Core::moveto_default_state()
     std::vector<double> group_variable_values;
     // all 18 joints are set to 0.0 position
     group_variable_values.resize(18);
-    //group.getCurrentState()->copyJointGroupPositions(group.getCurrentState()->getRobotModel()->getJointModelGroup(group.getName()), group_variable_values);
-    moveit::planning_interface::MoveGroup::Plan my_plan;
     std::fill(group_variable_values.begin(), group_variable_values.end(), 0.0);
+    group_variable_values[3] = -0.6; // bend knees
+    group_variable_values[3+9] = 0.6;
+
+    for(std::string s : group->getCurrentState()->getJointModelGroup("All")->getJointModelNames())
+    {
+        std::cout << s << ": " << *(group->getCurrentState()->getJointPositions(s)) << ", ";
+    }
+    // L_HAA, L_HR, L_HFE, L_KFE, L_AFE, L_AR, L_SAA, L_SFE, L_EB, R_HAA, R_HR, R_HFE, R_KFE, R_AFE, R_AR, R_SAA, R_SFE, R_EB
 
     // assign values to group
     group->setJointValueTarget(group_variable_values);
@@ -203,4 +200,12 @@ void Core::moveto_default_state()
     bool success = group->move();
 
     ROS_INFO("Visualizing plan 2 (joint space goal) %s",success?"":"FAILED");
+}
+
+void Core::updateTF()
+{
+    listener->lookupTransform("/base_link", "/R_foot_pad", ros::Time(0), *transforms[Limb::RIGHT_FOOT]);
+    listener->lookupTransform("/base_link", "/L_foot_pad", ros::Time(0), *transforms[Limb::LEFT_FOOT]);
+    listener->lookupTransform("/base_link", "/R_forearm", ros::Time(0), *transforms[Limb::RIGHT_HAND]);
+    listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
 }

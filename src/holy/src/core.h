@@ -55,6 +55,10 @@ private:
     std::map<Limb, tf::StampedTransform*> transforms;
 
     ros::AsyncSpinner *aSpin;
+
+    moveit::core::RobotStatePtr robot_state;
+
+    void updateTF();
 };
 
 #endif
