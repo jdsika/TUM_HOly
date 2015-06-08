@@ -1,16 +1,22 @@
 
 #include "core.h"
-#include <ros/spinner.h>
 
+#include <map>
+
+#include <ros/spinner.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
 #include <tf/transform_listener.h>
 
 #include <moveit/move_group_interface/move_group.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
-
 #include <moveit_msgs/DisplayRobotState.h>
 #include <moveit_msgs/DisplayTrajectory.h>
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit/robot_state/robot_state.h>
+#include <moveit/robot_model/robot_model.h>
+
+std::map<std::string, double> map_min, map_max;
 
 Core::Core(int argc, char** argv)
 
@@ -25,9 +31,9 @@ Core::Core(int argc, char** argv)
 
     //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
-//    group->setGoalOrientationTolerance(5.0*M_PI/180.0);
-    group->setGoalTolerance(0.001);
-    //group->setGoalJointTolerance(5*M_PI/180.0);
+    group->setGoalOrientationTolerance(0.0000050*M_PI/180.0);
+    group->setGoalPositionTolerance(0.0000002);
+    group->setGoalJointTolerance(0.00005*M_PI/180.0);
 
 
 
@@ -45,7 +51,27 @@ Core::Core(int argc, char** argv)
     listener->waitForTransform("/base_link", "/R_foot_pad",ros::Time(0), ros::Duration(5));
     updateTF();
 
-    robot_state = group->getCurrentState();
+    // Bring limbs to zero position
+    moveto_default_state();
+
+    // Jetzt Robot State abspeichern, damit Start State von späteren Planungen nicht der Power-on State ist
+    //robot_state = group->getCurrentState();
+    robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
+    robot_model::RobotModelPtr kin_model = robot_model_loader.getModel();
+    robot_state = moveit::core::RobotStatePtr (new moveit::core::RobotState(kin_model));
+    robot_state->setToDefaultValues();
+
+
+    std::vector<std::string> IDs {"L_HAA", "L_HR", "L_HFE", "L_KFE", "L_AFE", "L_AR", "L_SAA", "L_SFE", "L_EB", "R_HAA", "R_HR", "R_HFE", "R_KFE", "R_AFE", "R_AR", "R_SAA", "R_SFE", "R_EB"};
+    for(std::string id : IDs)
+    {
+        double val, init;
+        ros::param::get(id+"_controller/motor/init", init);
+        ros::param::get(id+"_controller/motor/min", val);
+        map_min[id] = (val - init + 512) * 2.0*M_PI / 1024.0 - M_PI;
+        ros::param::get(id+"_controller/motor/max", val);
+        map_max[id] = (val - init + 512) * 2.0*M_PI / 1024.0 - M_PI;
+    }
 
 }
 
@@ -126,55 +152,62 @@ void Core::move()
     group->move();
 }
 
+bool groupStateValidityCallback(
+        moveit::core::RobotState *robot_state,
+        const moveit::core::JointModelGroup *joint_group,
+        const double *joint_group_variable_values
+        )
+{
+    for(int i=0; i<joint_group->getJointModelNames().size(); ++i)
+    {
+        const std::string id = joint_group->getJointModelNames().at(i);
+        const double val = joint_group_variable_values[i];
+        if( val < map_min.at(id) )
+        {
+            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
+            return false;
+        }
+        if( val > map_max.at(id) )
+        {
+            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
+            return false;
+        }
+    }
+
+    return true;
+}
+
 void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
 {
-
-    std::cout << "Pose Orient:\n  " << pose.orientation.x << " / " << pose.orientation.y << " / " << pose.orientation.z << " / " << pose.orientation.w << "\n  "
-              << pose.position.x << "m / " << pose.position.y << "m / " << pose.position.z  << "m\n";
-
-    tf::Quaternion q(pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w);
-    double r,p,y;
-    tf::Matrix3x3(tf::Quaternion(pose.orientation.x,
-                                 pose.orientation.y,
-                                 pose.orientation.z,
-                                 pose.orientation.w)
-                  ).getEulerYPR(y, p, r);
-//    std::cout << "Pose Orient converted to R/P/Y:\n  " << r*180.0/M_PI << "° / " << p*180.0/M_PI << "° / " << y*180.0/M_PI << "°" << std::endl;
-
-
-
     // this will ensure the movement of arms (same as checkbox in rvis)
     // enable Approximate IK solutions for the hands only
     kinematics::KinematicsQueryOptions kQO;
-    kQO.return_approximate_solution = (limb == Core::Limb::LEFT_HAND || limb == Core::Limb::RIGHT_HAND)? true : false;
+    kQO.return_approximate_solution = false; //(limb == Core::Limb::LEFT_HAND || limb == Core::Limb::RIGHT_HAND)? true : false;
 
-    std::cout << "Before" << std::endl;
+//    bool success = group->setPoseTarget(pose, getLimbString(limb));
+
+
+//    std::cout << "---\n";
 //    robot_state->printStatePositions();
-
-    robot_state->update(true);
 
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
                                         pose, // pose
-                                        333, // Attempts
-                                        1.0, // timeout
-                                        moveit::core::GroupStateValidityCallbackFn(), // Contraint
+                                        30, // Attempts
+                                        2.0, // timeout
+                                        groupStateValidityCallback, // Constraint
                                         kQO); // enable Approx IK
-
-    std::cout<< "After ("<<(success?"OK":"Failed")<<")" << std::endl;
-//    robot_state->printStatePositions();
-    //    std::cout << *robot_state->getJointPositions("L_HAA");
+    if(!success)
+    {
+        std::cout<< "setFromIK Failed" << std::endl;
+    }
 
     std::vector<double> positions;
-    positions.resize(18);
-    std::fill(positions.begin(), positions.end(), 0.0);
-    robot_state->copyJointGroupPositions(robot_state->getJointModelGroup("All"),positions);
-//    std::cout << "Positions: ";
-//    for (int i=0; i<positions.size(); ++i)
-//    {
-//        if(fabs(positions[i]) >= 0.999* M_PI) {positions[i]=0.0; std::cout << " changed: "; }
-//        std::cout << positions[i]*180.0/M_PI << "°, ";
-//    }
-//    std::cout << std::endl;
+    robot_state->copyJointGroupPositions("All",positions);
+
+//    std::cout << ">>>\n";
+//    robot_state->printStatePositions();
+
+
     group->setJointValueTarget(positions);
 }
 
@@ -185,22 +218,15 @@ void Core::moveto_default_state()
     // all 18 joints are set to 0.0 position
     group_variable_values.resize(18);
     std::fill(group_variable_values.begin(), group_variable_values.end(), 0.0);
-//    group_variable_values[3] = -0.6; // bend knees
-//    group_variable_values[3+9] = 0.6;
-
-    for(std::string s : group->getCurrentState()->getJointModelGroup("All")->getJointModelNames())
-    {
-        std::cout << s << ": " << *(group->getCurrentState()->getJointPositions(s)) << ", ";
-    }
-    // L_HAA, L_HR, L_HFE, L_KFE, L_AFE, L_AR, L_SAA, L_SFE, L_EB, R_HAA, R_HR, R_HFE, R_KFE, R_AFE, R_AR, R_SAA, R_SFE, R_EB
+    // Order: L_HAA, L_HR, L_HFE, L_KFE, L_AFE, L_AR, L_SAA, L_SFE, L_EB, R_HAA, R_HR, R_HFE, R_KFE, R_AFE, R_AR, R_SAA, R_SFE, R_EB
 
     // assign values to group
-    group->setJointValueTarget(group_variable_values);
+    bool success = group->setJointValueTarget(group_variable_values);
+    if(!success) std::cout << "setJointValueTarget() failed" << std::endl;
 
     // this will plan and execute in one step
-    bool success = group->move();
-
-    ROS_INFO("Visualizing plan 2 (joint space goal) %s",success?"":"FAILED");
+    success = group->move();
+    if(!success) std::cout << "moveto_default_state() failed" << std::endl;
 }
 
 void Core::updateTF()

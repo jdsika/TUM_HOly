@@ -21,10 +21,7 @@ public:
         const geometry_msgs::Pose toGeoPose() const;
     };
 
-    struct pose getCurrentPose(Core::Limb limb, bool debugOut = false);
-
-    geometry_msgs::Pose transformToPlan(Core::Limb limb, struct pose pose);
-
+    struct pose getCurrentPose(Core::Limb limb);
 
 private:
 

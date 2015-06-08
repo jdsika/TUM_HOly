@@ -34,8 +34,8 @@ R_SFE_controller:
     motor:
         id: 3
         init: 512
-        min: 0
-        max: 1023
+        min: 180
+        max: 820
 
 L_SFE_controller:
     controller:
@@ -47,8 +47,8 @@ L_SFE_controller:
     motor:
         id: 4
         init: 512
-        min: 0
-        max: 1023
+        min: 200
+        max: 830
 
 R_EB_controller:
     controller:
@@ -60,8 +60,8 @@ R_EB_controller:
     motor:
         id: 5
         init: 512
-        min: 0
-        max: 1023
+        min: 165
+        max: 860
 
 L_EB_controller:
     controller:
@@ -73,8 +73,8 @@ L_EB_controller:
     motor:
         id: 6
         init: 512
-        min: 0
-        max: 1023
+        min: 170
+        max: 850
 
 R_HAA_controller:
     controller:
@@ -87,7 +87,7 @@ R_HAA_controller:
         id: 7
         init: 358
         min: 0
-        max: 1023
+        max: 450
 
 L_HAA_controller:
     controller:
@@ -99,7 +99,7 @@ L_HAA_controller:
     motor:
         id: 8
         init: 666
-        min: 0
+        min: 460
         max: 1023
 
 R_HR_controller:
@@ -112,8 +112,8 @@ R_HR_controller:
     motor:
         id: 9
         init: 512
-        min: 0
-        max: 1023
+        min: 270
+        max: 670
 
 L_HR_controller:
     controller:
@@ -125,8 +125,8 @@ L_HR_controller:
     motor:
         id: 10
         init: 512
-        min: 0
-        max: 1023
+        min: 350
+        max: 750
 
 R_HFE_controller:
     controller:
@@ -138,8 +138,8 @@ R_HFE_controller:
     motor:
         id: 11
         init: 512
-        min: 0
-        max: 1023
+        min: 70
+        max: 470
 
 L_HFE_controller:
     controller:
@@ -151,8 +151,8 @@ L_HFE_controller:
     motor:
         id: 12
         init: 512
-        min: 0
-        max: 1023
+        min: 420
+        max: 950
 
 R_KFE_controller:
     controller:
@@ -164,8 +164,8 @@ R_KFE_controller:
     motor:
         id: 13
         init: 512
-        min: 0
-        max: 1023
+        min: 520
+        max: 100
 
 L_KFE_controller:
     controller:
@@ -177,8 +177,8 @@ L_KFE_controller:
     motor:
         id: 14
         init: 512
-        min: 0
-        max: 1023
+        min: 500
+        max: 850
 
 R_AFE_controller:
     controller:
@@ -190,8 +190,8 @@ R_AFE_controller:
     motor:
         id: 15
         init: 512
-        min: 0
-        max: 1023
+        min: 430
+        max: 850
 
 L_AFE_controller:
     controller:
@@ -203,8 +203,8 @@ L_AFE_controller:
     motor:
         id: 16
         init: 505
-        min: 0
-        max: 1023
+        min: 165
+        max: 590
 
 R_AR_controller:
     controller:
@@ -216,8 +216,8 @@ R_AR_controller:
     motor:
         id: 17
         init: 512
-        min: 0
-        max: 1023
+        min: 345
+        max: 740
 
 L_AR_controller:
     controller:
@@ -229,8 +229,8 @@ L_AR_controller:
     motor:
         id: 18
         init: 512
-        min: 0
-        max: 1023
+        min: 330
+        max: 695
 
 holy_joint_trajectory_action_controller:
     controller:

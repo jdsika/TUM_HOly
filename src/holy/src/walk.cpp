@@ -5,8 +5,7 @@
 
 Walk::Walk(Core *core) : core{core}
 {
-    core->moveto_default_state();
-    // wenn startpos erreicht, offset-TF speichern
+
 }
 
 Walk::~Walk()
@@ -14,15 +13,15 @@ Walk::~Walk()
 
 }
 
-Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut)
+Walk::pose Walk::getCurrentPose(Core::Limb limb)
 {
 
     geometry_msgs::Pose currPos;
     tf::StampedTransform* transf = core->getTF(limb);
-    tf::Matrix3x3 matrixIstWerte;
-    matrixIstWerte.setRotation(transf->getRotation());
+    tf::Matrix3x3 matOrient;
+    matOrient.setRotation(transf->getRotation());
     tf::Quaternion quat;
-    matrixIstWerte.getRotation(quat);
+    matOrient.getRotation(quat);
     currPos.orientation.x = quat.getX();
     currPos.orientation.y = quat.getY();
     currPos.orientation.z = quat.getZ();
@@ -59,45 +58,8 @@ Walk::pose Walk::getCurrentPose(Core::Limb limb, bool debugOut)
         currPos.position.y,
         currPos.position.z
     };
-
-    if(debugOut) {
-        std::cout << "Current pose of " << Core::getLimbString(limb) << " is \n  "
-                  << currentPose.roll/M_PI*180.0 << "° / " << currentPose.pitch/M_PI*180.0 << "° / " << currentPose.yaw/M_PI*180.0 << "°\n  "
-                  << currentPose.x << "m / " << currentPose.y << "m / " << currentPose.z << "m" << std::endl;
-    }
-
     return currentPose;
 }
-
-geometry_msgs::Pose Walk::transformToPlan(Core::Limb limb, Walk::pose pose)
-{
-    geometry_msgs::Pose targetPose;
-    tf::StampedTransform* transf = core->getTF(limb);
-    tf::Matrix3x3 matrixZumDraufaddieren, matrixIstWerte;
-    // winkel addieren
-    matrixZumDraufaddieren.setRPY(pose.pitch, pose.roll, pose.yaw);
-    matrixIstWerte.setRotation(transf->getRotation());
-    matrixZumDraufaddieren *= matrixIstWerte;
-    tf::Quaternion quat;
-    matrixZumDraufaddieren.getRotation(quat);
-    targetPose.orientation.x = quat.getX();
-    targetPose.orientation.y = quat.getY();
-    targetPose.orientation.z = quat.getZ();
-    targetPose.orientation.w = quat.getW();
-
-    // translation addieren
-    targetPose.position.x = static_cast<double>(transf->getOrigin().x()) + pose.x;
-    targetPose.position.y = static_cast<double>(transf->getOrigin().y()) + pose.y;
-    targetPose.position.z = static_cast<double>(transf->getOrigin().z()) + pose.z;
-
-    // Debug ausgabe
-    double roll, pitch, yaw;
-    matrixZumDraufaddieren.getRPY(roll, pitch, yaw);
-    std::cout << "Transformation:\n  RPY: " << roll << " / " << pitch << " / " << yaw << "\n  XYZ: " << targetPose.position.x << " / " << targetPose.position.y  << " / " << targetPose.position.z << std::endl;
-
-    return targetPose;
-}
-
 
 const geometry_msgs::Pose Walk::pose::toGeoPose() const
 {

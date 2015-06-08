@@ -39,20 +39,15 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-
-    Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
+    // In Start Position gehen
     Walk::pose defPosLF = walk.getCurrentPose(Core::Limb::LEFT_FOOT);
-
-    defPosRF.z += 0.025;
-
+    Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
     defPosLF.z += 0.025;
-
-
-    core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
+    defPosRF.z += 0.025;
     core.setPoseTarget(Core::Limb::LEFT_FOOT, defPosLF.toGeoPose());
-
+    core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
     core.move();
-
+    std::cout << "Default Pose done"<<std::endl;
 
     Walk::pose ap;
 
@@ -82,6 +77,7 @@ int main(int argc, char **argv)
         if(!ros::ok()) break;
         ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
         ap.z += 0.05;
+        ap.pitch += 4*M_PI/180.0;
         core.setPoseTarget(Core::Limb::RIGHT_FOOT, ap.toGeoPose());
 
         ap = walk.getCurrentPose(Core::Limb::LEFT_FOOT);

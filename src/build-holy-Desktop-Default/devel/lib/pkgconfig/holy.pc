@@ -1,8 +1,0 @@
-prefix=/home/holy/HOly/holy/src/build-holy-Desktop-Default/devel
-
-Name: holy
-Description: Description of holy
-Version: 0.0.1
-Cflags: 
-Libs: -L/home/holy/HOly/holy/src/build-holy-Desktop-Default/devel/lib 
-Requires: 

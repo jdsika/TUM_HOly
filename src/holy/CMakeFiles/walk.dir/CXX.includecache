@@ -9,6 +9,8 @@
 /home/holy/HOly/holy/src/holy/src/core.cpp
 core.h
 /home/holy/HOly/holy/src/holy/src/core.h
+map
+-
 ros/spinner.h
 -
 ros/ros.h
@@ -25,6 +27,12 @@ moveit_msgs/DisplayRobotState.h
 -
 moveit_msgs/DisplayTrajectory.h
 -
+moveit/robot_model_loader/robot_model_loader.h
+-
+moveit/robot_state/robot_state.h
+-
+moveit/robot_model/robot_model.h
+-
 
 /home/holy/HOly/holy/src/holy/src/core.h
 map
@@ -36,6 +44,14 @@ moveit/planning_scene/planning_scene.h
 moveit/move_group_interface/move_group.h
 -
 moveit/planning_interface/planning_interface.h
+-
+
+/home/holy/HOly/holy/src/holy/src/walk.cpp
+core.h
+/home/holy/HOly/holy/src/holy/src/core.h
+walk.h
+/home/holy/HOly/holy/src/holy/src/walk.h
+geometry_msgs/Pose.h
 -
 
 /home/holy/HOly/holy/src/holy/src/walk.h
@@ -522,6 +538,16 @@ console_bridge/console.h
 string
 -
 
+/opt/ros/indigo/include/moveit/kinematics_plugin_loader/kinematics_plugin_loader.h
+boost/function.hpp
+-
+boost/shared_ptr.hpp
+-
+moveit/robot_model/robot_model.h
+-
+moveit/kinematics_base/kinematics_base.h
+-
+
 /opt/ros/indigo/include/moveit/macros/class_forward.h
 boost/shared_ptr.hpp
 -
@@ -622,6 +648,16 @@ moveit_msgs/CollisionObject.h
 moveit_msgs/AttachedCollisionObject.h
 -
 
+/opt/ros/indigo/include/moveit/rdf_loader/rdf_loader.h
+urdf/model.h
+-
+srdfdom/model.h
+-
+boost/shared_ptr.hpp
+-
+tinyxml.h
+-
+
 /opt/ros/indigo/include/moveit/robot_model/fixed_joint_model.h
 moveit/robot_model/joint_model.h
 -
@@ -714,6 +750,14 @@ moveit/robot_model/prismatic_joint_model.h
 Eigen/Geometry
 -
 iostream
+-
+
+/opt/ros/indigo/include/moveit/robot_model_loader/robot_model_loader.h
+moveit/robot_model/robot_model.h
+-
+moveit/rdf_loader/rdf_loader.h
+-
+moveit/kinematics_plugin_loader/kinematics_plugin_loader.h
 -
 
 /opt/ros/indigo/include/moveit/robot_state/attached_body.h
@@ -2786,6 +2830,16 @@ geometry_msgs/Transform.h
 geometry_msgs/Twist.h
 -
 geometry_msgs/Twist.h
+-
+
+/opt/ros/indigo/include/urdf/model.h
+string
+-
+map
+-
+urdf_model/model.h
+-
+tinyxml.h
 -
 
 /opt/ros/indigo/include/visualization_msgs/Marker.h

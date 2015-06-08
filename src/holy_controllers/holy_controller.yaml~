@@ -4,10 +4,10 @@ R_SAA_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_SAA 
-    joint_speed:0.1 #59rpm/511
+    joint_speed: 0.1 #59rpm/511
     motor:
         id: 1
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -17,10 +17,10 @@ L_SAA_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_SAA
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 2
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -30,10 +30,10 @@ R_SFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_SFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 3
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -43,10 +43,10 @@ L_SFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_SFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 4
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -56,10 +56,10 @@ R_EB_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_EB
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 5
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -69,10 +69,10 @@ L_EB_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_EB
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 6
-        init:512
+        init: 512
         min: 0
         max: 1023
 
@@ -82,12 +82,12 @@ R_HAA_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_HAA
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 7
         init: 358
         min: 0
-        max: 1023
+        max: 450
 
 L_HAA_controller:
     controller:
@@ -95,11 +95,11 @@ L_HAA_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_HAA
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 8
         init: 666
-        min: 0
+        min: 460
         max: 1023
 
 R_HR_controller:
@@ -108,12 +108,12 @@ R_HR_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_HR
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 9
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 270
+        max: 670
 
 L_HR_controller:
     controller:
@@ -121,12 +121,12 @@ L_HR_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_HR
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 10
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 350
+        max: 750
 
 R_HFE_controller:
     controller:
@@ -134,12 +134,12 @@ R_HFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_HFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 11
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 70
+        max: 470
 
 L_HFE_controller:
     controller:
@@ -147,12 +147,12 @@ L_HFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_HFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 12
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 420
+        max: 950
 
 R_KFE_controller:
     controller:
@@ -160,12 +160,12 @@ R_KFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_KFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 13
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 520
+        max: 100
 
 L_KFE_controller:
     controller:
@@ -173,12 +173,12 @@ L_KFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_KFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 14
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 500
+        max: 850
 
 R_AFE_controller:
     controller:
@@ -186,12 +186,12 @@ R_AFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_AFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 15
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 430
+        max: 850
 
 L_AFE_controller:
     controller:
@@ -199,12 +199,12 @@ L_AFE_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_AFE
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 16
-        init:505
-        min: 0
-        max: 1023
+        init: 505
+        min: 165
+        max: 590
 
 R_AR_controller:
     controller:
@@ -212,12 +212,12 @@ R_AR_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: R_AR
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 17
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 345
+        max: 740
 
 L_AR_controller:
     controller:
@@ -225,12 +225,12 @@ L_AR_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: L_AR
-    joint_speed:0.1
+    joint_speed: 0.1
     motor:
         id: 18
-        init:512
-        min: 0
-        max: 1023
+        init: 512
+        min: 330
+        max: 695
 
 holy_joint_trajectory_action_controller:
     controller:
@@ -240,4 +240,4 @@ holy_joint_trajectory_action_controller:
     joint_trajectory_action_node:
         min_velocity: 0.25
         constraints:
-            goal_time:5
+            goal_time: 5

@@ -34,6 +34,7 @@ CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/collision_det
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/exceptions/exceptions.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/kinematic_constraints/kinematic_constraint.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/kinematics_base/kinematics_base.h
+CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/kinematics_plugin_loader/kinematics_plugin_loader.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/macros/class_forward.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/macros/deprecation.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/move_group_interface/move_group.h
@@ -42,6 +43,7 @@ CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/planning_inte
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/planning_interface/planning_response.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/planning_scene/planning_scene.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/planning_scene_interface/planning_scene_interface.h
+CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/rdf_loader/rdf_loader.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/fixed_joint_model.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/floating_joint_model.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/joint_model.h
@@ -51,6 +53,7 @@ CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/p
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/prismatic_joint_model.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/revolute_joint_model.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model/robot_model.h
+CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_model_loader/robot_model_loader.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_state/attached_body.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_state/robot_state.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/moveit/robot_trajectory/robot_trajectory.h
@@ -191,6 +194,7 @@ CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/trajectory_msgs/Join
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/trajectory_msgs/JointTrajectoryPoint.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/trajectory_msgs/MultiDOFJointTrajectory.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/trajectory_msgs/MultiDOFJointTrajectoryPoint.h
+CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/urdf/model.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/visualization_msgs/Marker.h
 CMakeFiles/walk.dir/src/core.cpp.o: /opt/ros/indigo/include/visualization_msgs/MarkerArray.h
 CMakeFiles/walk.dir/src/core.cpp.o: /usr/include/eigen3/Eigen/Cholesky
