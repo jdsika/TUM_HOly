@@ -26,7 +26,8 @@ Core::Core(int argc, char** argv)
     //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
 //    group->setGoalOrientationTolerance(5.0*M_PI/180.0);
-//    group->setGoalPositionTolerance(0.01);
+    group->setGoalTolerance(0.001);
+    //group->setGoalJointTolerance(5*M_PI/180.0);
 
 
 
@@ -44,6 +45,7 @@ Core::Core(int argc, char** argv)
     listener->waitForTransform("/base_link", "/R_foot_pad",ros::Time(0), ros::Duration(5));
     updateTF();
 
+    robot_state = group->getCurrentState();
 
 }
 
@@ -140,12 +142,11 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
 //    std::cout << "Pose Orient converted to R/P/Y:\n  " << r*180.0/M_PI << "° / " << p*180.0/M_PI << "° / " << y*180.0/M_PI << "°" << std::endl;
 
 
-    robot_state = group->getCurrentState();
 
     // this will ensure the movement of arms (same as checkbox in rvis)
-    // enable Approximate IK solutions
+    // enable Approximate IK solutions for the hands only
     kinematics::KinematicsQueryOptions kQO;
-    kQO.return_approximate_solution=true;
+    kQO.return_approximate_solution = (limb == Core::Limb::LEFT_HAND || limb == Core::Limb::RIGHT_HAND)? true : false;
 
     std::cout << "Before" << std::endl;
 //    robot_state->printStatePositions();
@@ -155,7 +156,7 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
                                         pose, // pose
                                         333, // Attempts
-                                        3.0, // timeout
+                                        1.0, // timeout
                                         moveit::core::GroupStateValidityCallbackFn(), // Contraint
                                         kQO); // enable Approx IK
 
@@ -184,8 +185,8 @@ void Core::moveto_default_state()
     // all 18 joints are set to 0.0 position
     group_variable_values.resize(18);
     std::fill(group_variable_values.begin(), group_variable_values.end(), 0.0);
-    group_variable_values[3] = -0.6; // bend knees
-    group_variable_values[3+9] = 0.6;
+//    group_variable_values[3] = -0.6; // bend knees
+//    group_variable_values[3+9] = 0.6;
 
     for(std::string s : group->getCurrentState()->getJointModelGroup("All")->getJointModelNames())
     {

@@ -4,91 +4,91 @@
 joint_limits:
   L_AFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_AR:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_EB:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_HAA:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_HFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_HR:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_KFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_SAA:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   L_SFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_AFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_AR:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_EB:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_HAA:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_HFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_HR:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_KFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_SAA:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_SFE:
     has_velocity_limits: true
-    max_velocity: 0.5
+    max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0

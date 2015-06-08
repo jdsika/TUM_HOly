@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "holy")
+set(holy_MAINTAINER "carlo-vd <carlo-vd@todo.todo>")
+set(holy_DEPRECATED "")
+set(holy_VERSION "0.0.1")
+set(holy_BUILD_DEPENDS "roscpp" "std_msgs")
+set(holy_RUN_DEPENDS "roscpp" "std_msgs")
+set(holy_BUILDTOOL_DEPENDS "catkin")

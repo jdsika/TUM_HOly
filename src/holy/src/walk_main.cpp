@@ -39,55 +39,64 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-    std::cout << "testing... 1" << std::endl;
-    Walk::pose ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
-    std::cout << "testing... 2" << std::endl;
 
-//    ap.pitch += +22.5*M_PI/180.0; // Hand Pitch: Queen-Winken
-//     ap.roll -= 5*M_PI/180.0; // Foot Roll (+): Fuß so drehen, dass Knie nach innen dreht.
-    
-//    ap.yaw = 5*M_PI/180.0;
-    //ap.y += 0.03;
-//    ap.y += 0.05;
-    ap.z += 0.05;
+    Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
+    Walk::pose defPosLF = walk.getCurrentPose(Core::Limb::LEFT_FOOT);
 
-    std::cout<<"Desired pose  (before setPoseTarget) is:\n  "<<ap.roll*180.0/M_PI<<"° / "<<ap.pitch*180.0/M_PI<<"° / "<<ap.yaw*180.0/M_PI<<"° \n  "<<ap.x<<" / "<<ap.y<<" / "<<ap.z<<"\n";
+    defPosRF.z += 0.025;
 
-    core.setPoseTarget(Core::Limb::RIGHT_FOOT, ap.toGeoPose());
-
-    std::cout<<"Desired pose (after setPoseTarget) is:\n  "<<ap.roll*180.0/M_PI<<"° / "<<ap.pitch*180.0/M_PI<<"° / "<<ap.yaw*180.0/M_PI<<"° \n  "<<ap.x<<" / "<<ap.y<<" / "<<ap.z<<"\n";
+    defPosLF.z += 0.025;
 
 
-    std::cout << "testing... 2.5" << std::endl;
-    walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
+    core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
+    core.setPoseTarget(Core::Limb::LEFT_FOOT, defPosLF.toGeoPose());
 
     core.move();
 
-    std::cout << "testing... 3" << std::endl;
-    walk.getCurrentPose(Core::Limb::RIGHT_FOOT, true);
-    std::cout << "testing... 4" << std::endl;
 
-//    ap = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
-////    ap.pitch += -90*M_PI/180.0;
-//    core.setPoseTarget(Core::Limb::RIGHT_HAND, ap.toGeoPose());
-//    core.move();
+    Walk::pose ap;
 
-//    ap = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
-////    ap.y += 0.1;
-//    core.setPoseTarget(Core::Limb::RIGHT_HAND, ap.toGeoPose());
-//    core.move();
+    ros::Rate rate(0.25);
+
+    while(true) {
 
 
 
-    // running the program at a rate of 20Hz
-    std::cout << "Init done" << std::endl;
-    ros::Rate rate(20);
-//    while (ros::ok()) {
-//        // sleep as long as the 20Hz cycle frequency is met
-//        rate.sleep();
-//        // process callbacks in custom loops
-//        ros::spinOnce();
-//    }
+        // Gewicht nach Links
+        if(!ros::ok()) break;
+        ap = defPosRF;
+        ap.x += 0.06;
+        ap.pitch += 8*M_PI/180.0;
+        core.setPoseTarget(Core::Limb::RIGHT_FOOT, ap.toGeoPose());
+
+        ap = defPosLF;
+        ap.pitch += 8*M_PI/180.0;
+        core.setPoseTarget(Core::Limb::LEFT_FOOT, ap.toGeoPose());
+
+        core.move();
+
+        rate.sleep();
+        ros::spinOnce();
+
+        // Rechten Fuß anheben
+        if(!ros::ok()) break;
+        ap = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
+        ap.z += 0.05;
+        core.setPoseTarget(Core::Limb::RIGHT_FOOT, ap.toGeoPose());
+
+        ap = walk.getCurrentPose(Core::Limb::LEFT_FOOT);
+        ap.x -= -0.025;
+        ap.y -= -0.008;
+        ap.pitch += 4*M_PI/180.0;
+        core.setPoseTarget(Core::Limb::LEFT_FOOT, ap.toGeoPose());
+
+        core.move();
+
+        rate.sleep();
+        ros::spinOnce();
+
+
+    }
 
     return 0;
 
