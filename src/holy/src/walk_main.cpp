@@ -42,23 +42,27 @@ int main(int argc, char **argv)
     // In Start Position gehen
     Walk::pose defPosLF = walk.getCurrentPose(Core::Limb::LEFT_FOOT);
     Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
-    defPosLF.z += 0.025;
-    defPosRF.z += 0.025;
-    core.setPoseTarget(Core::Limb::LEFT_FOOT, defPosLF.toGeoPose());
-    core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
-    core.move();
-    std::cout << "Default Pose done"<<std::endl;
-
+    std::cout << defPosRF.x << std::endl;
+    defPosLF.z += 0.02;
+    defPosRF.z += 0.02;
+    defPosRF.x -= 0.0618;
+    std::cout << defPosRF.x << std::endl;
     Walk::pose ap;
 
     ros::Rate rate(0.25);
 
     while(true) {
 
-
-
+	core.setPoseTarget(Core::Limb::LEFT_FOOT, defPosLF.toGeoPose());
+	core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
+	core.move();
+	std::cout << "Default Pose done"<<std::endl;
+	Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
+	std::cout << defPosRF.x << std::endl;
+	rate.sleep();
+        ros::spinOnce();
         // Gewicht nach Links
-        if(!ros::ok()) break;
+     /*   if(!ros::ok()) break;
         ap = defPosRF;
         ap.x += 0.06;
         ap.pitch += 8*M_PI/180.0;
@@ -89,7 +93,9 @@ int main(int argc, char **argv)
         core.move();
 
         rate.sleep();
-        ros::spinOnce();
+        ros::spinOnce();*/
+
+
 
 
     }
