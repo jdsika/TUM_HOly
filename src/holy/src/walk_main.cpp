@@ -42,10 +42,10 @@ int main(int argc, char **argv)
     // In Start Position gehen
     Walk::pose defPosLF = walk.getCurrentPose(Core::Limb::LEFT_FOOT);
     Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
-    std::cout << defPosRF.x << std::endl;
+    Walk::pose defPosRA = walk.getCurrentPose(Core::Limb::RIGHT_HAND);
     defPosLF.z += 0.02;
     defPosRF.z += 0.02;
-    std::cout << defPosRF.x << std::endl;
+    //defPosRA.pitch += 30*M_PI/180;
     Walk::pose ap;
 
     ros::Rate rate(0.25);
@@ -54,6 +54,7 @@ int main(int argc, char **argv)
 
 	core.setPoseTarget(Core::Limb::LEFT_FOOT, defPosLF.toGeoPose());
 	core.setPoseTarget(Core::Limb::RIGHT_FOOT, defPosRF.toGeoPose());
+	core.setPoseTarget(Core::Limb::RIGHT_HAND, defPosRA.toGeoPose());
 	core.move();
 	std::cout << "Default Pose done"<<std::endl;
 	Walk::pose defPosRF = walk.getCurrentPose(Core::Limb::RIGHT_FOOT);
@@ -70,6 +71,7 @@ int main(int argc, char **argv)
         ap = defPosLF;
         ap.pitch += 8*M_PI/180.0;
         core.setPoseTarget(Core::Limb::LEFT_FOOT, ap.toGeoPose());
+	// rechten Arm bewegen
 
         core.move();
 
