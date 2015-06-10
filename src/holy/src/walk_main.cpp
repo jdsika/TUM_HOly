@@ -45,7 +45,6 @@ int main(int argc, char **argv)
     std::cout << defPosRF.x << std::endl;
     defPosLF.z += 0.02;
     defPosRF.z += 0.02;
-    defPosRF.x -= 0.0618;
     std::cout << defPosRF.x << std::endl;
     Walk::pose ap;
 
@@ -62,7 +61,7 @@ int main(int argc, char **argv)
 	rate.sleep();
         ros::spinOnce();
         // Gewicht nach Links
-     /*   if(!ros::ok()) break;
+  	if(!ros::ok()) break;
         ap = defPosRF;
         ap.x += 0.06;
         ap.pitch += 8*M_PI/180.0;
@@ -93,7 +92,7 @@ int main(int argc, char **argv)
         core.move();
 
         rate.sleep();
-        ros::spinOnce();*/
+        ros::spinOnce();
 
 
 
