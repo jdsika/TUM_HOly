@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='ASCII'?>
 <package>
-  <name>holy_ik_fast_LeftLeg</name>
+  <name>holy_ik_fast_rl</name>
   <version>0.0.0</version>
-  <description>The holy_ik_fast_LeftLeg package</description>
+  <description>The holy_ik_fast package</description>
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
@@ -14,7 +14,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/holy_ik_fast_LeftLeg</url> -->
+  <!-- <url type="website">http://wiki.ros.org/holy_ik_fast</url> -->
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
   <!-- Authors do not have to be maintianers, but could be -->
   <!-- Example: -->
@@ -34,7 +34,7 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-    <moveit_core plugin="${prefix}/holy_LeftLeg_moveit_ikfast_plugin_description.xml"/>
+    <moveit_core plugin="${prefix}/awesome-o_RightLeg_moveit_ikfast_plugin_description.xml"/>
   </export>
   <build_depend>moveit_core</build_depend>
   <build_depend>liblapack-dev</build_depend>

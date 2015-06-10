@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(holy_ik_fast)
+project(holy_ik_fast_rl)
 
 find_package(catkin REQUIRED COMPONENTS
   moveit_core

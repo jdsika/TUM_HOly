@@ -1,0 +1,1 @@
+rosrun moveit_ikfast create_ikfast_moveit_plugin.py awesome-o RightArm holy_ik_fast_ra /home/simon/ROS_HO/src/holy_ik_fast_ra/src/awesome-o_RightArm_ikfast_solver.cpp

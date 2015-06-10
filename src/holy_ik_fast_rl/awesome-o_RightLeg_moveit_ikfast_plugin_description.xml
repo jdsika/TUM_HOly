@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <library path="lib/libawesome-o_RightLeg_moveit_ikfast_plugin">
-  <class name="awesome-o_RightLeg_kinematics/IKFastKinematicsPlugin" type="ikfast_kinematics_plugin_right::IKFastKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
+  <class name="awesome-o_RightLeg_kinematics/IKFastKinematicsPlugin" type="ikfast_kinematics_plugin_rl::IKFastKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
     <description>IKFast61 plugin for closed-form kinematics</description>
   </class>
 </library>
