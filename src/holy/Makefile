@@ -990,6 +990,30 @@ src/moveit.cpp.s:
 	$(MAKE) -f CMakeFiles/moveit_controller.dir/build.make CMakeFiles/moveit_controller.dir/src/moveit.cpp.s
 .PHONY : src/moveit.cpp.s
 
+src/poses.o: src/poses.cpp.o
+.PHONY : src/poses.o
+
+# target to build an object file
+src/poses.cpp.o:
+	$(MAKE) -f CMakeFiles/walk.dir/build.make CMakeFiles/walk.dir/src/poses.cpp.o
+.PHONY : src/poses.cpp.o
+
+src/poses.i: src/poses.cpp.i
+.PHONY : src/poses.i
+
+# target to preprocess a source file
+src/poses.cpp.i:
+	$(MAKE) -f CMakeFiles/walk.dir/build.make CMakeFiles/walk.dir/src/poses.cpp.i
+.PHONY : src/poses.cpp.i
+
+src/poses.s: src/poses.cpp.s
+.PHONY : src/poses.s
+
+# target to generate assembly for a file
+src/poses.cpp.s:
+	$(MAKE) -f CMakeFiles/walk.dir/build.make CMakeFiles/walk.dir/src/poses.cpp.s
+.PHONY : src/poses.cpp.s
+
 src/test.o: src/test.cpp.o
 .PHONY : src/test.o
 
@@ -1166,6 +1190,9 @@ help:
 	@echo "... src/moveit.o"
 	@echo "... src/moveit.i"
 	@echo "... src/moveit.s"
+	@echo "... src/poses.o"
+	@echo "... src/poses.i"
+	@echo "... src/poses.s"
 	@echo "... src/test.o"
 	@echo "... src/test.i"
 	@echo "... src/test.s"

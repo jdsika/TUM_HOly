@@ -5,6 +5,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/holy/HOly/holy/src/holy/src/core.cpp" "/home/holy/HOly/holy/src/holy/CMakeFiles/walk.dir/src/core.cpp.o"
+  "/home/holy/HOly/holy/src/holy/src/poses.cpp" "/home/holy/HOly/holy/src/holy/CMakeFiles/walk.dir/src/poses.cpp.o"
   "/home/holy/HOly/holy/src/holy/src/walk.cpp" "/home/holy/HOly/holy/src/holy/CMakeFiles/walk.dir/src/walk.cpp.o"
   "/home/holy/HOly/holy/src/holy/src/walk_main.cpp" "/home/holy/HOly/holy/src/holy/CMakeFiles/walk.dir/src/walk_main.cpp.o"
   )

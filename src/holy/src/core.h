@@ -44,6 +44,7 @@ public:
 
     void move();
     void moveto_default_state();
+    struct pose getCurrentPose(Core::Limb limb);
 
 private:
 

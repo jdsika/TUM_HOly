@@ -118,11 +118,35 @@ CMakeFiles/walk.dir/src/walk.cpp.o.provides: CMakeFiles/walk.dir/src/walk.cpp.o.
 
 CMakeFiles/walk.dir/src/walk.cpp.o.provides.build: CMakeFiles/walk.dir/src/walk.cpp.o
 
+CMakeFiles/walk.dir/src/poses.cpp.o: CMakeFiles/walk.dir/flags.make
+CMakeFiles/walk.dir/src/poses.cpp.o: src/poses.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/holy/HOly/holy/src/holy/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/walk.dir/src/poses.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/walk.dir/src/poses.cpp.o -c /home/holy/HOly/holy/src/holy/src/poses.cpp
+
+CMakeFiles/walk.dir/src/poses.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/walk.dir/src/poses.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/holy/HOly/holy/src/holy/src/poses.cpp > CMakeFiles/walk.dir/src/poses.cpp.i
+
+CMakeFiles/walk.dir/src/poses.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/walk.dir/src/poses.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/holy/HOly/holy/src/holy/src/poses.cpp -o CMakeFiles/walk.dir/src/poses.cpp.s
+
+CMakeFiles/walk.dir/src/poses.cpp.o.requires:
+.PHONY : CMakeFiles/walk.dir/src/poses.cpp.o.requires
+
+CMakeFiles/walk.dir/src/poses.cpp.o.provides: CMakeFiles/walk.dir/src/poses.cpp.o.requires
+	$(MAKE) -f CMakeFiles/walk.dir/build.make CMakeFiles/walk.dir/src/poses.cpp.o.provides.build
+.PHONY : CMakeFiles/walk.dir/src/poses.cpp.o.provides
+
+CMakeFiles/walk.dir/src/poses.cpp.o.provides.build: CMakeFiles/walk.dir/src/poses.cpp.o
+
 # Object files for target walk
 walk_OBJECTS = \
 "CMakeFiles/walk.dir/src/walk_main.cpp.o" \
 "CMakeFiles/walk.dir/src/core.cpp.o" \
-"CMakeFiles/walk.dir/src/walk.cpp.o"
+"CMakeFiles/walk.dir/src/walk.cpp.o" \
+"CMakeFiles/walk.dir/src/poses.cpp.o"
 
 # External object files for target walk
 walk_EXTERNAL_OBJECTS =
@@ -130,6 +154,7 @@ walk_EXTERNAL_OBJECTS =
 devel/lib/holy/walk: CMakeFiles/walk.dir/src/walk_main.cpp.o
 devel/lib/holy/walk: CMakeFiles/walk.dir/src/core.cpp.o
 devel/lib/holy/walk: CMakeFiles/walk.dir/src/walk.cpp.o
+devel/lib/holy/walk: CMakeFiles/walk.dir/src/poses.cpp.o
 devel/lib/holy/walk: CMakeFiles/walk.dir/build.make
 devel/lib/holy/walk: /opt/ros/indigo/lib/libmoveit_common_planning_interface_objects.so
 devel/lib/holy/walk: /opt/ros/indigo/lib/libmoveit_planning_scene_interface.so
@@ -226,6 +251,7 @@ CMakeFiles/walk.dir/build: devel/lib/holy/walk
 CMakeFiles/walk.dir/requires: CMakeFiles/walk.dir/src/walk_main.cpp.o.requires
 CMakeFiles/walk.dir/requires: CMakeFiles/walk.dir/src/core.cpp.o.requires
 CMakeFiles/walk.dir/requires: CMakeFiles/walk.dir/src/walk.cpp.o.requires
+CMakeFiles/walk.dir/requires: CMakeFiles/walk.dir/src/poses.cpp.o.requires
 .PHONY : CMakeFiles/walk.dir/requires
 
 CMakeFiles/walk.dir/clean:

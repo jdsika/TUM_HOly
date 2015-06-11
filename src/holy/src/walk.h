@@ -16,13 +16,6 @@ public:
     Walk(Core* core);
     ~Walk();
 
-    struct pose {
-        double roll, pitch, yaw, x, y, z;
-        const geometry_msgs::Pose toGeoPose() const;
-    };
-
-    struct pose getCurrentPose(Core::Limb limb);
-
 private:
 
     Core* core;

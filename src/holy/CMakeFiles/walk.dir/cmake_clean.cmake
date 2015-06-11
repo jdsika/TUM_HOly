@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/walk.dir/src/walk_main.cpp.o"
   "CMakeFiles/walk.dir/src/core.cpp.o"
   "CMakeFiles/walk.dir/src/walk.cpp.o"
+  "CMakeFiles/walk.dir/src/poses.cpp.o"
   "devel/lib/holy/walk.pdb"
   "devel/lib/holy/walk"
 )

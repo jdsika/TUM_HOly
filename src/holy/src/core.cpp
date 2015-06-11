@@ -15,6 +15,7 @@
 #include <moveit/robot_model_loader/robot_model_loader.h>
 #include <moveit/robot_state/robot_state.h>
 #include <moveit/robot_model/robot_model.h>
+#include "poses.h"
 
 std::map<std::string, double> map_min, map_max;
 
@@ -235,4 +236,39 @@ void Core::updateTF()
     listener->lookupTransform("/base_link", "/L_foot_pad", ros::Time(0), *transforms[Limb::LEFT_FOOT]);
     listener->lookupTransform("/base_link", "/R_forearm", ros::Time(0), *transforms[Limb::RIGHT_HAND]);
     listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
+}
+
+pose Core::getCurrentPose(Core::Limb limb)
+{
+
+    geometry_msgs::Pose currPos;
+    tf::StampedTransform* transf = getTF(limb);
+    tf::Matrix3x3 matOrient;
+    matOrient.setRotation(transf->getRotation());
+    tf::Quaternion quat;
+    matOrient.getRotation(quat);
+    currPos.orientation.x = quat.getX();
+    currPos.orientation.y = quat.getY();
+    currPos.orientation.z = quat.getZ();
+    currPos.orientation.w = quat.getW();
+
+    // translation addieren
+    currPos.position.x = static_cast<double>(transf->getOrigin().x());
+    currPos.position.y = static_cast<double>(transf->getOrigin().y());
+    currPos.position.z = static_cast<double>(transf->getOrigin().z());
+
+    double r,p,y;
+    tf::Matrix3x3(tf::Quaternion(currPos.orientation.x,
+                                 currPos.orientation.y,
+                                 currPos.orientation.z,
+                                 currPos.orientation.w)
+                  ).getEulerYPR(y, p, r);
+
+    struct pose currentPose = {
+        r, p, y,
+        currPos.position.x,
+        currPos.position.y,
+        currPos.position.z
+    };
+    return currentPose;
 }

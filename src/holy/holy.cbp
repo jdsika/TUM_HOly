@@ -968,6 +968,8 @@
       </Unit>
       <Unit filename="/home/holy/HOly/holy/src/holy/src/moveit.cpp">
       </Unit>
+      <Unit filename="/home/holy/HOly/holy/src/holy/src/poses.cpp">
+      </Unit>
       <Unit filename="/home/holy/HOly/holy/src/holy/src/test.cpp">
       </Unit>
       <Unit filename="/home/holy/HOly/holy/src/holy/src/walk.cpp">
@@ -981,6 +983,8 @@
       <Unit filename="/usr/src/gtest/src/gtest_main.cc">
       </Unit>
       <Unit filename="/home/holy/HOly/holy/src/holy/src/core.h">
+      </Unit>
+      <Unit filename="/home/holy/HOly/holy/src/holy/src/poses.h">
       </Unit>
       <Unit filename="/home/holy/HOly/holy/src/holy/src/walk.h">
       </Unit>
