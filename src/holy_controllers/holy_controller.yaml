@@ -139,7 +139,7 @@ R_HFE_controller:
         id: 11
         init: 512
         min: 70
-        max: 470
+        max: 630
 
 L_HFE_controller:
     controller:
@@ -164,8 +164,8 @@ R_KFE_controller:
     motor:
         id: 13
         init: 512
-        min: 520
-        max: 100
+        min: 100
+        max: 520
 
 L_KFE_controller:
     controller:

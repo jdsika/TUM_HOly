@@ -139,8 +139,8 @@
             <child link="${prefix}_calf"/>
             <origin rpy="0 0 0" xyz="0 0 -0.08"/>
             <axis xyz="${reflect*1} 0 0"/>
-            <!-- <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/> -->
-	    <limit effort="1000.0" lower="-0.1" upper="${pi}" velocity="1.0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+	   
 
         </joint>
 

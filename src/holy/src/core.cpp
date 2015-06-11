@@ -165,12 +165,12 @@ bool groupStateValidityCallback(
         if( val < map_min.at(id) )
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
-            return true;
+            return false;
         }
         if( val > map_max.at(id))
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
-            return true;
+            return false;
         }
     }
 
@@ -187,7 +187,7 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
 //    bool success = group->setPoseTarget(pose, getLimbString(limb));
 
 
-//    std::cout << "---\n";
+    //std::cout << "---\n";
 //    robot_state->printStatePositions();
 
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
@@ -205,7 +205,7 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     robot_state->copyJointGroupPositions("All",positions);
 
 //    std::cout << ">>>\n";
-//    robot_state->printStatePositions();
+    //robot_state->printStatePositions();
 
 
     group->setJointValueTarget(positions);

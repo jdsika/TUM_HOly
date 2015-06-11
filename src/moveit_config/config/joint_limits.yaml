@@ -3,8 +3,8 @@
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
   L_AFE:
-    max_position: 0.4786020058
-    min_position: -2.1291653336
+    max_position: 0.5215534679
+    min_position: -2.0862138715
     has_velocity_limits: true
     max_velocity: 1
     has_acceleration_limits: false
@@ -24,8 +24,8 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   L_HAA:
-    max_position: 3.1354567304
-    min_position: -0.3190680039
+    max_position: 2.1905245651
+    min_position: -1.2640001692
     has_velocity_limits: true
     max_velocity: 1
     has_acceleration_limits: false
@@ -87,16 +87,14 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   R_HAA:
-    #max_position: -0.3804272354
-    max_position: 0.4
-    min_position: -3.1415926536
+    max_position: 0.5645049299
+    min_position: -2.1966604883
     has_velocity_limits: true
     max_velocity: 1
     has_acceleration_limits: false
     max_acceleration: 0
   R_HFE:
-    max_position: 0.4
-    #max_position: -0.2577087724
+    max_position: 0.7240389319
     min_position: -2.712078033
     has_velocity_limits: true
     max_velocity: 1
