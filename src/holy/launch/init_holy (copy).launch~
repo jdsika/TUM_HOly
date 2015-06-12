@@ -1,4 +1,0 @@
-<!-- Walk launchfile -->
-<launch>
-  <node name="walk" pkg="holy" type="walk" required="true" output="screen">
-</launch>

@@ -1,9 +1,0 @@
-<!-- Walk launchfile -->
-<launch>
- <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find holy_controllers)/urdf/TypeA.urdf.xacro'" />
-
- <rosparam>
-  planning_plugin: 'ompl_interface/OMPLPlanner' 
- </rosparam>
-  <node name="walk" pkg="holy" type="walk" required="true" output="screen"></node>
-</launch>
