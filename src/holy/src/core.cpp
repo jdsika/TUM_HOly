@@ -166,12 +166,12 @@ bool groupStateValidityCallback(
         if( val < map_min.at(id) )
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
-            return false;
+            return true;
         }
         if( val > map_max.at(id))
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
-            return false;
+            return true;
         }
     }
 
