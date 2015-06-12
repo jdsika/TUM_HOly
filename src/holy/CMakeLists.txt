@@ -23,14 +23,8 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
 
 
 ## Declare a cpp executable
- add_executable(turtle_house src/test.cpp)
- add_executable(wave src/wave.cpp)
- add_executable(moveit_controller src/moveit.cpp)
  add_executable(walk src/walk_main.cpp src/core.cpp src/walk.cpp src/poses.cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries( turtle_house ${catkin_LIBRARIES} )
- target_link_libraries( wave ${catkin_LIBRARIES} )
- target_link_libraries( moveit_controller ${catkin_LIBRARIES} )
  target_link_libraries( walk ${catkin_LIBRARIES} )
 
