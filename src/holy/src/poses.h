@@ -56,6 +56,10 @@ public:
     std::vector<LimbPose>& getLimbs();
     const std::vector<LimbPose> getLimbs() const;
 
+    // Prints orientation and position of contained limbs
+    const RoboPose &printInfo() const;
+    RoboPose& printInfo();
+
     // Adding / Subtracting two RoboPoses merges their Limbs: Limbs previously not included in one side will be present in the result, Limbs existing in both RoboPoses will be added / subtracted.
     RoboPose operator+ (const RoboPose& rrp) const;
     RoboPose operator+=(const RoboPose& rrp);

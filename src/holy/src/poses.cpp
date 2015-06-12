@@ -61,6 +61,27 @@ const std::vector<LimbPose> RoboPose::getLimbs() const
     return ret;
 }
 
+const RoboPose &RoboPose::printInfo() const
+{
+    std::cout << "RoboPose contains "<<limbs.size()<<" limbs:\n";
+    for(const LimbPose & lp : limbs)
+    {
+        std::cout << " - " << Core::getLimbString(lp.limb) << ": \n"
+                  << "   " << r2d(lp.roll) << "° / " << r2d(lp.pitch) << "° / " << r2d(lp.yaw) << "°\n"
+                  << "   " << lp.x << "m / " << lp.y << "m / " << lp.z << "m\n";
+    }
+    std::flush(std::cout);
+
+    return *this;
+}
+
+RoboPose &RoboPose::printInfo()
+{
+    printInfo();
+
+    return *this;
+}
+
 
 RoboPose RoboPose::operator+(const RoboPose &rrp) const
 {

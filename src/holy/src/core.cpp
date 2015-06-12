@@ -102,7 +102,7 @@ moveit::planning_interface::MoveGroup &Core::getMoveGroup()
     return *group;
 }
 
-const std::string Core::getLimbString(Core::Limb limb)
+const std::string Core::getLimbString(const Core::Limb limb)
 {
     std::string limb_str;
     switch(limb)
@@ -126,7 +126,7 @@ const std::string Core::getLimbString(Core::Limb limb)
     return limb_str;
 }
 
-const std::string Core::getLimbGroup(Core::Limb limb)
+const std::string Core::getLimbGroup(const Core::Limb limb)
 {
     std::string limb_str;
     switch(limb)

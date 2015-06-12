@@ -41,8 +41,8 @@ public:
     Core& setPoseTarget(const LimbPose& lp);
 
     // static methods to identify Limbs and Groups by enum
-    static const std::string getLimbString(Core::Limb limb);
-    static const std::string getLimbGroup(Core::Limb limb);
+    static const std::string getLimbString(const Core::Limb limb);
+    static const std::string getLimbGroup (const Core::Limb limb);
 
     Core& move();
 

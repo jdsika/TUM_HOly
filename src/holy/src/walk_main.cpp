@@ -40,6 +40,17 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
+
+    Poses::pose_default.printInfo();
+    (Poses::pose_default
+            + RoboPose(std::vector<LimbPose> {
+                           LimbPose(Core::Limb::RIGHT_FOOT, d2r(0), d2r(90), d2r(0), 0.06, 0, 0),
+                           LimbPose(Core::Limb::LEFT_HAND, d2r(0), d2r(90), d2r(0), -0.06, 0, 0),
+                       })
+            ).printInfo();
+
+//    return 0;
+
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
 
