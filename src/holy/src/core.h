@@ -23,7 +23,8 @@ class TransformListener;
 class StampedTransform;
 }
 
-
+class LimbPose;
+class RoboPose;
 
 class Core {
 public:
@@ -36,15 +37,16 @@ public:
 
     moveit::planning_interface::MoveGroup & getMoveGroup();
 
-    void setPoseTarget(Limb limb, geometry_msgs::Pose pose);
+    Core& setPoseTarget(const RoboPose &rp);
+    Core& setPoseTarget(const LimbPose& lp);
 
     // static methods to identify Limbs and Groups by enum
     static const std::string getLimbString(Core::Limb limb);
     static const std::string getLimbGroup(Core::Limb limb);
 
-    void move();
-    void moveto_default_state();
-    struct pose getCurrentPose(Core::Limb limb);
+    Core& move();
+
+    Core& moveto_default_state();
 
 private:
 

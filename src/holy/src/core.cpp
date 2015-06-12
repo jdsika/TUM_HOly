@@ -15,6 +15,8 @@
 #include <moveit/robot_model_loader/robot_model_loader.h>
 #include <moveit/robot_state/robot_state.h>
 #include <moveit/robot_model/robot_model.h>
+
+
 #include "poses.h"
 
 std::map<std::string, double> map_min, map_max;
@@ -148,9 +150,11 @@ const std::string Core::getLimbGroup(Core::Limb limb)
     return limb_str;
 }
 
-void Core::move()
+Core &Core::move()
 {
     group->move();
+
+    return *this;
 }
 
 bool groupStateValidityCallback(
@@ -178,21 +182,28 @@ bool groupStateValidityCallback(
     return true;
 }
 
-void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
+Core &Core::setPoseTarget(const RoboPose &rp)
 {
-    // this will ensure the movement of arms (same as checkbox in rvis)
-    // enable Approximate IK solutions for the hands only
+    for(const LimbPose lp : rp.getLimbs())
+    {
+        setPoseTarget(lp);
+    }
+
+    return *this;
+}
+
+Core &Core::setPoseTarget(const LimbPose &lp)
+{
+    // The KinematicsQueryOptions may ensure the movement of arms (same as checkbox in rvis)
     kinematics::KinematicsQueryOptions kQO;
     kQO.return_approximate_solution = false; //(limb == Core::Limb::LEFT_HAND || limb == Core::Limb::RIGHT_HAND)? true : false;
-
-//    bool success = group->setPoseTarget(pose, getLimbString(limb));
 
 
     //std::cout << "---\n";
 //    robot_state->printStatePositions();
 
-    bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(limb)), // Group
-                                        pose, // pose
+    bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(lp.limb)), // Group
+                                        lp, // pose
                                         30, // Attempts
                                         2.0, // timeout
                                         groupStateValidityCallback, // Constraint
@@ -205,15 +216,16 @@ void Core::setPoseTarget(Core::Limb limb, geometry_msgs::Pose pose)
     std::vector<double> positions;
     robot_state->copyJointGroupPositions("All",positions);
 
-//    std::cout << ">>>\n";
+//    std::cout << "\n";
     //robot_state->printStatePositions();
 
-
     group->setJointValueTarget(positions);
+
+    return *this;
 }
 
 
-void Core::moveto_default_state()
+Core &Core::moveto_default_state()
 {
     std::vector<double> group_variable_values;
     // all 18 joints are set to 0.0 position
@@ -228,6 +240,8 @@ void Core::moveto_default_state()
     // this will plan and execute in one step
     success = group->move();
     if(!success) std::cout << "moveto_default_state() failed" << std::endl;
+
+    return *this;
 }
 
 void Core::updateTF()
@@ -238,37 +252,3 @@ void Core::updateTF()
     listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
 }
 
-pose Core::getCurrentPose(Core::Limb limb)
-{
-
-    geometry_msgs::Pose currPos;
-    tf::StampedTransform* transf = getTF(limb);
-    tf::Matrix3x3 matOrient;
-    matOrient.setRotation(transf->getRotation());
-    tf::Quaternion quat;
-    matOrient.getRotation(quat);
-    currPos.orientation.x = quat.getX();
-    currPos.orientation.y = quat.getY();
-    currPos.orientation.z = quat.getZ();
-    currPos.orientation.w = quat.getW();
-
-    // translation addieren
-    currPos.position.x = static_cast<double>(transf->getOrigin().x());
-    currPos.position.y = static_cast<double>(transf->getOrigin().y());
-    currPos.position.z = static_cast<double>(transf->getOrigin().z());
-
-    double r,p,y;
-    tf::Matrix3x3(tf::Quaternion(currPos.orientation.x,
-                                 currPos.orientation.y,
-                                 currPos.orientation.z,
-                                 currPos.orientation.w)
-                  ).getEulerYPR(y, p, r);
-
-    struct pose currentPose = {
-        r, p, y,
-        currPos.position.x,
-        currPos.position.y,
-        currPos.position.z
-    };
-    return currentPose;
-}
