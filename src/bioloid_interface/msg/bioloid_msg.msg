@@ -1,1 +1,0 @@
-bool[] motor_torque
