@@ -7,7 +7,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
-  bioloid_interface
   moveit_ros_planning_interface
   tf
 )
@@ -23,7 +22,12 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
 
 
 ## Declare a cpp executable
- add_executable(walk src/walk_main.cpp src/core.cpp src/walk.cpp src/poses.cpp)
+add_executable(walk
+    src/walk_main.cpp
+    src/core.cpp
+    src/walk.cpp
+    src/poses.cpp
+)
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries( walk ${catkin_LIBRARIES} )
