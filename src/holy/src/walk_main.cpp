@@ -24,8 +24,10 @@ int main(int argc, char **argv)
     //Poses::printCSVRows(filename);
     Poses::parseRoboPositions(filename);
 
-    for (int i = 0; Poses::walkingPoses.size(); ++i)
-        Poses::walkingPoses[i].printInfo();
+    std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
+
+    for (int i = 0; Poses::walkingPoses.size(); i++)
+        (Poses::walkingPoses[i]).printInfo();
 
     return 0;
 

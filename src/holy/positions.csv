@@ -3,3 +3,5 @@ L_forearm,90,0,90,-0.15,0,0.03,pose_default
 R_forearm,90,0,-90,0.15,0,0.03,pose_default
 L_foot_pad,0,0,0,-0.03,0,-0.2,pose_default
 R_foot_pad,0,0,0,0.03,0,-0.2,pose_default
+R_forearm,90,0,-90,0.15,0,0.03,pose_neu
+L_foot_pad,0,0,0,-0.03,0,-0.2,pose_neu

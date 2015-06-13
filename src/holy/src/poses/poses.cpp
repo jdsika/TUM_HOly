@@ -96,6 +96,7 @@ bool Poses::parseRoboPositions(std::string filename)
         // check if position changed
         if(currentPosName != priorPosName) {
             numberOfPositions++;
+            priorPosName = currentPosName;
             Poses::walkingPoses.push_back(RoboPose());
         }
         // get LimbString

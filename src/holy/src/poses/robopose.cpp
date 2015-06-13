@@ -135,7 +135,10 @@ RoboPose RoboPose::operator+(const RoboPose &rrp) const
         }
      }
 
-    return RoboPose(result_limbs, this->objname+"+"+rrp.objname);
+    if (this->objname == "")
+        return RoboPose(result_limbs, rrp.objname);
+     else
+        return RoboPose(result_limbs, this->objname+"+"+rrp.objname);
 }
 
 RoboPose& RoboPose::operator+=(const RoboPose &rrp)
@@ -174,7 +177,10 @@ RoboPose RoboPose::operator-(const RoboPose &rrp) const
         }
      }
 
-    return RoboPose(result_limbs);
+    if (this->objname == "")
+        return RoboPose(result_limbs, rrp.objname);
+     else
+        return RoboPose(result_limbs, this->objname+"-"+rrp.objname);
 }
 
 RoboPose& RoboPose::operator-=(const RoboPose &rrp)
