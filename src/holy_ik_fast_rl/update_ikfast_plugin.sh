@@ -1,0 +1,1 @@
+rosrun moveit_ikfast create_ikfast_moveit_plugin.py awesome-o RightLeg holy_ik_fast_rl /home/laurenz/ros/holy/src/holy_ik_fast_rl/src/awesome-o_RightLeg_ikfast_solver.cpp
