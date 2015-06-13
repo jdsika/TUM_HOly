@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+
+<robot name="awesome-o" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="pi" value="3.14159265359" />
+    <xacro:property name="pi_half" value="1.57079632679" />
+
+    <xacro:macro name="arm" params="prefix reflect">
+        <link name="${prefix}_shoulder">
+            <visual>
+                <geometry>
+                    <box size="0.03 0.04 0.03"/>
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="blue">
+                    <color rgba="0 0 .8 1"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_SAA" type="revolute">
+            <parent link="base_link"/>
+            <child link="${prefix}_shoulder"/>
+            <origin rpy="${pi_half} 0 0" xyz="${reflect*0.070} 0 0.03"/>
+            <axis xyz="${reflect} 0 0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_upper_arm">
+            <visual>
+                <geometry>
+                    <box size="0.03 0.04 0.09"/>
+                </geometry>
+                <material name="green">
+                    <color rgba="0 0.8 0 1"/>
+                </material>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+	  <joint name="${prefix}_SFE" type="revolute">
+	    <parent link="${prefix}_shoulder"/>
+	    <child link="${prefix}_upper_arm"/>
+	    <origin rpy="0 ${reflect*-1.5} 0" xyz="0.00 0 0.0"/>
+	    <axis xyz="0 -1 0"/>
+	    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1.0"/>
+	  </joint>
+
+        <link name="${prefix}_forearm">
+            <visual>
+                <geometry>
+                    <box size="0.03 0.04 0.09"/>
+                </geometry>
+                <material name="blue"/>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+	  <joint name="${prefix}_EB" type="revolute">
+	    <parent link="${prefix}_upper_arm"/>
+	    <child link="${prefix}_forearm"/>
+	    <origin rpy="0 0 0" xyz="0.00 0 -0.08"/>
+	    <axis xyz="0 -1 0"/>
+	    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1.0"/>
+	  </joint>
+    </xacro:macro>
+
+    <xacro:macro name="leg" params="prefix reflect">
+        <link name="${prefix}_hip">
+	        <visual>
+		        <geometry>
+			        <box size="0.03 0.04 0.03"/>
+		        </geometry>
+		        <origin rpy="0 0 0" xyz="0 0 0"/>
+		        <material name="blue">
+		        <color rgba="0 0 .8 1"/>
+		        </material>
+	        </visual>
+        </link>
+
+        <joint name="${prefix}_HAA" type="revolute">
+	        <parent link="base_link"/>
+	        <child link="${prefix}_hip"/>
+	        <origin rpy="0 0 0" xyz="${reflect*0.030} 0 -0.06"/>
+	        <axis xyz="0 0 -1"/>
+	        <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_hip_split">
+            <visual>
+              <geometry>
+              <box size="0.03 0.04 0.03"/>
+              </geometry>
+              <material name="red">
+			        <color rgba="1 0 0 1"/>
+			        </material>
+              <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_HR" type="revolute">
+            <parent link="${prefix}_hip"/>
+            <child link="${prefix}_hip_split"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_upper_leg">
+            <visual>
+                <geometry>
+                    <box size="0.03 0.04 0.09"/>
+                </geometry>
+                <material name="green"/>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_HFE" type="revolute">
+            <parent link="${prefix}_hip_split"/>
+            <child link="${prefix}_upper_leg"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <axis xyz="${reflect*-1} 0 0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_calf">
+            <visual>
+                <geometry>
+                    <box size="0.03 0.04 0.09"/>
+                </geometry>
+                <material name="blue"/>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_KFE" type="revolute">
+            <parent link="${prefix}_upper_leg"/>
+            <child link="${prefix}_calf"/>
+            <origin rpy="0 0 0" xyz="0 0 -0.08"/>
+            <axis xyz="${reflect*1} 0 0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_foot">
+            <visual>
+                <geometry>
+                <box size="0.05 0.075 0.05"/>
+                </geometry>
+                <material name="green"/>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_AFE" type="revolute">
+            <parent link="${prefix}_calf"/>
+            <child link="${prefix}_foot"/>
+            <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            <axis xyz="${reflect} 0 0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+        </joint>
+
+        <link name="${prefix}_foot_pad">
+            <visual>
+                <geometry>
+                    <box size="0.06 0.10 0.005"/>
+                </geometry>
+                <material name="blue"/>
+                <origin rpy="0 0 0" xyz="0 0 -0.045"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_AR" type="revolute">
+            <parent link="${prefix}_foot"/>
+            <child link="${prefix}_foot_pad"/>
+            <origin rpy="0 0 0" xyz="0 0 -0.03"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="1000.0" lower="-${pi}" upper="${pi}" velocity="1.0"/>
+        </joint>
+    </xacro:macro>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.11 0.05 0.12"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <xacro:arm prefix="R" reflect="1"/>
+    <xacro:arm prefix="L" reflect="-1"/>
+    <xacro:leg prefix="R" reflect="1" />
+    <xacro:leg prefix="L" reflect="-1"/>
+</robot>
