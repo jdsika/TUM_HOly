@@ -11,7 +11,7 @@
 
 #include "core.h"
 #include "walk.h"
-#include "poses.h"
+#include "poses/poses.h"
 
 
 int main(int argc, char **argv)

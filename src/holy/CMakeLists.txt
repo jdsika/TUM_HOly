@@ -26,7 +26,10 @@ add_executable(walk
     src/walk_main.cpp
     src/core.cpp
     src/walk.cpp
-    src/poses.cpp
+    src/stairs.cpp
+    src/poses/poses.cpp
+    src/poses/limbpose.cpp
+    src/poses/robopose.cpp
 )
 
 ## Specify libraries to link a library or executable target against

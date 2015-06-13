@@ -17,7 +17,8 @@
 #include <moveit/robot_model/robot_model.h>
 
 
-#include "poses.h"
+#include "poses/limbpose.h"
+#include "poses/robopose.h"
 
 std::map<std::string, double> map_min, map_max;
 

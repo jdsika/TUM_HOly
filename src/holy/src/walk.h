@@ -6,10 +6,7 @@
 #ifndef _WALK_H_
 #define _WALK_H_
 
-
-#include <geometry_msgs/Pose.h>
-
-#include "core.h"
+class Core;
 
 class Walk {
 public:
@@ -17,9 +14,7 @@ public:
     ~Walk();
 
 private:
-
     Core* core;
-
 
 };
 
