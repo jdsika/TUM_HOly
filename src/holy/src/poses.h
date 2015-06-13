@@ -91,10 +91,10 @@ inline double r2d(const double radian)
 namespace Poses {
 
 // The default pose is the basic pose that must be used as offset for other relatively defined poses
-static const LimbPose pose_default_limb_lh (Core::Limb::LEFT_HAND, 1.57142,  -0.0102078,  1.51022,  -0.149827, 0.00525059, 0.0300537);
-static const LimbPose pose_default_limb_rh (Core::Limb::RIGHT_HAND,1.57036,  -0.00509431,  -1.48466,  0.14977, 0.00606686, 0.029969);
-static const LimbPose pose_default_limb_lf (Core::Limb::LEFT_FOOT, 0.01534,  0.00511267,  0.010305,  -0.0300094, 0.000920314, -0.194994);
-static const LimbPose pose_default_limb_rf (Core::Limb::RIGHT_FOOT, -0.00511327,  0.0102263,  0.0152352,  0.0315845, 4.98769e-05, -0.19499);
+static const LimbPose pose_default_limb_lh (Core::Limb::LEFT_HAND,  d2r(90),  0, d2r( 90), -0.15, 0, 0.03);
+static const LimbPose pose_default_limb_rh (Core::Limb::RIGHT_HAND, d2r(90),  0, d2r(-90),  0.15, 0, 0.03);
+static const LimbPose pose_default_limb_lf (Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0, -0.2);
+static const LimbPose pose_default_limb_rf (Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0, -0.2);
 static const RoboPose pose_default ( std::vector<LimbPose> {
                                          pose_default_limb_lh,
                                          pose_default_limb_rh,

@@ -19,8 +19,14 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
+    ros::Duration(2.0).sleep();
+
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
+
+    ros::Duration(2.0).sleep();
+
+    return 0;
 
     ros::Rate rate(0.25);
 
