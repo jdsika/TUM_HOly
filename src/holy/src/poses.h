@@ -91,15 +91,11 @@ inline double r2d(const double radian)
 namespace Poses {
 
 // The default pose is the basic pose that must be used as offset for other relatively defined poses
-static const LimbPose pose_default_limb_lh (Core::Limb::LEFT_HAND,  d2r(90),  0, d2r( 90), -0.15, 0, 0.03);
-static const LimbPose pose_default_limb_rh (Core::Limb::RIGHT_HAND, d2r(90),  0, d2r(-90),  0.15, 0, 0.03);
-static const LimbPose pose_default_limb_lf (Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0, -0.2);
-static const LimbPose pose_default_limb_rf (Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0, -0.2);
 static const RoboPose pose_default ( std::vector<LimbPose> {
-                                         pose_default_limb_lh,
-                                         pose_default_limb_rh,
-                                         pose_default_limb_lf,
-                                         pose_default_limb_rf,
+                                         LimbPose (Core::Limb::LEFT_HAND,  d2r(90),  0, d2r( 90), -0.15, 0, 0.03),
+                                         LimbPose (Core::Limb::RIGHT_HAND, d2r(90),  0, d2r(-90),  0.15, 0, 0.03),
+                                         LimbPose (Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0, -0.2),
+                                         LimbPose (Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0, -0.2),
                                      } , "pose_default");
 
 // Rechten Fuss nach aussen ziehen, Insgesamt nach Links lehnen durch pitch auf beiden fuessen

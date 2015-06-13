@@ -23,7 +23,6 @@ RoboPose::RoboPose(const std::vector<LimbPose> limbs, const std::string objname)
            this->limbs.push_back(new_lp);
        }
     }
-    std::cout << "RoboPose \""<<objname<<"\" now contains "<<this->limbs.size()<<" limbs"<<std::endl;
 }
 
 RoboPose RoboPose::fromCurrentPose(Core &core)

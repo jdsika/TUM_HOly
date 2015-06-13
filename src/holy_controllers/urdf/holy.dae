@@ -1,0 +1,2676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COLLADA xmlns="http://www.collada.org/2008/03/COLLADASchema" version="1.5.0">
+	<asset>
+		<contributor>
+			<authoring_tool>URDF Collada Writer</authoring_tool>
+		</contributor>
+		<created>2015-06-13T15:29:42.000000</created>
+		<modified>2015-06-13T15:29:42.000000</modified>
+		<unit/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_visual_scenes id="vscenes">
+		<visual_scene id="vscene" name="URDF Visual Scene">
+			<node id="visual0" name="awesome-o" sid="visual0">
+				<node id="vkmodel0_node18" name="base_link" sid="node18">
+					<translate>0 0 0</translate>
+					<rotate>1 0 0 0</rotate>
+					<instance_geometry url="#gkmodel0_base_link_geom0">
+						<bind_material>
+							<technique_common>
+								<instance_material symbol="mat0" target="#gkmodel0_base_link_geom0_mat"/>
+							</technique_common>
+						</bind_material>
+					</instance_geometry>
+					<node id="vkmodel0_node4" name="L_hip" sid="node4">
+						<translate>-0 -0 -0</translate>
+						<rotate>1 0 0 0</rotate>
+						<translate>-0.03 0 -0.06</translate>
+						<rotate>1 0 0 0</rotate>
+						<rotate sid="node_L_HAA_axis0">0 0 -1 0</rotate>
+						<translate>0 0 0</translate>
+						<rotate>1 0 0 0</rotate>
+						<instance_geometry url="#gkmodel0_L_hip_geom0">
+							<bind_material>
+								<technique_common>
+									<instance_material symbol="mat0" target="#gkmodel0_L_hip_geom0_mat"/>
+								</technique_common>
+							</bind_material>
+						</instance_geometry>
+						<node id="vkmodel0_node5" name="L_hip_split" sid="node5">
+							<translate>-0 -0 -0</translate>
+							<rotate>1 0 0 0</rotate>
+							<translate>0 0 0</translate>
+							<rotate>1 0 0 0</rotate>
+							<rotate sid="node_L_HR_axis0">0 1 0 0</rotate>
+							<translate>0 0 -0.045</translate>
+							<rotate>1 0 0 0</rotate>
+							<instance_geometry url="#gkmodel0_L_hip_split_geom0">
+								<bind_material>
+									<technique_common>
+										<instance_material symbol="mat0" target="#gkmodel0_L_hip_split_geom0_mat"/>
+									</technique_common>
+								</bind_material>
+							</instance_geometry>
+							<node id="vkmodel0_node8" name="L_upper_leg" sid="node8">
+								<translate>-0 -0 0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<translate>0 0 0</translate>
+								<rotate>1 0 0 0</rotate>
+								<rotate sid="node_L_HFE_axis0">1 0 0 0</rotate>
+								<translate>0 0 -0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<instance_geometry url="#gkmodel0_L_upper_leg_geom0">
+									<bind_material>
+										<technique_common>
+											<instance_material symbol="mat0" target="#gkmodel0_L_upper_leg_geom0_mat"/>
+										</technique_common>
+									</bind_material>
+								</instance_geometry>
+								<node id="vkmodel0_node0" name="L_calf" sid="node0">
+									<translate>-0 -0 0.045</translate>
+									<rotate>1 0 0 0</rotate>
+									<translate>0 0 -0.08</translate>
+									<rotate>1 0 0 0</rotate>
+									<rotate sid="node_L_KFE_axis0">-1 0 0 0</rotate>
+									<translate>0 0 -0.045</translate>
+									<rotate>1 0 0 0</rotate>
+									<instance_geometry url="#gkmodel0_L_calf_geom0">
+										<bind_material>
+											<technique_common>
+												<instance_material symbol="mat0" target="#gkmodel0_L_calf_geom0_mat"/>
+											</technique_common>
+										</bind_material>
+									</instance_geometry>
+									<node id="vkmodel0_node1" name="L_foot" sid="node1">
+										<translate>-0 -0 0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<translate>0 0 -0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<rotate sid="node_L_AFE_axis0">-1 0 0 0</rotate>
+										<translate>0 0 -0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<instance_geometry url="#gkmodel0_L_foot_geom0">
+											<bind_material>
+												<technique_common>
+													<instance_material symbol="mat0" target="#gkmodel0_L_foot_geom0_mat"/>
+												</technique_common>
+											</bind_material>
+										</instance_geometry>
+										<node id="vkmodel0_node2" name="L_foot_pad" sid="node2">
+											<translate>-0 -0 0.045</translate>
+											<rotate>1 0 0 0</rotate>
+											<translate>0 0 -0.03</translate>
+											<rotate>1 0 0 0</rotate>
+											<rotate sid="node_L_AR_axis0">0 -1 0 0</rotate>
+											<translate>0 0 -0.045</translate>
+											<rotate>1 0 0 0</rotate>
+											<instance_geometry url="#gkmodel0_L_foot_pad_geom0">
+												<bind_material>
+													<technique_common>
+														<instance_material symbol="mat0" target="#gkmodel0_L_foot_pad_geom0_mat"/>
+													</technique_common>
+												</bind_material>
+											</instance_geometry>
+										</node>
+									</node>
+								</node>
+							</node>
+						</node>
+					</node>
+					<node id="vkmodel0_node6" name="L_shoulder" sid="node6">
+						<translate>-0 -0 -0</translate>
+						<rotate>1 0 0 0</rotate>
+						<translate>-0.07000000000000001 0 0.03</translate>
+						<rotate>1 0 0 89.99999999971945</rotate>
+						<rotate sid="node_L_SAA_axis0">-1 0 0 0</rotate>
+						<translate>0 0 0</translate>
+						<rotate>1 0 0 0</rotate>
+						<instance_geometry url="#gkmodel0_L_shoulder_geom0">
+							<bind_material>
+								<technique_common>
+									<instance_material symbol="mat0" target="#gkmodel0_L_shoulder_geom0_mat"/>
+								</technique_common>
+							</bind_material>
+						</instance_geometry>
+						<node id="vkmodel0_node7" name="L_upper_arm" sid="node7">
+							<translate>-0 -0 -0</translate>
+							<rotate>1 0 0 0</rotate>
+							<translate>0 0 0</translate>
+							<rotate>0 1 0 85.94366926962348</rotate>
+							<rotate sid="node_L_SFE_axis0">0 -1 0 0</rotate>
+							<translate>0 0 -0.045</translate>
+							<rotate>1 0 0 0</rotate>
+							<instance_geometry url="#gkmodel0_L_upper_arm_geom0">
+								<bind_material>
+									<technique_common>
+										<instance_material symbol="mat0" target="#gkmodel0_L_upper_arm_geom0_mat"/>
+									</technique_common>
+								</bind_material>
+							</instance_geometry>
+							<node id="vkmodel0_node3" name="L_forearm" sid="node3">
+								<translate>-0 -0 0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<translate>0 0 -0.08</translate>
+								<rotate>1 0 0 0</rotate>
+								<rotate sid="node_L_EB_axis0">0 -1 0 0</rotate>
+								<translate>0 0 -0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<instance_geometry url="#gkmodel0_L_forearm_geom0">
+									<bind_material>
+										<technique_common>
+											<instance_material symbol="mat0" target="#gkmodel0_L_forearm_geom0_mat"/>
+										</technique_common>
+									</bind_material>
+								</instance_geometry>
+							</node>
+						</node>
+					</node>
+					<node id="vkmodel0_node13" name="R_hip" sid="node13">
+						<translate>-0 -0 -0</translate>
+						<rotate>1 0 0 0</rotate>
+						<translate>0.03 0 -0.06</translate>
+						<rotate>1 0 0 0</rotate>
+						<rotate sid="node_R_HAA_axis0">0 0 -1 0</rotate>
+						<translate>0 0 0</translate>
+						<rotate>1 0 0 0</rotate>
+						<instance_geometry url="#gkmodel0_R_hip_geom0">
+							<bind_material>
+								<technique_common>
+									<instance_material symbol="mat0" target="#gkmodel0_R_hip_geom0_mat"/>
+								</technique_common>
+							</bind_material>
+						</instance_geometry>
+						<node id="vkmodel0_node14" name="R_hip_split" sid="node14">
+							<translate>-0 -0 -0</translate>
+							<rotate>1 0 0 0</rotate>
+							<translate>0 0 0</translate>
+							<rotate>1 0 0 0</rotate>
+							<rotate sid="node_R_HR_axis0">0 1 0 0</rotate>
+							<translate>0 0 -0.045</translate>
+							<rotate>1 0 0 0</rotate>
+							<instance_geometry url="#gkmodel0_R_hip_split_geom0">
+								<bind_material>
+									<technique_common>
+										<instance_material symbol="mat0" target="#gkmodel0_R_hip_split_geom0_mat"/>
+									</technique_common>
+								</bind_material>
+							</instance_geometry>
+							<node id="vkmodel0_node17" name="R_upper_leg" sid="node17">
+								<translate>-0 -0 0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<translate>0 0 0</translate>
+								<rotate>1 0 0 0</rotate>
+								<rotate sid="node_R_HFE_axis0">-1 0 0 0</rotate>
+								<translate>0 0 -0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<instance_geometry url="#gkmodel0_R_upper_leg_geom0">
+									<bind_material>
+										<technique_common>
+											<instance_material symbol="mat0" target="#gkmodel0_R_upper_leg_geom0_mat"/>
+										</technique_common>
+									</bind_material>
+								</instance_geometry>
+								<node id="vkmodel0_node9" name="R_calf" sid="node9">
+									<translate>-0 -0 0.045</translate>
+									<rotate>1 0 0 0</rotate>
+									<translate>0 0 -0.08</translate>
+									<rotate>1 0 0 0</rotate>
+									<rotate sid="node_R_KFE_axis0">1 0 0 0</rotate>
+									<translate>0 0 -0.045</translate>
+									<rotate>1 0 0 0</rotate>
+									<instance_geometry url="#gkmodel0_R_calf_geom0">
+										<bind_material>
+											<technique_common>
+												<instance_material symbol="mat0" target="#gkmodel0_R_calf_geom0_mat"/>
+											</technique_common>
+										</bind_material>
+									</instance_geometry>
+									<node id="vkmodel0_node10" name="R_foot" sid="node10">
+										<translate>-0 -0 0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<translate>0 0 -0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<rotate sid="node_R_AFE_axis0">1 0 0 0</rotate>
+										<translate>0 0 -0.045</translate>
+										<rotate>1 0 0 0</rotate>
+										<instance_geometry url="#gkmodel0_R_foot_geom0">
+											<bind_material>
+												<technique_common>
+													<instance_material symbol="mat0" target="#gkmodel0_R_foot_geom0_mat"/>
+												</technique_common>
+											</bind_material>
+										</instance_geometry>
+										<node id="vkmodel0_node11" name="R_foot_pad" sid="node11">
+											<translate>-0 -0 0.045</translate>
+											<rotate>1 0 0 0</rotate>
+											<translate>0 0 -0.03</translate>
+											<rotate>1 0 0 0</rotate>
+											<rotate sid="node_R_AR_axis0">0 -1 0 0</rotate>
+											<translate>0 0 -0.045</translate>
+											<rotate>1 0 0 0</rotate>
+											<instance_geometry url="#gkmodel0_R_foot_pad_geom0">
+												<bind_material>
+													<technique_common>
+														<instance_material symbol="mat0" target="#gkmodel0_R_foot_pad_geom0_mat"/>
+													</technique_common>
+												</bind_material>
+											</instance_geometry>
+										</node>
+									</node>
+								</node>
+							</node>
+						</node>
+					</node>
+					<node id="vkmodel0_node15" name="R_shoulder" sid="node15">
+						<translate>-0 -0 -0</translate>
+						<rotate>1 0 0 0</rotate>
+						<translate>0.07000000000000001 0 0.03</translate>
+						<rotate>1 0 0 89.99999999971945</rotate>
+						<rotate sid="node_R_SAA_axis0">1 0 0 0</rotate>
+						<translate>0 0 0</translate>
+						<rotate>1 0 0 0</rotate>
+						<instance_geometry url="#gkmodel0_R_shoulder_geom0">
+							<bind_material>
+								<technique_common>
+									<instance_material symbol="mat0" target="#gkmodel0_R_shoulder_geom0_mat"/>
+								</technique_common>
+							</bind_material>
+						</instance_geometry>
+						<node id="vkmodel0_node16" name="R_upper_arm" sid="node16">
+							<translate>-0 -0 -0</translate>
+							<rotate>1 0 0 0</rotate>
+							<translate>0 0 0</translate>
+							<rotate>0 -1 0 85.94366926962348</rotate>
+							<rotate sid="node_R_SFE_axis0">0 -1 0 0</rotate>
+							<translate>0 0 -0.045</translate>
+							<rotate>1 0 0 0</rotate>
+							<instance_geometry url="#gkmodel0_R_upper_arm_geom0">
+								<bind_material>
+									<technique_common>
+										<instance_material symbol="mat0" target="#gkmodel0_R_upper_arm_geom0_mat"/>
+									</technique_common>
+								</bind_material>
+							</instance_geometry>
+							<node id="vkmodel0_node12" name="R_forearm" sid="node12">
+								<translate>-0 -0 0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<translate>0 0 -0.08</translate>
+								<rotate>1 0 0 0</rotate>
+								<rotate sid="node_R_EB_axis0">0 -1 0 0</rotate>
+								<translate>0 0 -0.045</translate>
+								<rotate>1 0 0 0</rotate>
+								<instance_geometry url="#gkmodel0_R_forearm_geom0">
+									<bind_material>
+										<technique_common>
+											<instance_material symbol="mat0" target="#gkmodel0_R_forearm_geom0_mat"/>
+										</technique_common>
+									</bind_material>
+								</instance_geometry>
+							</node>
+						</node>
+					</node>
+				</node>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<library_geometries id="geometries">
+		<geometry id="gkmodel0_base_link_geom0">
+			<mesh>
+				<source id="gkmodel0_base_link_geom0_positions">
+					<float_array id="gkmodel0_base_link_geom0_positions-array" count="26" digits="2490374">-0.02749999985098839 -0.01250000018626451 -0.02999999932944775 0.02749999985098839 -0.01250000018626451 -0.02999999932944775 0.02749999985098839 -0.01250000018626451 0.02999999932944775 -0.02749999985098839 -0.01250000018626451 0.02999999932944775 -0.02749999985098839 0.01250000018626451 0.02999999932944775 -0.02749999985098839 -0.01250000018626451 0.02999999932944775 0.02749999985098839 -0.01250000018626451 0.02999999932944775 0.02749999985098839 0.01250000018626451 0.02999999932944775 -0.02749999985098839 0.01250000018626451 0.02999999932944775 0.02749999985098839 0.01250000018626451 -0.02999999932944775 0.02749999985098839 0.01250000018626451 0.02999999932944775 0.02749999985098839 -0.01250000018626451 0.02999999932944775 0.02749999985098839 -0.01250000018626451 -0.02999999932944775 -0.02749999985098839 -0.01250000018626451 0.02999999932944775 -0.02749999985098839 0.01250000018626451 0.02999999932944775 -0.02749999985098839 0.01250000018626451 -0.02999999932944775 -0.02749999985098839 -0.01250000018626451 -0.02999999932944775 -0.02749999985098839 -0.01250000018626451 -0.02999999932944775 -0.02749999985098839 0.01250000018626451 -0.02999999932944775 0.02749999985098839 0.01250000018626451 -0.02999999932944775 0.02749999985098839 -0.01250000018626451 -0.02999999932944775 0.02749999985098839 0.01250000018626451 -0.02999999932944775 -0.02749999985098839 0.01250000018626451 -0.02999999932944775 -0.02749999985098839 0.01250000018626451 0.02999999932944775 -0.02749999985098839 0.01250000018626451 0.02999999932944775 0.02749999985098839 0.01250000018626451 0.02999999932944775</float_array>
+					<technique_common>
+						<accessor count="26" source="#gkmodel0_base_link_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_base_link_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_base_link_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 8 9 10 11 11 12 9 13 14 15 15 16 13 17 18 19 19 20 17 21 22 23 24 25 21</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_hip_geom0">
+			<mesh>
+				<source id="gkmodel0_L_hip_geom0_positions">
+					<float_array id="gkmodel0_L_hip_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_hip_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_hip_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_hip_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_hip_split_geom0">
+			<mesh>
+				<source id="gkmodel0_L_hip_split_geom0_positions">
+					<float_array id="gkmodel0_L_hip_split_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_hip_split_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_hip_split_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_hip_split_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_upper_leg_geom0">
+			<mesh>
+				<source id="gkmodel0_L_upper_leg_geom0_positions">
+					<float_array id="gkmodel0_L_upper_leg_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_upper_leg_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_upper_leg_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_upper_leg_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_calf_geom0">
+			<mesh>
+				<source id="gkmodel0_L_calf_geom0_positions">
+					<float_array id="gkmodel0_L_calf_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_calf_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_calf_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_calf_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_foot_geom0">
+			<mesh>
+				<source id="gkmodel0_L_foot_geom0_positions">
+					<float_array id="gkmodel0_L_foot_geom0_positions-array" count="24" digits="2490374">-0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_foot_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_foot_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_foot_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_foot_pad_geom0">
+			<mesh>
+				<source id="gkmodel0_L_foot_pad_geom0_positions">
+					<float_array id="gkmodel0_L_foot_pad_geom0_positions-array" count="24" digits="2490374">-0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_foot_pad_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_foot_pad_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_foot_pad_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_shoulder_geom0">
+			<mesh>
+				<source id="gkmodel0_L_shoulder_geom0_positions">
+					<float_array id="gkmodel0_L_shoulder_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_shoulder_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_shoulder_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_shoulder_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_upper_arm_geom0">
+			<mesh>
+				<source id="gkmodel0_L_upper_arm_geom0_positions">
+					<float_array id="gkmodel0_L_upper_arm_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_upper_arm_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_upper_arm_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_upper_arm_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_L_forearm_geom0">
+			<mesh>
+				<source id="gkmodel0_L_forearm_geom0_positions">
+					<float_array id="gkmodel0_L_forearm_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_L_forearm_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_L_forearm_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_L_forearm_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_hip_geom0">
+			<mesh>
+				<source id="gkmodel0_R_hip_geom0_positions">
+					<float_array id="gkmodel0_R_hip_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_hip_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_hip_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_hip_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_hip_split_geom0">
+			<mesh>
+				<source id="gkmodel0_R_hip_split_geom0_positions">
+					<float_array id="gkmodel0_R_hip_split_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_hip_split_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_hip_split_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_hip_split_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_upper_leg_geom0">
+			<mesh>
+				<source id="gkmodel0_R_upper_leg_geom0_positions">
+					<float_array id="gkmodel0_R_upper_leg_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_upper_leg_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_upper_leg_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_upper_leg_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_calf_geom0">
+			<mesh>
+				<source id="gkmodel0_R_calf_geom0_positions">
+					<float_array id="gkmodel0_R_calf_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_calf_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_calf_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_calf_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_foot_geom0">
+			<mesh>
+				<source id="gkmodel0_R_foot_geom0_positions">
+					<float_array id="gkmodel0_R_foot_geom0_positions-array" count="24" digits="2490374">-0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 -0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 0.01250000018626451 -0.01875000074505806 -0.01250000018626451 0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 -0.01250000018626451 -0.01250000018626451 0.01875000074505806 0.01250000018626451 0.01250000018626451 0.01875000074505806 0.01250000018626451</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_foot_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_foot_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_foot_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_foot_pad_geom0">
+			<mesh>
+				<source id="gkmodel0_R_foot_pad_geom0_positions">
+					<float_array id="gkmodel0_R_foot_pad_geom0_positions-array" count="24" digits="2490374">-0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 -0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 0.01499999966472387 -0.02500000037252903 -0.001249999972060323 0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 -0.001249999972060323 -0.01499999966472387 0.02500000037252903 0.001249999972060323 0.01499999966472387 0.02500000037252903 0.001249999972060323</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_foot_pad_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_foot_pad_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_foot_pad_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_shoulder_geom0">
+			<mesh>
+				<source id="gkmodel0_R_shoulder_geom0_positions">
+					<float_array id="gkmodel0_R_shoulder_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 -0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 0.007499999832361937 -0.009999999776482582 -0.007499999832361937 0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 -0.007499999832361937 -0.007499999832361937 0.009999999776482582 0.007499999832361937 0.007499999832361937 0.009999999776482582 0.007499999832361937</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_shoulder_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_shoulder_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_shoulder_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_upper_arm_geom0">
+			<mesh>
+				<source id="gkmodel0_R_upper_arm_geom0_positions">
+					<float_array id="gkmodel0_R_upper_arm_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_upper_arm_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_upper_arm_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_upper_arm_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+		<geometry id="gkmodel0_R_forearm_geom0">
+			<mesh>
+				<source id="gkmodel0_R_forearm_geom0_positions">
+					<float_array id="gkmodel0_R_forearm_geom0_positions-array" count="24" digits="2490374">-0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 -0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 0.007499999832361937 -0.009999999776482582 -0.02250000089406967 0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 -0.02250000089406967 -0.007499999832361937 0.009999999776482582 0.02250000089406967 0.007499999832361937 0.009999999776482582 0.02250000089406967</float_array>
+					<technique_common>
+						<accessor count="24" source="#gkmodel0_R_forearm_geom0_positions-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="vertices">
+					<input semantic="POSITION" source="#gkmodel0_R_forearm_geom0_positions"/>
+				</vertices>
+				<triangles count="12" material="mat0">
+					<input offset="0" semantic="VERTEX" source="#gkmodel0_R_forearm_geom0/vertices" set="0"/>
+					<p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_effects id="effects">
+		<effect id="gkmodel0_base_link_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0.1000000014901161 0.1000000014901161 0.1000000014901161 0</color>
+						</ambient>
+						<diffuse>
+							<color>1 1 1 0</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_base_link_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0.1000000014901161 0.1000000014901161 0.1000000014901161 0</color>
+						</ambient>
+						<diffuse>
+							<color>1 1 1 0</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_hip_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_hip_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_hip_split_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>1 0 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>1 0 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_hip_split_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>1 0 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>1 0 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_upper_leg_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_upper_leg_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_calf_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_calf_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_foot_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_foot_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_foot_pad_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_foot_pad_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_shoulder_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_shoulder_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_upper_arm_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_upper_arm_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_forearm_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_L_forearm_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_hip_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_hip_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_hip_split_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>1 0 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>1 0 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_hip_split_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>1 0 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>1 0 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_upper_leg_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_upper_leg_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_calf_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_calf_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_foot_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_foot_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_foot_pad_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_foot_pad_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_shoulder_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_shoulder_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_upper_arm_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_upper_arm_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0.800000011920929 0 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0.800000011920929 0 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_forearm_geom0">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="gkmodel0_R_forearm_geom0_eff">
+			<profile_COMMON>
+				<technique sid="">
+					<phong>
+						<ambient>
+							<color>0 0 0.800000011920929 1</color>
+						</ambient>
+						<diffuse>
+							<color>0 0 0.800000011920929 1</color>
+						</diffuse>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_materials id="materials">
+		<material id="gkmodel0_base_link_geom0_mat">
+			<instance_effect url="#gkmodel0_base_link_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_base_link_geom0_mat">
+			<instance_effect url="#gkmodel0_base_link_geom0"/>
+		</material>
+		<material id="gkmodel0_L_hip_geom0_mat">
+			<instance_effect url="#gkmodel0_L_hip_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_hip_geom0_mat">
+			<instance_effect url="#gkmodel0_L_hip_geom0"/>
+		</material>
+		<material id="gkmodel0_L_hip_split_geom0_mat">
+			<instance_effect url="#gkmodel0_L_hip_split_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_hip_split_geom0_mat">
+			<instance_effect url="#gkmodel0_L_hip_split_geom0"/>
+		</material>
+		<material id="gkmodel0_L_upper_leg_geom0_mat">
+			<instance_effect url="#gkmodel0_L_upper_leg_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_upper_leg_geom0_mat">
+			<instance_effect url="#gkmodel0_L_upper_leg_geom0"/>
+		</material>
+		<material id="gkmodel0_L_calf_geom0_mat">
+			<instance_effect url="#gkmodel0_L_calf_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_calf_geom0_mat">
+			<instance_effect url="#gkmodel0_L_calf_geom0"/>
+		</material>
+		<material id="gkmodel0_L_foot_geom0_mat">
+			<instance_effect url="#gkmodel0_L_foot_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_foot_geom0_mat">
+			<instance_effect url="#gkmodel0_L_foot_geom0"/>
+		</material>
+		<material id="gkmodel0_L_foot_pad_geom0_mat">
+			<instance_effect url="#gkmodel0_L_foot_pad_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_foot_pad_geom0_mat">
+			<instance_effect url="#gkmodel0_L_foot_pad_geom0"/>
+		</material>
+		<material id="gkmodel0_L_shoulder_geom0_mat">
+			<instance_effect url="#gkmodel0_L_shoulder_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_shoulder_geom0_mat">
+			<instance_effect url="#gkmodel0_L_shoulder_geom0"/>
+		</material>
+		<material id="gkmodel0_L_upper_arm_geom0_mat">
+			<instance_effect url="#gkmodel0_L_upper_arm_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_upper_arm_geom0_mat">
+			<instance_effect url="#gkmodel0_L_upper_arm_geom0"/>
+		</material>
+		<material id="gkmodel0_L_forearm_geom0_mat">
+			<instance_effect url="#gkmodel0_L_forearm_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_L_forearm_geom0_mat">
+			<instance_effect url="#gkmodel0_L_forearm_geom0"/>
+		</material>
+		<material id="gkmodel0_R_hip_geom0_mat">
+			<instance_effect url="#gkmodel0_R_hip_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_hip_geom0_mat">
+			<instance_effect url="#gkmodel0_R_hip_geom0"/>
+		</material>
+		<material id="gkmodel0_R_hip_split_geom0_mat">
+			<instance_effect url="#gkmodel0_R_hip_split_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_hip_split_geom0_mat">
+			<instance_effect url="#gkmodel0_R_hip_split_geom0"/>
+		</material>
+		<material id="gkmodel0_R_upper_leg_geom0_mat">
+			<instance_effect url="#gkmodel0_R_upper_leg_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_upper_leg_geom0_mat">
+			<instance_effect url="#gkmodel0_R_upper_leg_geom0"/>
+		</material>
+		<material id="gkmodel0_R_calf_geom0_mat">
+			<instance_effect url="#gkmodel0_R_calf_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_calf_geom0_mat">
+			<instance_effect url="#gkmodel0_R_calf_geom0"/>
+		</material>
+		<material id="gkmodel0_R_foot_geom0_mat">
+			<instance_effect url="#gkmodel0_R_foot_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_foot_geom0_mat">
+			<instance_effect url="#gkmodel0_R_foot_geom0"/>
+		</material>
+		<material id="gkmodel0_R_foot_pad_geom0_mat">
+			<instance_effect url="#gkmodel0_R_foot_pad_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_foot_pad_geom0_mat">
+			<instance_effect url="#gkmodel0_R_foot_pad_geom0"/>
+		</material>
+		<material id="gkmodel0_R_shoulder_geom0_mat">
+			<instance_effect url="#gkmodel0_R_shoulder_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_shoulder_geom0_mat">
+			<instance_effect url="#gkmodel0_R_shoulder_geom0"/>
+		</material>
+		<material id="gkmodel0_R_upper_arm_geom0_mat">
+			<instance_effect url="#gkmodel0_R_upper_arm_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_upper_arm_geom0_mat">
+			<instance_effect url="#gkmodel0_R_upper_arm_geom0"/>
+		</material>
+		<material id="gkmodel0_R_forearm_geom0_mat">
+			<instance_effect url="#gkmodel0_R_forearm_geom0_eff"/>
+		</material>
+		<material id="gkmodel0_R_forearm_geom0_mat">
+			<instance_effect url="#gkmodel0_R_forearm_geom0"/>
+		</material>
+	</library_materials>
+	<library_kinematics_models id="kmodels">
+		<kinematics_model id="kmodel0" name="awesome-o">
+			<technique_common>
+				<joint name="L_AFE" sid="L_AFE">
+					<revolute sid="axis0">
+						<axis>-1 0 0</axis>
+						<limits>
+							<min>-119.5312499985979</min>
+							<max>29.88281250108186</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_AR" sid="L_AR">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-63.98437500110313</min>
+							<max>64.33593749814996</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_EB" sid="L_EB">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-120.2343749984211</min>
+							<max>118.8281249987746</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_HAA" sid="L_HAA">
+					<revolute sid="axis0">
+						<axis>0 0 -1</axis>
+						<limits>
+							<min>-72.42187499898195</min>
+							<max>125.5078124999602</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_HFE" sid="L_HFE">
+					<revolute sid="axis0">
+						<axis>1 0 0</axis>
+						<limits>
+							<min>-32.34374999759839</min>
+							<max>153.9843750013955</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_HR" sid="L_HR">
+					<revolute sid="axis0">
+						<axis>0 1 0</axis>
+						<limits>
+							<min>-56.9531249971412</min>
+							<max>83.67187500188329</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_KFE" sid="L_KFE">
+					<revolute sid="axis0">
+						<axis>-1 0 0</axis>
+						<limits>
+							<min>-4.218749998939411</min>
+							<max>118.8281249987746</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_SAA" sid="L_SAA">
+					<revolute sid="axis0">
+						<axis>-1 0 0</axis>
+						<limits>
+							<min>-180.0000000005848</min>
+							<max>179.6484374978084</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="L_SFE" sid="L_SFE">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-109.6875000010726</min>
+							<max>111.7968750005423</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_AFE" sid="R_AFE">
+					<revolute sid="axis0">
+						<axis>1 0 0</axis>
+						<limits>
+							<min>-28.82812499848222</min>
+							<max>118.8281249987746</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_AR" sid="R_AR">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-58.71093749956407</min>
+							<max>80.15625000276711</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_EB" sid="R_EB">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-121.992187500844</min>
+							<max>122.3437499978908</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_HAA" sid="R_HAA">
+					<revolute sid="axis0">
+						<axis>0 0 -1</axis>
+						<limits>
+							<min>-125.8593750027366</min>
+							<max>32.34374999759839</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_HFE" sid="R_HFE">
+					<revolute sid="axis0">
+						<axis>-1 0 0</axis>
+						<limits>
+							<min>-155.390625001042</min>
+							<max>41.48437500103003</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_HR" sid="R_HR">
+					<revolute sid="axis0">
+						<axis>0 1 0</axis>
+						<limits>
+							<min>-85.07812500152976</min>
+							<max>55.54687499749473</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_KFE" sid="R_KFE">
+					<revolute sid="axis0">
+						<axis>1 0 0</axis>
+						<limits>
+							<min>-144.8437499979639</min>
+							<max>2.81249999929294</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_SAA" sid="R_SAA">
+					<revolute sid="axis0">
+						<axis>1 0 0</axis>
+						<limits>
+							<min>-180.0000000005848</min>
+							<max>179.6484374978084</max>
+						</limits>
+					</revolute>
+				</joint>
+				<joint name="R_SFE" sid="R_SFE">
+					<revolute sid="axis0">
+						<axis>0 -1 0</axis>
+						<limits>
+							<min>-116.7187499993049</min>
+							<max>108.2812500014261</max>
+						</limits>
+					</revolute>
+				</joint>
+				<link sid="base_link" name="base_link">
+					<attachment_full joint="kmodel0/L_HAA">
+						<translate>-0.03 0 -0.06</translate>
+						<rotate>1 0 0 0</rotate>
+						<link sid="L_hip" name="L_hip">
+							<attachment_full joint="kmodel0/L_HR">
+								<translate>0 0 0</translate>
+								<rotate>1 0 0 0</rotate>
+								<link sid="L_hip_split" name="L_hip_split">
+									<attachment_full joint="kmodel0/L_HFE">
+										<translate>0 0 0</translate>
+										<rotate>1 0 0 0</rotate>
+										<link sid="L_upper_leg" name="L_upper_leg">
+											<attachment_full joint="kmodel0/L_KFE">
+												<translate>0 0 -0.08</translate>
+												<rotate>1 0 0 0</rotate>
+												<link sid="L_calf" name="L_calf">
+													<attachment_full joint="kmodel0/L_AFE">
+														<translate>0 0 -0.045</translate>
+														<rotate>1 0 0 0</rotate>
+														<link sid="L_foot" name="L_foot">
+															<attachment_full joint="kmodel0/L_AR">
+																<translate>0 0 -0.03</translate>
+																<rotate>1 0 0 0</rotate>
+																<link sid="L_foot_pad" name="L_foot_pad"/>
+															</attachment_full>
+														</link>
+													</attachment_full>
+												</link>
+											</attachment_full>
+										</link>
+									</attachment_full>
+								</link>
+							</attachment_full>
+						</link>
+					</attachment_full>
+					<attachment_full joint="kmodel0/L_SAA">
+						<translate>-0.07000000000000001 0 0.03</translate>
+						<rotate>1 0 0 89.99999999971945</rotate>
+						<link sid="L_shoulder" name="L_shoulder">
+							<attachment_full joint="kmodel0/L_SFE">
+								<translate>0 0 0</translate>
+								<rotate>0 1 0 85.94366926962348</rotate>
+								<link sid="L_upper_arm" name="L_upper_arm">
+									<attachment_full joint="kmodel0/L_EB">
+										<translate>0 0 -0.08</translate>
+										<rotate>1 0 0 0</rotate>
+										<link sid="L_forearm" name="L_forearm"/>
+									</attachment_full>
+								</link>
+							</attachment_full>
+						</link>
+					</attachment_full>
+					<attachment_full joint="kmodel0/R_HAA">
+						<translate>0.03 0 -0.06</translate>
+						<rotate>1 0 0 0</rotate>
+						<link sid="R_hip" name="R_hip">
+							<attachment_full joint="kmodel0/R_HR">
+								<translate>0 0 0</translate>
+								<rotate>1 0 0 0</rotate>
+								<link sid="R_hip_split" name="R_hip_split">
+									<attachment_full joint="kmodel0/R_HFE">
+										<translate>0 0 0</translate>
+										<rotate>1 0 0 0</rotate>
+										<link sid="R_upper_leg" name="R_upper_leg">
+											<attachment_full joint="kmodel0/R_KFE">
+												<translate>0 0 -0.08</translate>
+												<rotate>1 0 0 0</rotate>
+												<link sid="R_calf" name="R_calf">
+													<attachment_full joint="kmodel0/R_AFE">
+														<translate>0 0 -0.045</translate>
+														<rotate>1 0 0 0</rotate>
+														<link sid="R_foot" name="R_foot">
+															<attachment_full joint="kmodel0/R_AR">
+																<translate>0 0 -0.03</translate>
+																<rotate>1 0 0 0</rotate>
+																<link sid="R_foot_pad" name="R_foot_pad"/>
+															</attachment_full>
+														</link>
+													</attachment_full>
+												</link>
+											</attachment_full>
+										</link>
+									</attachment_full>
+								</link>
+							</attachment_full>
+						</link>
+					</attachment_full>
+					<attachment_full joint="kmodel0/R_SAA">
+						<translate>0.07000000000000001 0 0.03</translate>
+						<rotate>1 0 0 89.99999999971945</rotate>
+						<link sid="R_shoulder" name="R_shoulder">
+							<attachment_full joint="kmodel0/R_SFE">
+								<translate>0 0 0</translate>
+								<rotate>0 -1 0 85.94366926962348</rotate>
+								<link sid="R_upper_arm" name="R_upper_arm">
+									<attachment_full joint="kmodel0/R_EB">
+										<translate>0 0 -0.08</translate>
+										<rotate>1 0 0 0</rotate>
+										<link sid="R_forearm" name="R_forearm"/>
+									</attachment_full>
+								</link>
+							</attachment_full>
+						</link>
+					</attachment_full>
+				</link>
+			</technique_common>
+		</kinematics_model>
+	</library_kinematics_models>
+	<library_articulated_systems id="asystems">
+		<articulated_system id="robot0_motion">
+			<motion>
+				<instance_articulated_system url="#robot0_kinematics">
+					<newparam sid="robot0_motion_kmodel0_inst">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_AFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_AFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_AFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_AFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_AR_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_AR_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_AR_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_AR_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_EB_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_EB_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_EB_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_EB_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HAA_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HAA_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HAA_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HAA_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HR_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HR_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_HR_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_HR_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_KFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_KFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_KFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_KFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_SAA_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_SAA_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_SAA_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_SAA_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_SFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_SFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_L_SFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_L_SFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_AFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_AFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_AFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_AFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_AR_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_AR_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_AR_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_AR_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_EB_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_EB_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_EB_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_EB_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HAA_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HAA_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HAA_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HAA_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HR_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HR_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_HR_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_HR_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_KFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_KFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_KFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_KFE_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_SAA_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_SAA_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_SAA_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_SAA_axis0_value</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_SFE_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_SFE_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_R_SFE_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_R_SFE_axis0_value</SIDREF>
+					</newparam>
+				</instance_articulated_system>
+				<technique_common>
+					<axis_info axis="robot0_kinematics/axis_info_inst0">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst1">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst2">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst3">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst4">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst5">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst6">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst7">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst8">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst9">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst10">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst11">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst12">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst13">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst14">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst15">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst16">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+					<axis_info axis="robot0_kinematics/axis_info_inst17">
+						<speed>
+							<float>1</float>
+						</speed>
+						<acceleration>
+							<float>1000</float>
+						</acceleration>
+					</axis_info>
+				</technique_common>
+			</motion>
+		</articulated_system>
+		<articulated_system id="robot0_kinematics">
+			<kinematics>
+				<instance_kinematics_model url="#kmodel0" sid="kmodel0_inst">
+					<newparam sid="robot0_kinematics_kmodel0_inst">
+						<SIDREF>robot0_kinematics/kmodel0_inst</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_AFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_AFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_AFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_AR_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_AR/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_AR_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_EB_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_EB/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_EB_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HAA_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_HAA/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HAA_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_HFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HR_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_HR/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_HR_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_KFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_KFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_KFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_SAA_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_SAA/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_SAA_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_SFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/L_SFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_L_SFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_AFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_AFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_AFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_AR_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_AR/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_AR_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_EB_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_EB/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_EB_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HAA_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_HAA/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HAA_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_HFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HR_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_HR/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_HR_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_KFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_KFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_KFE_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_SAA_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_SAA/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_SAA_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_SFE_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/R_SFE/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_R_SFE_axis0_value">
+						<float>0</float>
+					</newparam>
+				</instance_kinematics_model>
+				<technique_common>
+					<axis_info sid="axis_info_inst0" axis="kmodel0/L_AFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-119.5312499985979</float>
+							</min>
+							<max>
+								<float>29.88281250108186</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst1" axis="kmodel0/L_AR/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-63.98437500110313</float>
+							</min>
+							<max>
+								<float>64.33593749814996</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst2" axis="kmodel0/L_EB/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-120.2343749984211</float>
+							</min>
+							<max>
+								<float>118.8281249987746</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst3" axis="kmodel0/L_HAA/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-72.42187499898195</float>
+							</min>
+							<max>
+								<float>125.5078124999602</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst4" axis="kmodel0/L_HFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-32.34374999759839</float>
+							</min>
+							<max>
+								<float>153.9843750013955</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst5" axis="kmodel0/L_HR/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-56.9531249971412</float>
+							</min>
+							<max>
+								<float>83.67187500188329</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst6" axis="kmodel0/L_KFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-4.218749998939411</float>
+							</min>
+							<max>
+								<float>118.8281249987746</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst7" axis="kmodel0/L_SAA/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-180.0000000005848</float>
+							</min>
+							<max>
+								<float>179.6484374978084</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst8" axis="kmodel0/L_SFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-109.6875000010726</float>
+							</min>
+							<max>
+								<float>111.7968750005423</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst9" axis="kmodel0/R_AFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-28.82812499848222</float>
+							</min>
+							<max>
+								<float>118.8281249987746</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst10" axis="kmodel0/R_AR/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-58.71093749956407</float>
+							</min>
+							<max>
+								<float>80.15625000276711</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst11" axis="kmodel0/R_EB/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-121.992187500844</float>
+							</min>
+							<max>
+								<float>122.3437499978908</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst12" axis="kmodel0/R_HAA/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-125.8593750027366</float>
+							</min>
+							<max>
+								<float>32.34374999759839</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst13" axis="kmodel0/R_HFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-155.390625001042</float>
+							</min>
+							<max>
+								<float>41.48437500103003</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst14" axis="kmodel0/R_HR/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-85.07812500152976</float>
+							</min>
+							<max>
+								<float>55.54687499749473</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst15" axis="kmodel0/R_KFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-144.8437499979639</float>
+							</min>
+							<max>
+								<float>2.81249999929294</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst16" axis="kmodel0/R_SAA/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-180.0000000005848</float>
+							</min>
+							<max>
+								<float>179.6484374978084</float>
+							</max>
+						</limits>
+					</axis_info>
+					<axis_info sid="axis_info_inst17" axis="kmodel0/R_SFE/axis0">
+						<active>
+							<bool>true</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>-116.7187499993049</float>
+							</min>
+							<max>
+								<float>108.2812500014261</float>
+							</max>
+						</limits>
+					</axis_info>
+				</technique_common>
+			</kinematics>
+		</articulated_system>
+	</library_articulated_systems>
+	<library_kinematics_scenes id="kscenes">
+		<kinematics_scene id="kscene" name="URDF Kinematics Scene">
+			<instance_articulated_system sid="robot0_motion_inst" url="#robot0_motion" name="awesome-o">
+				<bind symbol="kscene_kmodel0_inst">
+					<param ref="robot0_motion/robot0_motion_kmodel0_inst"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_AFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_AFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AR_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_AR_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AR_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_AR_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_EB_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_EB_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_EB_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_EB_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HAA_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HAA_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HAA_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HAA_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HR_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HR_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HR_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_HR_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_KFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_KFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_KFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_KFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SAA_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_SAA_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SAA_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_SAA_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_SFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_L_SFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_AFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_AFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AR_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_AR_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AR_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_AR_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_EB_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_EB_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_EB_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_EB_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HAA_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HAA_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HAA_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HAA_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HR_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HR_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HR_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_HR_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_KFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_KFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_KFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_KFE_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SAA_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_SAA_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SAA_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_SAA_axis0_value"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SFE_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_SFE_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SFE_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_R_SFE_axis0_value"/>
+				</bind>
+			</instance_articulated_system>
+		</kinematics_scene>
+	</library_kinematics_scenes>
+	<library_physics_scenes id="pscenes">
+		<physics_scene id="pscene" name="URDF Physics Scene">
+			<instance_physics_model url="#pmodel0" sid="pmodel0_inst" parent="#visual0">
+				<instance_rigid_body body="rigid0" target="#vkmodel0_node0"/>
+				<instance_rigid_body body="rigid1" target="#vkmodel0_node1"/>
+				<instance_rigid_body body="rigid2" target="#vkmodel0_node2"/>
+				<instance_rigid_body body="rigid3" target="#vkmodel0_node3"/>
+				<instance_rigid_body body="rigid4" target="#vkmodel0_node4"/>
+				<instance_rigid_body body="rigid5" target="#vkmodel0_node5"/>
+				<instance_rigid_body body="rigid6" target="#vkmodel0_node6"/>
+				<instance_rigid_body body="rigid7" target="#vkmodel0_node7"/>
+				<instance_rigid_body body="rigid8" target="#vkmodel0_node8"/>
+				<instance_rigid_body body="rigid9" target="#vkmodel0_node9"/>
+				<instance_rigid_body body="rigid10" target="#vkmodel0_node10"/>
+				<instance_rigid_body body="rigid11" target="#vkmodel0_node11"/>
+				<instance_rigid_body body="rigid12" target="#vkmodel0_node12"/>
+				<instance_rigid_body body="rigid13" target="#vkmodel0_node13"/>
+				<instance_rigid_body body="rigid14" target="#vkmodel0_node14"/>
+				<instance_rigid_body body="rigid15" target="#vkmodel0_node15"/>
+				<instance_rigid_body body="rigid16" target="#vkmodel0_node16"/>
+				<instance_rigid_body body="rigid17" target="#vkmodel0_node17"/>
+				<instance_rigid_body body="rigid18" target="#vkmodel0_node18"/>
+			</instance_physics_model>
+			<technique_common>
+				<gravity>0 0 0</gravity>
+			</technique_common>
+		</physics_scene>
+	</library_physics_scenes>
+	<library_physics_models id="pmodels">
+		<physics_model id="pmodel0" name="awesome-o">
+			<rigid_body sid="rigid0" name="L_calf">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid1" name="L_foot">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid2" name="L_foot_pad">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid3" name="L_forearm">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid4" name="L_hip">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid5" name="L_hip_split">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid6" name="L_shoulder">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid7" name="L_upper_arm">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid8" name="L_upper_leg">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid9" name="R_calf">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid10" name="R_foot">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid11" name="R_foot_pad">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid12" name="R_forearm">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid13" name="R_hip">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid14" name="R_hip_split">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid15" name="R_shoulder">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid16" name="R_upper_arm">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid17" name="R_upper_leg">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid18" name="base_link">
+				<technique_common/>
+			</rigid_body>
+		</physics_model>
+	</library_physics_models>
+	<scene>
+		<instance_physics_scene url="#pscene"/>
+		<instance_visual_scene url="#vscene"/>
+		<instance_kinematics_scene url="#kscene">
+			<bind_kinematics_model node="visual0/node18">
+				<param>kscene_kmodel0_inst</param>
+			</bind_kinematics_model>
+			<bind_joint_axis target="node18/node4/node5/node8/node1/node_L_AFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node4/node5/node8/node0/node2/node_L_AR_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AR_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_AR_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node6/node3/node_L_EB_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_EB_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_EB_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node4/node_L_HAA_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HAA_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HAA_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node4/node8/node_L_HFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node5/node_L_HR_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HR_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_HR_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node4/node5/node0/node_L_KFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_KFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_KFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node6/node_L_SAA_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SAA_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SAA_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node7/node_L_SFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_L_SFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node13/node14/node17/node10/node_R_AFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node13/node14/node17/node9/node11/node_R_AR_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AR_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_AR_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node15/node12/node_R_EB_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_EB_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_EB_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node13/node_R_HAA_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HAA_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HAA_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node13/node17/node_R_HFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node14/node_R_HR_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HR_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_HR_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node13/node14/node9/node_R_KFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_KFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_KFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node15/node_R_SAA_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SAA_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SAA_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node18/node16/node_R_SFE_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SFE_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_R_SFE_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+		</instance_kinematics_scene>
+	</scene>
+	<extra id="sensors" type="library_sensors">
+		<technique profile="OpenRAVE"/>
+	</extra>
+</COLLADA>
