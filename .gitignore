@@ -20,8 +20,6 @@ gtest/
 RemoteSystemsTempFiles/
 .metadata/
 
-oprenrave
-
 #QtCreator Files
 CMakeLists.txt.user
 

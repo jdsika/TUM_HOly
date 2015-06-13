@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: bioloid_interface
+    relative_path: urdf/TypeA.urdf.xacro
+  SRDF:
+    relative_path: config/awesome-o.srdf
+  CONFIG:
+    generated_timestamp: 1434198486

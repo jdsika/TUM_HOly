@@ -1,0 +1,20 @@
+LeftArm:
+  kinematics_solver: awesome-o_LeftArm_kinematics/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+  kinematics_solver_attempts: 3
+RightArm:
+  kinematics_solver: awesome-o_RightArm_kinematics/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+  kinematics_solver_attempts: 3
+LeftLeg:
+  kinematics_solver: awesome-o_LeftLeg_kinematics/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+  kinematics_solver_attempts: 3
+RightLeg:
+  kinematics_solver: awesome-o_RightLeg_kinematics/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+  kinematics_solver_attempts: 3
