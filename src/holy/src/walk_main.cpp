@@ -1,6 +1,7 @@
 #include <cmath>
 
 #include <vector>
+#include <string>
 #include <iostream>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
@@ -13,6 +14,8 @@
 #include "walk.h"
 #include "poses/poses.h"
 
+static const std::string filename = "positions.csv";
+
 
 int main(int argc, char **argv)
 {
@@ -23,6 +26,8 @@ int main(int argc, char **argv)
 
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
+
+    Poses::parseRoboPoses(filename);
 
     return 0;
 

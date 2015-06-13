@@ -31,6 +31,9 @@ public:
     std::vector<LimbPose>& getLimbs();
     const std::vector<LimbPose> getLimbs() const;
 
+    // return the name of the position
+    const std::string getRoboPosName() const;
+
     // Prints orientation and position of contained limbs
     const RoboPose &printInfo() const;
     RoboPose& printInfo();

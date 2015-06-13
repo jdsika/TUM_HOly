@@ -6,7 +6,11 @@
 #ifndef _POSES_H_
 #define _POSES_H_
 
+//#include <map>
+
 #include "robopose.h"
+#include <string>
+#include <vector>
 
 // The Poses class contains a number of poses that can be used in a state
 // machine with the goal of having the robot fulfill its tasks.
@@ -29,6 +33,11 @@ private:
     ~Poses();
 
 public:
+    static bool parseRoboPoses(std::string filename);
+
+    static bool getWorkingDirectory();
+
+public:
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static const RoboPose pose_default;
 
@@ -38,6 +47,7 @@ public:
     // Rechten Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
     static const RoboPose pose_lift_right_foot;
 
+    static std::vector<RoboPose> walkingPoses;
 };
 
 #endif

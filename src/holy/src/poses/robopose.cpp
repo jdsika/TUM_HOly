@@ -68,6 +68,11 @@ const std::vector<LimbPose> RoboPose::getLimbs() const
     return ret;
 }
 
+const std::string RoboPose::getRoboPosName() const
+{
+    return this->objname;
+}
+
 const RoboPose &RoboPose::printInfo() const
 {
     printInfoImpl();

@@ -30,6 +30,8 @@ add_executable(walk
     src/poses/poses.cpp
     src/poses/limbpose.cpp
     src/poses/robopose.cpp
+    src/CSV/csvrow.cpp
+    src/CSV/csviterator.cpp
 )
 
 ## Specify libraries to link a library or executable target against
