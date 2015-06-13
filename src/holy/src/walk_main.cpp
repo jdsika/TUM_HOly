@@ -13,12 +13,22 @@
 #include "core.h"
 #include "walk.h"
 #include "poses/poses.h"
+#include "poses/robopose.h"
 
 static const std::string filename = "positions.csv";
 
 
 int main(int argc, char **argv)
 {
+    //Poses::getWorkingDirectory();
+    //Poses::printCSVRows(filename);
+    Poses::parseRoboPositions(filename);
+
+    for (int i = 0; Poses::walkingPoses.size(); ++i)
+        Poses::walkingPoses[i].printInfo();
+
+    return 0;
+
     Core core(argc, argv);
     Walk walk(&core);
 
@@ -27,7 +37,6 @@ int main(int argc, char **argv)
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
 
-    Poses::parseRoboPoses(filename);
 
     return 0;
 

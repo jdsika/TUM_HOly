@@ -31,7 +31,7 @@ public:
     Core(int argc, char **argv);
     ~Core();
 
-    enum class Limb {LEFT_HAND, RIGHT_HAND, LEFT_FOOT, RIGHT_FOOT};
+    enum class Limb {ERROR, LEFT_HAND, RIGHT_HAND, LEFT_FOOT, RIGHT_FOOT};
 
     tf::StampedTransform* getTF(Limb limb);
 
@@ -43,6 +43,7 @@ public:
     // static methods to identify Limbs and Groups by enum
     static const std::string getLimbString(const Core::Limb limb);
     static const std::string getLimbGroup (const Core::Limb limb);
+    static const Core::Limb getLimbEnum(const std::string limbString);
 
     Core& move();
 

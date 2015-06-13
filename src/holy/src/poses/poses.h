@@ -33,7 +33,9 @@ private:
     ~Poses();
 
 public:
-    static bool parseRoboPoses(std::string filename);
+    static bool printCSVRows(std::string filename);
+
+    static bool parseRoboPositions(std::string filename);
 
     static bool getWorkingDirectory();
 

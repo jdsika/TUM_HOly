@@ -9,6 +9,7 @@
 
 class LimbPose {
 public:
+    LimbPose(): limb(Core::Limb::ERROR),  roll(0.0), pitch(0.0), yaw(0.0), x(0.0), y(0.0), z(0.0) {}
     // The standard way of constructing a LimbPose is to say what limb it refers to and state its orientation and position.
     LimbPose(const Core::Limb limb,
              const double roll,

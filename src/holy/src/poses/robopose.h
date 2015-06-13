@@ -15,6 +15,8 @@ class LimbPose;
 
 class RoboPose {
 public:
+    // default init
+    RoboPose();
     // A RoboPose can be constructed from a vector of LimbPoses. Not that the order of the limbs in the vector doesn't matter
     RoboPose(const std::vector<LimbPose> limbs, const std::string objname = "");
 

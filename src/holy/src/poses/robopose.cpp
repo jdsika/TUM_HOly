@@ -7,6 +7,13 @@
 //#include <exception> // runtime_exception
 //#include <utility> // swap
 
+RoboPose::RoboPose()
+{
+    // no limbs
+    this->limbs.resize(0);
+    this->objname = "";
+}
+
 RoboPose::RoboPose(const std::vector<LimbPose> limbs, const std::string objname)
     : objname(objname)
 {

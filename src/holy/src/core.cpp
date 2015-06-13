@@ -151,6 +151,21 @@ const std::string Core::getLimbGroup(const Core::Limb limb)
     return limb_str;
 }
 
+const Core::Limb Core::getLimbEnum(const std::string limbString)
+{
+    if(Core::getLimbString(Limb::LEFT_FOOT) == limbString)
+        return Limb::LEFT_FOOT;
+    else if(Core::getLimbString(Limb::RIGHT_FOOT) == limbString)
+        return Limb::RIGHT_FOOT;
+    else if(Core::getLimbString(Limb::LEFT_HAND) == limbString)
+        return Limb::LEFT_HAND;
+    else if(Core::getLimbString(Limb::RIGHT_HAND) == limbString)
+        return Limb::RIGHT_HAND;
+    else
+        return Limb::ERROR;
+
+}
+
 Core &Core::move()
 {
     group->move();
@@ -201,7 +216,7 @@ Core &Core::setPoseTarget(const LimbPose &lp)
 
 
     //std::cout << "---\n";
-//    robot_state->printStatePositions();
+    //    robot_state->printStatePositions();
 
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(lp.limb)), // Group
                                         lp, // pose
@@ -217,7 +232,7 @@ Core &Core::setPoseTarget(const LimbPose &lp)
     std::vector<double> positions;
     robot_state->copyJointGroupPositions("All",positions);
 
-//    std::cout << "\n";
+    //    std::cout << "\n";
     //robot_state->printStatePositions();
 
     //std::vector<std::string> names = group->getJointValueTarget().getJointModelGroup("All")->getVariableNames();
@@ -254,25 +269,25 @@ Core &Core::moveto_default_state()
      *
      */
 
-   const std::map<std::string, double> init_values {
-       {"R_SAA", 0.0},
-       {"R_SFE", 0.0},
-       {"R_EB",  0.0},
-       {"R_HAA", 0.0},
-       {"R_HR",  0.0},
-       {"R_HFE",-0.3},
-       {"R_KFE",-0.4},
-       {"R_AFE", 0.18},
-       {"R_AR",  0.0},
-       {"L_SAA", 0.0},
-       {"L_SFE", 0.0},
-       {"L_EB",  0.0},
-       {"L_HAA", 0.0},
-       {"L_HR",  0.0},
-       {"L_HFE", 0.3},
-       {"L_KFE", 0.4},
-       {"L_AFE",-0.18},
-       {"L_AR",  0.0},
+    const std::map<std::string, double> init_values {
+        {"R_SAA", 0.0},
+        {"R_SFE", 0.0},
+        {"R_EB",  0.0},
+        {"R_HAA", 0.0},
+        {"R_HR",  0.0},
+        {"R_HFE",-0.3},
+        {"R_KFE",-0.4},
+        {"R_AFE", 0.18},
+        {"R_AR",  0.0},
+        {"L_SAA", 0.0},
+        {"L_SFE", 0.0},
+        {"L_EB",  0.0},
+        {"L_HAA", 0.0},
+        {"L_HR",  0.0},
+        {"L_HFE", 0.3},
+        {"L_KFE", 0.4},
+        {"L_AFE",-0.18},
+        {"L_AR",  0.0},
     };
 
     // assign values to group
