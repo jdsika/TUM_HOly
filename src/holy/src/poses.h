@@ -22,9 +22,9 @@ public:
 
     // Adding / Subtracting two LimbPoses merges their values if they refer to the same Core::Limb, but throws a runtime_exception if they have different Core::Limbs.
     LimbPose operator+ (const LimbPose& rlp) const;
-    LimbPose operator+=(const LimbPose& rlp);
+    LimbPose& operator+=(const LimbPose& rlp);
     LimbPose operator- (const LimbPose& rlp) const;
-    LimbPose operator-=(const LimbPose& rlp);
+    LimbPose& operator-=(const LimbPose& rlp);
 
     // Provides a way to cast a LimbPose to an object of the ROS-compatible message type geometry_msgs::Pose
     operator geometry_msgs::Pose () const;
@@ -41,7 +41,7 @@ public:
 class RoboPose {
 public:
     // A RoboPose can be constructed from a vector of LimbPoses. Not that the order of the limbs in the vector doesn't matter
-    RoboPose(const std::vector<LimbPose> limbs);
+    RoboPose(const std::vector<LimbPose> limbs, const std::string objname = "");
 
     // Use the Core to construct a RoboPose that resembles the actual current Robot Pose
     static RoboPose fromCurrentPose(Core &core);
@@ -62,13 +62,17 @@ public:
 
     // Adding / Subtracting two RoboPoses merges their Limbs: Limbs previously not included in one side will be present in the result, Limbs existing in both RoboPoses will be added / subtracted.
     RoboPose operator+ (const RoboPose& rrp) const;
-    RoboPose operator+=(const RoboPose& rrp);
+    RoboPose& operator+=(const RoboPose& rrp);
     RoboPose operator- (const RoboPose& rrp) const;
-    RoboPose operator-=(const RoboPose& rrp);
+    RoboPose& operator-=(const RoboPose& rrp);
 
 private:
     // The limb poses that constitute this RoboPose
     std::vector<LimbPose> limbs;
+
+    std::string objname;
+
+    void printInfoImpl() const;
 
 };
 
@@ -96,19 +100,19 @@ static const RoboPose pose_default ( std::vector<LimbPose> {
                                          pose_default_limb_rh,
                                          pose_default_limb_lf,
                                          pose_default_limb_rf,
-                                     } );
+                                     } , "pose_default");
 
 // Rechten Fuss nach aussen ziehen, Insgesamt nach Links lehnen durch pitch auf beiden fuessen
 static const RoboPose pose_shift_weight_toleft = pose_default + RoboPose( std::vector<LimbPose> {
                         LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(8), d2r(0), 0.06, 0, 0),
                         LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(8), d2r(0), 0, 0, 0),
-                                              });
+                                              }, "pose_shift_weight_toleft");
 
 // Rechten Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
 static const RoboPose pose_lift_right_foot = pose_shift_weight_toleft + RoboPose( std::vector<LimbPose> {
                         LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(4), d2r(0), 0, 0, 0.05),
                         LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(4), d2r(0), -0.025, -0.008, 0),
-                                           });
+                                           }, "pose_lift_right_foot");
 
 
 

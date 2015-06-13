@@ -1,24 +1,29 @@
 #include "poses.h"
 #include "core.h"
 
-#include <exception>
+#include <exception> // runtime_exception
+#include <utility> // swap
 
-
-RoboPose::RoboPose(const std::vector<LimbPose> limbs)
+RoboPose::RoboPose(const std::vector<LimbPose> limbs, const std::string objname)
+    : objname(objname)
 {
     this->limbs.reserve(limbs.size());
     for(const LimbPose &new_lp : limbs)
     {
+        bool already_contained = false;
         for(const LimbPose &old_lp : this->limbs)
         {
             if(new_lp.limb == old_lp.limb)
             {
-                std::cerr << "RoboPose::RoboPose(): The pose of limb " << Core::getLimbString(new_lp.limb) << " is already declared." << std::endl;
-            } else {
-                this->limbs.push_back(new_lp);
+                already_contained = true;
+                std::cerr << "RoboPose \""<<objname<<"\": The pose of limb " << Core::getLimbString(new_lp.limb) << " is already declared." << std::endl;
             }
         }
+        if(!already_contained) {
+           this->limbs.push_back(new_lp);
+       }
     }
+    std::cout << "RoboPose \""<<objname<<"\" now contains "<<this->limbs.size()<<" limbs"<<std::endl;
 }
 
 RoboPose RoboPose::fromCurrentPose(Core &core)
@@ -47,7 +52,7 @@ LimbPose& RoboPose::getLimb(Core::Limb limb)
             return limbs[i];
         }
     }
-    throw std::runtime_error("Robot pose does not contain a LimbPose for limb "+Core::getLimbString(limb)+".");
+    throw std::runtime_error("RoboPose \""+objname+"\" does not contain a LimbPose for limb "+Core::getLimbString(limb)+".");
 }
 
 std::vector<LimbPose> &RoboPose::getLimbs()
@@ -63,7 +68,19 @@ const std::vector<LimbPose> RoboPose::getLimbs() const
 
 const RoboPose &RoboPose::printInfo() const
 {
-    std::cout << "RoboPose contains "<<limbs.size()<<" limbs:\n";
+    printInfoImpl();
+    return *this;
+}
+
+RoboPose &RoboPose::printInfo()
+{
+    printInfoImpl();
+    return *this;
+}
+
+void RoboPose::printInfoImpl() const
+{
+    std::cout << "RoboPose \""<<objname<<"\" contains "<<limbs.size()<<" limbs:\n";
     for(const LimbPose & lp : limbs)
     {
         std::cout << " - " << Core::getLimbString(lp.limb) << ": \n"
@@ -71,15 +88,6 @@ const RoboPose &RoboPose::printInfo() const
                   << "   " << lp.x << "m / " << lp.y << "m / " << lp.z << "m\n";
     }
     std::flush(std::cout);
-
-    return *this;
-}
-
-RoboPose &RoboPose::printInfo()
-{
-    printInfo();
-
-    return *this;
 }
 
 
@@ -113,12 +121,13 @@ RoboPose RoboPose::operator+(const RoboPose &rrp) const
         }
      }
 
-    return RoboPose(result_limbs);
+    return RoboPose(result_limbs, this->objname+"+"+rrp.objname);
 }
 
-RoboPose RoboPose::operator+=(const RoboPose &rrp)
+RoboPose& RoboPose::operator+=(const RoboPose &rrp)
 {
-    return *this + rrp;
+    *this = *this + rrp;
+    return *this;
 }
 
 RoboPose RoboPose::operator-(const RoboPose &rrp) const
@@ -154,9 +163,10 @@ RoboPose RoboPose::operator-(const RoboPose &rrp) const
     return RoboPose(result_limbs);
 }
 
-RoboPose RoboPose::operator-=(const RoboPose &rrp)
+RoboPose& RoboPose::operator-=(const RoboPose &rrp)
 {
-    return *this - rrp;
+    *this = *this - rrp;
+    return *this;
 }
 
 LimbPose::operator geometry_msgs::Pose() const
@@ -205,6 +215,7 @@ LimbPose LimbPose::fromCurrentPose(Core::Limb limb, Core &core)
 
 LimbPose LimbPose::operator+(const LimbPose &rlp) const
 {
+
     if(this->limb != rlp.limb)
     {
         throw std::runtime_error("Cannot add the values of limbs "+Core::getLimbString(this->limb)+" and "+Core::getLimbString(rlp.limb)+", because they are different limbs...");
@@ -221,9 +232,10 @@ LimbPose LimbPose::operator+(const LimbPose &rlp) const
                 );
 }
 
-LimbPose LimbPose::operator+=(const LimbPose &rlp)
+LimbPose& LimbPose::operator+=(const LimbPose &rlp)
 {
-    return *this + rlp;
+    *this = *this + rlp;
+    return *this;
 }
 
 LimbPose LimbPose::operator-(const LimbPose &rlp) const
@@ -244,7 +256,8 @@ LimbPose LimbPose::operator-(const LimbPose &rlp) const
                 );
 }
 
-LimbPose LimbPose::operator-=(const LimbPose &rlp)
+LimbPose& LimbPose::operator-=(const LimbPose &rlp)
 {
-    return *this - rlp;
+    *this = *this - rlp;
+    return *this;
 }

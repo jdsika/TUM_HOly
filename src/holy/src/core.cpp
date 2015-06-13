@@ -227,14 +227,53 @@ Core &Core::setPoseTarget(const LimbPose &lp)
 
 Core &Core::moveto_default_state()
 {
-    std::vector<double> group_variable_values;
-    // all 18 joints are set to 0.0 position
-    group_variable_values.resize(18);
-    std::fill(group_variable_values.begin(), group_variable_values.end(), 0.0);
-    // Order: L_HAA, L_HR, L_HFE, L_KFE, L_AFE, L_AR, L_SAA, L_SFE, L_EB, R_HAA, R_HR, R_HFE, R_KFE, R_AFE, R_AR, R_SAA, R_SFE, R_EB
+    /*
+     * Name - Dxl ID - Meaning
+     *
+     * R_SAA -  1 - Right Shoulder (rotates)
+     * R_SFE -  3 - Right Biceps (bends)
+     * R_EB  -  5 - Right Elbow
+     * R_HAA -  7 - Right Hip (rotates)
+     * R_HR  -  9 - Right Hip (bends)
+     * R_HFE - 11 - Right Hip abductor (sideways)
+     * R_KFE - 13 - Right Knee
+     * R_AFE - 15 - Right Ankle (bends)
+     * R_AR  - 17 - Right Foot (sideways rotate)
+     * L_SAA -  2 - Left Shoulder (rotates)
+     * L_SFE -  4 - Left Biceps (bends)
+     * L_EB  -  6 - Left Elbow
+     * L_HAA -  8 - Left Hip (rotates)
+     * L_HR  - 10 - Left Hip (bends)
+     * L_HFE - 12 - Left Hip abductor (sideways)
+     * L_KFE - 14 - Left Knee
+     * L_AFE - 16 - Left Ankle (bends)
+     * L_AR  - 18 - Left Foot (sideways rotate)
+     *
+     */
+
+   const std::map<std::string, double> init_values {
+       {"R_SAA", 0.0},
+       {"R_SFE", 0.0},
+       {"R_EB",  0.0},
+       {"R_HAA", 0.0},
+       {"R_HR",  0.0},
+       {"R_HFE", 0.0},
+       {"R_KFE",-0.3},
+       {"R_AFE", 0.4},
+       {"R_AR",  0.0},
+       {"L_SAA", 0.0},
+       {"L_SFE", 0.0},
+       {"L_EB",  0.0},
+       {"L_HAA", 0.0},
+       {"L_HR",  0.0},
+       {"L_HFE", 0.0},
+       {"L_KFE", 0.3},
+       {"L_AFE",-0.4},
+       {"L_AR",  0.0},
+    };
 
     // assign values to group
-    bool success = group->setJointValueTarget(group_variable_values);
+    bool success = group->setJointValueTarget(init_values);
     if(!success) std::cout << "setJointValueTarget() failed" << std::endl;
 
     // this will plan and execute in one step

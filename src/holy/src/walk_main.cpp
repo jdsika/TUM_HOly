@@ -13,43 +13,11 @@
 #include "walk.h"
 #include "poses.h"
 
-/* L_EB  - Left Elbow
- * L_SFE - Left Biceps (bends)
- * L_SAA - Left Shoulder (rotates)
- * L_HAA - Left Hip (rotates)
- * L_HR  - Left Hip (bends)
- * L_HFE - Left Hip abductor (sideways)
- * L_KFE - Left Knee
- * L_AFE - Left Ankle (bends)
- * L_AR  - Left Foot (sideways rotate)
- * R_EB  - Right Elbow
- * R_SFE - Right Biceps (bends)
- * R_SAA - Right Shoulder (rotates)
- * R_HAA - Right Hip (rotates)
- * R_HR  - Right Hip (bends)
- * R_HFE - Right Hip abductor (sideways)
- * R_KFE - Right Knee
- * R_AFE - Right Ankle (bends)
- * R_AR  - Right Foot (sideways rotate)
- */
-
-
 
 int main(int argc, char **argv)
 {
     Core core(argc, argv);
     Walk walk(&core);
-
-
-    Poses::pose_default.printInfo();
-    (Poses::pose_default
-            + RoboPose(std::vector<LimbPose> {
-                           LimbPose(Core::Limb::RIGHT_FOOT, d2r(0), d2r(90), d2r(0), 0.06, 0, 0),
-                           LimbPose(Core::Limb::LEFT_HAND, d2r(0), d2r(90), d2r(0), -0.06, 0, 0),
-                       })
-            ).printInfo();
-
-//    return 0;
 
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
