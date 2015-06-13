@@ -220,6 +220,8 @@ Core &Core::setPoseTarget(const LimbPose &lp)
 //    std::cout << "\n";
     //robot_state->printStatePositions();
 
+    //std::vector<std::string> names = group->getJointValueTarget().getJointModelGroup("All")->getVariableNames();
+
     group->setJointValueTarget(positions);
 
     return *this;
@@ -235,8 +237,8 @@ Core &Core::moveto_default_state()
      * R_SFE -  3 - Right Biceps (bends)
      * R_EB  -  5 - Right Elbow
      * R_HAA -  7 - Right Hip (rotates)
-     * R_HR  -  9 - Right Hip (bends)
-     * R_HFE - 11 - Right Hip abductor (sideways)
+     * R_HR  -  9 - Right Hip abductor (sideways)
+     * R_HFE - 11 - Right Hip (bends)
      * R_KFE - 13 - Right Knee
      * R_AFE - 15 - Right Ankle (bends)
      * R_AR  - 17 - Right Foot (sideways rotate)
@@ -244,8 +246,8 @@ Core &Core::moveto_default_state()
      * L_SFE -  4 - Left Biceps (bends)
      * L_EB  -  6 - Left Elbow
      * L_HAA -  8 - Left Hip (rotates)
-     * L_HR  - 10 - Left Hip (bends)
-     * L_HFE - 12 - Left Hip abductor (sideways)
+     * L_HR  - 10 - Left Hip abductor (sideways)
+     * L_HFE - 12 - Left Hip (bends)
      * L_KFE - 14 - Left Knee
      * L_AFE - 16 - Left Ankle (bends)
      * L_AR  - 18 - Left Foot (sideways rotate)
@@ -258,18 +260,18 @@ Core &Core::moveto_default_state()
        {"R_EB",  0.0},
        {"R_HAA", 0.0},
        {"R_HR",  0.0},
-       {"R_HFE", 0.0},
-       {"R_KFE",-0.3},
-       {"R_AFE", 0.4},
+       {"R_HFE",-0.3},
+       {"R_KFE",-0.4},
+       {"R_AFE", 0.18},
        {"R_AR",  0.0},
        {"L_SAA", 0.0},
        {"L_SFE", 0.0},
        {"L_EB",  0.0},
        {"L_HAA", 0.0},
        {"L_HR",  0.0},
-       {"L_HFE", 0.0},
-       {"L_KFE", 0.3},
-       {"L_AFE",-0.4},
+       {"L_HFE", 0.3},
+       {"L_KFE", 0.4},
+       {"L_AFE",-0.18},
        {"L_AR",  0.0},
     };
 

@@ -24,9 +24,9 @@ int main(int argc, char **argv)
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
 
-    ros::Duration(2.0).sleep();
-
     return 0;
+
+    ros::Duration(2.0).sleep();
 
     ros::Rate rate(0.25);
 
