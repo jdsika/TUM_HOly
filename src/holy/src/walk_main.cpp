@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
     std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
 
-    for (int i = 0; Poses::walkingPoses.size(); i++)
+    for (int i = 0; i < Poses::walkingPoses.size(); i++)
         (Poses::walkingPoses[i]).printInfo();
 
     //return 0;
