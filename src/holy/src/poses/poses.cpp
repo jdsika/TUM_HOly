@@ -14,6 +14,9 @@
     #define GetCurrentDir getcwd
  #endif
 
+//
+const std::string Poses::filename = "positions.csv";
+
 // R, P, Y, X, Y, Z
 const RoboPose Poses::pose_default(std::vector<LimbPose> {
 				       //changed to have lower arms
@@ -121,7 +124,10 @@ bool Poses::parseRoboPositions(std::string filename)
         if(currentPosName != priorPosName) {
             numberOfPositions++;
             priorPosName = currentPosName;
-            Poses::walkingPoses.push_back(RoboPose());
+            if (numberOfPositions == 0)
+                Poses::walkingPoses.push_back(Poses::pose_default);
+            else
+                Poses::walkingPoses.push_back(Poses::walkingPoses.at(numberOfPositions-1));
         }
         // get LimbString
         Core::Limb limb = Core::getLimbEnum((*loop)[0]);

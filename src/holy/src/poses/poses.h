@@ -40,6 +40,8 @@ public:
     static bool getWorkingDirectory();
 
 public:
+    static const std::string filename;
+
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static const RoboPose pose_default;
 

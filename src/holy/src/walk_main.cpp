@@ -15,14 +15,12 @@
 #include "poses/poses.h"
 #include "poses/robopose.h"
 
-static const std::string filename = "positions.csv";
-
 
 int main(int argc, char **argv)
 {
     //Poses::getWorkingDirectory();
     //Poses::printCSVRows(filename);
-    Poses::parseRoboPositions(filename);
+    Poses::parseRoboPositions(Poses::filename);
 
     std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
 
@@ -44,16 +42,25 @@ int main(int argc, char **argv)
 
     ros::Rate rate(0.25);
 
+    //char input = '';
+
+    //std::cout << "Walk (w) or Stairs (s) ?" << std::endl;
+    //std::coud << "Your choice: ";
+    //std::cin >> input;
+
+
     while(true) {
 
-	core.setPoseTarget(Poses::pose_default).move();
-   	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
+        //walk.executeStateMachine();
+
+        core.setPoseTarget(Poses::pose_default).move();
+        core.setPoseTarget(Poses::pose_shift_weight_toright).move();
         core.setPoseTarget(Poses::pose_lift_left_foot).move();
- 	core.setPoseTarget(Poses::pose_left_foot_forward).move();
+        core.setPoseTarget(Poses::pose_left_foot_forward).move();
         core.setPoseTarget(Poses::pose_shift_weight_toleft).move();
- 	core.setPoseTarget(Poses::pose_lift_right_foot).move();
-	core.setPoseTarget(Poses::pose_right_foot_forward).move();
-	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
+        core.setPoseTarget(Poses::pose_lift_right_foot).move();
+        core.setPoseTarget(Poses::pose_right_foot_forward).move();
+        core.setPoseTarget(Poses::pose_shift_weight_toright).move();
         core.setPoseTarget(Poses::pose_default).move();
 
         ros::spinOnce();
