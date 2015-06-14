@@ -49,14 +49,14 @@ const RoboPose Poses::pose_lift_left_foot = Poses::pose_shift_weight_toright
 
 const RoboPose Poses::pose_left_foot_forward = Poses::pose_lift_left_foot
         + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(+12), d2r(0), -0.025, +0.008, 0),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(+12), d2r(0), +0.0825, 0.05, -0.05),
+                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(+12), d2r(0), 0, +0.008, 0),
+                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(+12), d2r(0), +0.06, 0.05, -0.05),
                     }, "pose_left_foot_forward");
 
 const RoboPose Poses::pose_right_foot_forward = Poses::pose_lift_right_foot
         + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-12), d2r(0), -0.0825, +0.05, -0.05),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-12), d2r(0), +0.025, +0.008, 0),
+                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-12), d2r(0), -0.06, +0.05, -0.05),
+                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-12), d2r(0), 0, +0.008, 0),
                     }, "pose_right_foot_forward");
 
 std::vector<RoboPose> Poses::walkingPoses = std::vector<RoboPose> ();
