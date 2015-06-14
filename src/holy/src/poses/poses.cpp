@@ -114,6 +114,7 @@ bool Poses::parseRoboPositions(std::string filename)
         // correct table needs 8 values
         if ((*loop).size() != 8) {
             Poses::walkingPoses.resize(0);
+            std::cout << "PARSE FAILED" << std::endl;
             return false;
         }
 
@@ -134,6 +135,7 @@ bool Poses::parseRoboPositions(std::string filename)
 
         if(limb == Core::Limb::ERROR) {
             Poses::walkingPoses.resize(0);
+            std::cout << "PARSE FAILED" << std::endl;
             return false;
         }
 

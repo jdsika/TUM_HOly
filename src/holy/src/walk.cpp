@@ -17,7 +17,7 @@ Walk::~Walk()
 void Walk::executeStateMachine()
 {
     // parse files before each walking attempt
-    Poses::parseRoboPositions(Poses::filename);
+    if(!Poses::parseRoboPositions(Poses::filename)) return;
 
     ros::Rate rate(0.25);
 
