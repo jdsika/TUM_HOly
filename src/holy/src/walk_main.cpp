@@ -46,9 +46,14 @@ int main(int argc, char **argv)
 
     while(true) {
 
+	core.setPoseTarget(Poses::pose_default).move();
+   	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
+        core.setPoseTarget(Poses::pose_lift_left_foot).move();
+ 	core.setPoseTarget(Poses::pose_left_foot_forward).move();
         core.setPoseTarget(Poses::pose_shift_weight_toleft).move();
-        core.setPoseTarget(Poses::pose_lift_right_foot).move();
-        core.setPoseTarget(Poses::pose_shift_weight_toleft).move();
+ 	core.setPoseTarget(Poses::pose_lift_right_foot).move();
+	core.setPoseTarget(Poses::pose_left_foot_forward).move();
+	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
         core.setPoseTarget(Poses::pose_default).move();
 
         ros::spinOnce();

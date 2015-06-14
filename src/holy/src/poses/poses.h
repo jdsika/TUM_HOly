@@ -45,9 +45,14 @@ public:
 
     // Rechten Fuss nach aussen ziehen, Insgesamt nach Links lehnen durch pitch auf beiden fuessen
     static const RoboPose pose_shift_weight_toleft;
-
+    // Linken Fuss nach aussen ziehen, Insgesamt nach rechts lehnen durch pitch auf beiden fuessen
+    static const RoboPose pose_shift_weight_toright;
     // Rechten Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
     static const RoboPose pose_lift_right_foot;
+    // Linken Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
+    static const RoboPose pose_lift_left_foot;
+    static const RoboPose pose_left_foot_forward;
+    static const RoboPose pose_right_foot_forward;
 
     static std::vector<RoboPose> walkingPoses;
 };

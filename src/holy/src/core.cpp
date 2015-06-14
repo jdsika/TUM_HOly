@@ -207,10 +207,8 @@ Core &Core::setPoseTarget(const RoboPose &rp)
 
 Core &Core::setPoseTarget(const LimbPose &lp)
 {
-    // The KinematicsQueryOptions may ensure the movement of arms (same as checkbox in rvis)
     kinematics::KinematicsQueryOptions kQO;
-    kQO.return_approximate_solution = false; //(limb == Core::Limb::LEFT_HAND || limb == Core::Limb::RIGHT_HAND)? true : false;
-
+    kQO.return_approximate_solution = false; // not needed with ikfast!
 
     //std::cout << "---\n";
     //    robot_state->printStatePositions();
@@ -221,21 +219,20 @@ Core &Core::setPoseTarget(const LimbPose &lp)
                                         2.0, // timeout
                                         groupStateValidityCallback, // Constraint
                                         kQO); // enable Approx IK
+    std::vector<double> positions;
     if(!success)
     {
         std::cout<< "setFromIK Failed" << std::endl;
     }
+    else
+    {
+        robot_state->copyJointGroupPositions("All",positions);
 
-    std::vector<double> positions;
-    robot_state->copyJointGroupPositions("All",positions);
+        //    std::cout << "\n";
+        //robot_state->printStatePositions();
 
-    //    std::cout << "\n";
-    //robot_state->printStatePositions();
-
-    //std::vector<std::string> names = group->getJointValueTarget().getJointModelGroup("All")->getVariableNames();
-
-    group->setJointValueTarget(positions);
-
+        group->setJointValueTarget(positions);
+    }
     return *this;
 }
 
