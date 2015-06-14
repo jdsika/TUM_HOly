@@ -14,6 +14,9 @@
     #define GetCurrentDir getcwd
  #endif
 
+//
+const std::string Poses::filename = "positions.csv";
+
 // R, P, Y, X, Y, Z
 // Feet: Toes up(+) down(-) / ankles left(+) right(-) / twist left right / X / Y / Z
 // Hands: Arms up down / ? / ? / (X) / (Y) / (Z)
@@ -180,6 +183,7 @@ bool Poses::parseRoboPositions(std::string filename)
         // correct table needs 8 values
         if ((*loop).size() != 8) {
             Poses::walkingPoses.resize(0);
+            std::cout << "PARSE FAILED" << std::endl;
             return false;
         }
 
@@ -190,13 +194,17 @@ bool Poses::parseRoboPositions(std::string filename)
         if(currentPosName != priorPosName) {
             numberOfPositions++;
             priorPosName = currentPosName;
-            Poses::walkingPoses.push_back(RoboPose());
+            if (numberOfPositions == 0)
+                Poses::walkingPoses.push_back(Poses::pose_default);
+            else
+                Poses::walkingPoses.push_back(Poses::walkingPoses.at(numberOfPositions-1));
         }
         // get LimbString
         Core::Limb limb = Core::getLimbEnum((*loop)[0]);
 
         if(limb == Core::Limb::ERROR) {
             Poses::walkingPoses.resize(0);
+            std::cout << "PARSE FAILED" << std::endl;
             return false;
         }
 

@@ -13,6 +13,8 @@ public:
     Walk(Core* core);
     ~Walk();
 
+    void executeStateMachine();
+
 private:
     Core* core;
 
