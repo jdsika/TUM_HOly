@@ -35,11 +35,9 @@ Core::Core(int argc, char** argv)
 
     //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
-    group->setGoalOrientationTolerance(0.0000050*M_PI/180.0);
-    group->setGoalPositionTolerance(0.0000002);
-    group->setGoalJointTolerance(0.00005*M_PI/180.0);
-
-
+//    group->setGoalOrientationTolerance(0.0000050*M_PI/180.0);
+//    group->setGoalPositionTolerance(0.0000002);
+//    group->setGoalJointTolerance(0.00005*M_PI/180.0);
 
     ros::Publisher display_publisher = node_handle->advertise<moveit_msgs::DisplayTrajectory>("/move_group/display_planned_path", 1, true);
     moveit_msgs::DisplayTrajectory display_trajectory;
@@ -69,9 +67,8 @@ Core::Core(int argc, char** argv)
     std::vector<std::string> IDs {"L_HAA", "L_HR", "L_HFE", "L_KFE", "L_AFE", "L_AR", "L_SAA", "L_SFE", "L_EB", "R_HAA", "R_HR", "R_HFE", "R_KFE", "R_AFE", "R_AR", "R_SAA", "R_SFE", "R_EB"};
     for(std::string id : IDs)
     {
-        double val, init;
         ros::param::get("/robot_description_planning/joint_limits/"+id+"/max_position", map_max[id]);
-	ros::param::get("/robot_description_planning/joint_limits/"+id+"/min_position", map_min[id]);
+        ros::param::get("/robot_description_planning/joint_limits/"+id+"/min_position", map_min[id]);
     }
 
 }
@@ -165,6 +162,7 @@ const Core::Limb Core::getLimbEnum(const std::string limbString)
 
 Core &Core::move()
 {
+
     group->move();
 
     return *this;
@@ -197,6 +195,8 @@ bool groupStateValidityCallback(
 
 Core &Core::setPoseTarget(const RoboPose &rp)
 {
+    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
+
     for(const LimbPose lp : rp.getLimbs())
     {
         setPoseTarget(lp);
@@ -210,29 +210,21 @@ Core &Core::setPoseTarget(const LimbPose &lp)
     kinematics::KinematicsQueryOptions kQO;
     kQO.return_approximate_solution = false; // not needed with ikfast!
 
-    //std::cout << "---\n";
-    //    robot_state->printStatePositions();
-
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(lp.limb)), // Group
                                         lp, // pose
                                         30, // Attempts
                                         2.0, // timeout
                                         groupStateValidityCallback, // Constraint
                                         kQO); // enable Approx IK
-    std::vector<double> positions;
     if(!success)
     {
         std::cout<< "setFromIK Failed" << std::endl;
-    }
-    else
-    {
+    } else {
+        std::vector<double> positions;
         robot_state->copyJointGroupPositions("All",positions);
-
-        //    std::cout << "\n";
-        //robot_state->printStatePositions();
-
         group->setJointValueTarget(positions);
     }
+
     return *this;
 }
 

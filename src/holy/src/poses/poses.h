@@ -43,16 +43,20 @@ public:
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static const RoboPose pose_default;
 
-    // Rechten Fuss nach aussen ziehen, Insgesamt nach Links lehnen durch pitch auf beiden fuessen
-    static const RoboPose pose_shift_weight_toleft;
     // Linken Fuss nach aussen ziehen, Insgesamt nach rechts lehnen durch pitch auf beiden fuessen
     static const RoboPose pose_shift_weight_toright;
-    // Rechten Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
-    static const RoboPose pose_lift_right_foot;
     // Linken Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
     static const RoboPose pose_lift_left_foot;
-    static const RoboPose pose_left_foot_forward;
-    static const RoboPose pose_right_foot_forward;
+    static const RoboPose pose_left_foot_advance_forward;
+    static const RoboPose pose_left_foot_advanced_down;
+    static const RoboPose pose_left_foot_advanced_shiftweighttoleft;
+
+    // Gespiegelt
+    static const RoboPose pose_shift_weight_toleft;
+    static const RoboPose pose_lift_right_foot;
+    static const RoboPose pose_right_foot_advance_forward;
+    static const RoboPose pose_right_foot_advanced_down;
+    static const RoboPose pose_right_foot_advanced_shiftweighttoright;
 
     static std::vector<RoboPose> walkingPoses;
 };

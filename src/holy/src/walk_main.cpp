@@ -20,16 +20,16 @@ static const std::string filename = "positions.csv";
 
 int main(int argc, char **argv)
 {
-    //Poses::getWorkingDirectory();
-    //Poses::printCSVRows(filename);
-    Poses::parseRoboPositions(filename);
+//    Poses::getWorkingDirectory();
+//    Poses::printCSVRows(filename);
+//    Poses::parseRoboPositions(filename);
 
-    std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
+//    std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
 
-    for (int i = 0; Poses::walkingPoses.size(); i++)
-        (Poses::walkingPoses[i]).printInfo();
+//    for (int i = 0; Poses::walkingPoses.size(); i++)
+//        (Poses::walkingPoses[i]).printInfo();
 
-    //return 0;
+//    return 0;
 
     Core core(argc, argv);
     Walk walk(&core);
@@ -37,8 +37,9 @@ int main(int argc, char **argv)
     ros::Duration(2.0).sleep();
 
     // In Start Position gehen
-    core.setPoseTarget(Poses::pose_default).move();
+//    core.setPoseTarget(Poses::pose_default).move();
 
+    core.setPoseTarget(Poses::pose_default).move();
 
     ros::Duration(2.0).sleep();
 
@@ -46,19 +47,23 @@ int main(int argc, char **argv)
 
     while(true) {
 
-	core.setPoseTarget(Poses::pose_default).move();
-   	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
+
+        core.setPoseTarget(Poses::pose_shift_weight_toright).move();
         core.setPoseTarget(Poses::pose_lift_left_foot).move();
- 	core.setPoseTarget(Poses::pose_left_foot_forward).move();
+        core.setPoseTarget(Poses::pose_left_foot_advance_forward).move();
+        core.setPoseTarget(Poses::pose_left_foot_advanced_down).move();
+        core.setPoseTarget(Poses::pose_left_foot_advanced_shiftweighttoleft).move();
+
         core.setPoseTarget(Poses::pose_shift_weight_toleft).move();
- 	core.setPoseTarget(Poses::pose_lift_right_foot).move();
-	core.setPoseTarget(Poses::pose_right_foot_forward).move();
-	core.setPoseTarget(Poses::pose_shift_weight_toright).move();
-        core.setPoseTarget(Poses::pose_default).move();
+        core.setPoseTarget(Poses::pose_lift_right_foot).move();
+        core.setPoseTarget(Poses::pose_right_foot_advance_forward).move();
+        core.setPoseTarget(Poses::pose_right_foot_advanced_down).move();
+        core.setPoseTarget(Poses::pose_right_foot_advanced_shiftweighttoright).move();
+
 
         ros::spinOnce();
         if(!ros::ok()) break;
-        rate.sleep();
+//        rate.sleep();
 
     }
 

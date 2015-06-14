@@ -15,49 +15,118 @@
  #endif
 
 // R, P, Y, X, Y, Z
+// Feet: Toes up(+) down(-) / ankles left(+) right(-) / twist left right / X / Y / Z
+// Hands: Arms up down / ? / ? / (X) / (Y) / (Z)
+
+// Invert for L/R:
+// Feet:  No / Yes / Yes / Yes / No / No
+// Hands: No / ?   / Yes / Yes / No / No
+
 const RoboPose Poses::pose_default(std::vector<LimbPose> {
-				       //changed to have lower arms
+                       //changed to have lower arms
                                        LimbPose(Core::Limb::LEFT_HAND,  d2r(90-70),  0, d2r(90-1), -0.15, 0, 0.03),
                                        LimbPose(Core::Limb::RIGHT_HAND, d2r(90-70),  0, d2r(-90+1),  0.15, 0, 0.03),
-                                       LimbPose(Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0, -0.2),
-                                       LimbPose(Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0, -0.2)
+                                       LimbPose(Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0.005, -0.2+0.01),
+                                       LimbPose(Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0.005, -0.2+0.01)
                                    } , "pose_default");
 
-const RoboPose Poses::pose_shift_weight_toleft = Poses::pose_default
-        + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(9), d2r(0), 0.06, 0, 0),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(9), d2r(0), 0, 0, 0),
-                    }, "pose_shift_weight_toleft");
+
+
+
+
 
 const RoboPose Poses::pose_shift_weight_toright = Poses::pose_default
         + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-9), d2r(0), 0, 0, 0),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-9), d2r(0), -0.06, 0, 0),
+                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-10), d2r(0), -0.04, 0, 0),
+                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-10), d2r(0), -0.02, 0, 0),
+                    }, "pose_shift_weight_toleft");
+
+const RoboPose Poses::pose_lift_left_foot = Poses::pose_shift_weight_toright
+        + RoboPose( std::vector<LimbPose> {
+                        LimbPose (Core::Limb::RIGHT_HAND, d2r(60), d2r(0), d2r(0), 0, 0, 0),
+                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(-5), d2r(10), d2r(0), 0.02, 0, 0.03),
+                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-5), d2r(0), 0.02, -0.0075, 0),
+                    }, "pose_lift_left_foot");
+
+const RoboPose Poses::pose_left_foot_advance_forward = Poses::pose_lift_left_foot
+        + RoboPose( std::vector<LimbPose> {
+                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0.03, 0),
+                    }, "pose_left_foot_advance_forward");
+
+const RoboPose Poses::pose_left_foot_advanced_down =
+        RoboPose( std::vector<LimbPose> {
+                      Poses::pose_default.getLimb(Core::Limb::LEFT_HAND),
+                      Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND),
+                      Poses::pose_left_foot_advance_forward.getLimb(Core::Limb::RIGHT_FOOT),
+                      Poses::pose_left_foot_advance_forward.getLimb(Core::Limb::LEFT_FOOT)
+                      + LimbPose (Core::Limb::LEFT_FOOT,  d2r(5), d2r(-10), d2r(0), 0, 0, -0.03),
+                    }, "pose_left_foot_advanced_down");
+
+const RoboPose Poses::pose_left_foot_advanced_shiftweighttoleft =
+        RoboPose( std::vector<LimbPose> {
+                      Poses::pose_default.getLimb(Core::Limb::LEFT_HAND),
+                      Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND),
+                      Poses::pose_left_foot_advanced_down.getLimb(Core::Limb::LEFT_FOOT)
+                      + LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(+10), d2r(0), 0.06, -0.015, 0),
+                      Poses::pose_left_foot_advanced_down.getLimb(Core::Limb::RIGHT_FOOT)
+                      + LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(+10+5), d2r(0), 0.04, -0.015, 0),
+                    }, "pose_left_foot_advanced_shiftweighttoleft");
+
+
+
+
+
+
+
+
+const RoboPose Poses::pose_shift_weight_toleft = Poses::pose_default
+        + RoboPose( std::vector<LimbPose> {
+                        LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(14), d2r(0), 0.04, 0, 0),
+                        LimbPose (Core::Limb::LEFT_FOOT, d2r(0), d2r(14), d2r(0), 0.02, 0, 0),
                     }, "pose_shift_weight_toleft");
 
 const RoboPose Poses::pose_lift_right_foot = Poses::pose_shift_weight_toleft
         + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(3), d2r(0), 0, 0, 0.05),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(3), d2r(0), -0.025, -0.008, 0),
+                        LimbPose (Core::Limb::LEFT_HAND, d2r(60), d2r(0), d2r(0), 0, 0, 0),
+                        LimbPose (Core::Limb::RIGHT_FOOT,  d2r(-5), d2r(-14), d2r(0), -0.02, 0, 0.03),
+                        LimbPose (Core::Limb::LEFT_FOOT, d2r(0), d2r(5), d2r(0), -0.02, -0.0075, 0),
                     }, "pose_lift_right_foot");
 
-const RoboPose Poses::pose_lift_left_foot = Poses::pose_shift_weight_toright
+const RoboPose Poses::pose_right_foot_advance_forward = Poses::pose_lift_right_foot
         + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-3), d2r(0), +0.025, -0.008, 0),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-3), d2r(0), 0, 0, 0.05),
-                    }, "pose_lift_left_foot");
+                        LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0.03, 0),
+                    }, "pose_right_foot_advance_forward");
 
-const RoboPose Poses::pose_left_foot_forward = Poses::pose_lift_left_foot
-        + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(+12), d2r(0), 0, +0.008, 0),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(+12), d2r(0), +0.06, 0.05, -0.05),
-                    }, "pose_left_foot_forward");
+const RoboPose Poses::pose_right_foot_advanced_down =
+        RoboPose( std::vector<LimbPose> {
+                      Poses::pose_default.getLimb(Core::Limb::LEFT_HAND),
+                      Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND),
+                      Poses::pose_right_foot_advance_forward.getLimb(Core::Limb::LEFT_FOOT),
+                      Poses::pose_right_foot_advance_forward.getLimb(Core::Limb::RIGHT_FOOT)
+                      + LimbPose (Core::Limb::RIGHT_FOOT,  d2r(5), d2r(+10), d2r(0), 0, 0, -0.03),
+                    }, "pose_right_foot_advanced_down");
 
-const RoboPose Poses::pose_right_foot_forward = Poses::pose_lift_right_foot
-        + RoboPose( std::vector<LimbPose> {
-                        LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-12), d2r(0), -0.06, +0.05, -0.05),
-                        LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-12), d2r(0), 0, +0.008, 0),
-                    }, "pose_right_foot_forward");
+const RoboPose Poses::pose_right_foot_advanced_shiftweighttoright =
+        RoboPose( std::vector<LimbPose> {
+                      Poses::pose_default.getLimb(Core::Limb::LEFT_HAND),
+                      Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND),
+                      Poses::pose_right_foot_advanced_down.getLimb(Core::Limb::RIGHT_FOOT)
+                      + LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(-10), d2r(0), -0.06, -0.015, 0),
+                      Poses::pose_right_foot_advanced_down.getLimb(Core::Limb::LEFT_FOOT)
+                      + LimbPose (Core::Limb::LEFT_FOOT, d2r(0), d2r(-14-5), d2r(0), -0.04, -0.015, 0),
+                    }, "pose_right_foot_advanced_shiftweighttoright");
+
+
+
+
+
+
+
+
+
+
+
+
 
 std::vector<RoboPose> Poses::walkingPoses = std::vector<RoboPose> ();
 

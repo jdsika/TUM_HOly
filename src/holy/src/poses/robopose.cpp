@@ -52,13 +52,25 @@ RoboPose &RoboPose::setLimb(LimbPose limbPose)
     return *this;
 }
 
-LimbPose& RoboPose::getLimb(Core::Limb limb)
+LimbPose &RoboPose::getLimb(Core::Limb limb)
 {
     for (int i=0; i<limbs.size(); ++i)
     {
         if(limbs.at(i).limb == limb)
         {
             return limbs[i];
+        }
+    }
+    throw std::runtime_error("RoboPose \""+objname+"\" does not contain a LimbPose for limb "+Core::getLimbString(limb)+".");
+}
+
+const LimbPose &RoboPose::getLimb(Core::Limb limb) const
+{
+    for (int i=0; i<limbs.size(); ++i)
+    {
+        if(limbs.at(i).limb == limb)
+        {
+            return limbs.at(i);
         }
     }
     throw std::runtime_error("RoboPose \""+objname+"\" does not contain a LimbPose for limb "+Core::getLimbString(limb)+".");

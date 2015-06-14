@@ -28,6 +28,7 @@ public:
 
     // Get a pointer to a specific limb in this RoboPose. May throw a runtime_exception if the limb is not found
     LimbPose & getLimb(Core::Limb limb);
+    const LimbPose & getLimb(Core::Limb limb) const;
 
     // Get all the limbs of this RoboPose
     std::vector<LimbPose>& getLimbs();
@@ -46,11 +47,13 @@ public:
     RoboPose operator- (const RoboPose& rrp) const;
     RoboPose& operator-=(const RoboPose& rrp);
 
+
+    std::string objname;
+
 private:
     // The limb poses that constitute this RoboPose
     std::vector<LimbPose> limbs;
 
-    std::string objname;
 
     void printInfoImpl() const;
 
