@@ -40,8 +40,6 @@ int main(int argc, char **argv)
     core.setPoseTarget(Poses::pose_default).move();
 
 
-    return 0;
-
     ros::Duration(2.0).sleep();
 
     ros::Rate rate(0.25);

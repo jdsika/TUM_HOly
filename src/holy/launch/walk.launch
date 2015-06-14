@@ -1,7 +1,5 @@
 <!-- Walk launchfile -->
 <launch>
- <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find holy_controllers)/urdf/TypeA.urdf.xacro'" />
-<param name="robot_description" command="$(arg urdf_file)" />
  <rosparam>
   planning_plugin: 'ompl_interface/OMPLPlanner' 
  </rosparam>
