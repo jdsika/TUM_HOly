@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     for (int i = 0; Poses::walkingPoses.size(); i++)
         (Poses::walkingPoses[i]).printInfo();
 
-    return 0;
+    //return 0;
 
     Core core(argc, argv);
     Walk walk(&core);

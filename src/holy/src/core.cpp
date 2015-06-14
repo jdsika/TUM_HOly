@@ -70,11 +70,8 @@ Core::Core(int argc, char** argv)
     for(std::string id : IDs)
     {
         double val, init;
-        ros::param::get(id+"_controller/motor/init", init);
-        ros::param::get(id+"_controller/motor/min", val);
-        map_min[id] = (val - init + 512) * 2.0*M_PI / 1024.0 - M_PI;
-        ros::param::get(id+"_controller/motor/max", val);
-        map_max[id] = (val - init + 512) * 2.0*M_PI / 1024.0 - M_PI;
+        ros::param::get("/robot_description_planning/joint_limits/"+id+"/max_position", map_max[id]);
+	ros::param::get("/robot_description_planning/joint_limits/"+id+"/min_position", map_min[id]);
     }
 
 }
@@ -186,12 +183,12 @@ bool groupStateValidityCallback(
         if( val < map_min.at(id) )
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
-            return true;
+            return false;
         }
         if( val > map_max.at(id))
         {
             std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
-            return true;
+            return false;
         }
     }
 

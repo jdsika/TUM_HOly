@@ -15,8 +15,8 @@
  #endif
 
 const RoboPose Poses::pose_default(std::vector<LimbPose> {
-                                       LimbPose(Core::Limb::LEFT_HAND,  d2r(90),  0, d2r( 90), -0.15, 0, 0.03),
-                                       LimbPose(Core::Limb::RIGHT_HAND, d2r(90),  0, d2r(-90),  0.15, 0, 0.03),
+                                       LimbPose(Core::Limb::LEFT_HAND,  d2r(70),  0, d2r( 10), -0.15, 0, 0.03),
+                                       LimbPose(Core::Limb::RIGHT_HAND, d2r(70),  0, d2r(-10),  0.15, 0, 0.03),
                                        LimbPose(Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0, -0.2),
                                        LimbPose(Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0, -0.2)
                                    } , "pose_default");
