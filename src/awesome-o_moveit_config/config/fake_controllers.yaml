@@ -1,0 +1,47 @@
+controller_list:
+  - name: fake_LeftArm_controller
+    joints:
+      - L_SAA
+      - L_SFE
+      - L_EB
+  - name: fake_RightArm_controller
+    joints:
+      - R_SAA
+      - R_SFE
+      - R_EB
+  - name: fake_LeftLeg_controller
+    joints:
+      - L_HAA
+      - L_HR
+      - L_HFE
+      - L_KFE
+      - L_AFE
+      - L_AR
+  - name: fake_RightLeg_controller
+    joints:
+      - R_HAA
+      - R_HR
+      - R_HFE
+      - R_KFE
+      - R_AFE
+      - R_AR
+  - name: fake_All_controller
+    joints:
+      - L_HAA
+      - L_HR
+      - L_HFE
+      - L_KFE
+      - L_AFE
+      - L_AR
+      - L_SAA
+      - L_SFE
+      - L_EB
+      - R_HAA
+      - R_HR
+      - R_HFE
+      - R_KFE
+      - R_AFE
+      - R_AR
+      - R_SAA
+      - R_SFE
+      - R_EB
