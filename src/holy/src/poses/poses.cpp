@@ -42,7 +42,7 @@ const RoboPose Poses::pose_shift_weight_toright = Poses::pose_default
         + RoboPose( std::vector<LimbPose> {
                         LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(-10), d2r(0), -0.04, 0, 0),
                         LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-10), d2r(0), -0.02, 0, 0),
-                    }, "pose_shift_weight_toleft");
+                    }, "pose_shift_weight_toright");
 
 const RoboPose Poses::pose_lift_left_foot = Poses::pose_shift_weight_toright
         + RoboPose( std::vector<LimbPose> {
@@ -74,12 +74,6 @@ const RoboPose Poses::pose_left_foot_advanced_shiftweighttoleft =
                       Poses::pose_left_foot_advanced_down.getLimb(Core::Limb::RIGHT_FOOT)
                       + LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(+10+5), d2r(0), 0.04, -0.015, 0),
                     }, "pose_left_foot_advanced_shiftweighttoleft");
-
-
-
-
-
-
 
 
 const RoboPose Poses::pose_shift_weight_toleft = Poses::pose_default
@@ -189,15 +183,25 @@ bool Poses::parseRoboPositions(std::string filename)
 
         // get position name
         currentPosName = (*loop)[7];
+        if(currentPosName == "")
+            continue;
+        if(currentPosName == "finished")
+            break;
 
         // check if position changed
         if(currentPosName != priorPosName) {
-            numberOfPositions++;
-            priorPosName = currentPosName;
-            if (numberOfPositions == 0)
-                Poses::walkingPoses.push_back(Poses::pose_default);
-            else
-                Poses::walkingPoses.push_back(Poses::walkingPoses.at(numberOfPositions-1));
+            if (currentPosName == "continue") {
+                ++loop;
+                currentPosName = (*loop)[7];
+            }
+            else {
+                numberOfPositions++;
+                priorPosName = currentPosName;
+                if (currentPosName == "pose_default")
+                    Poses::walkingPoses.push_back(Poses::pose_default);
+                else
+                    Poses::walkingPoses.push_back(Poses::walkingPoses.at(numberOfPositions-1));
+            }
         }
         // get LimbString
         Core::Limb limb = Core::getLimbEnum((*loop)[0]);

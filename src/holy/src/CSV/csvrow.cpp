@@ -14,7 +14,7 @@ std::size_t Row::size() const
 
 void Row::readNextRow(std::istream &str)
 {
-    std::string         line;
+    std::string line;
     std::getline(str,line);
 
     std::stringstream   lineStream(line);
