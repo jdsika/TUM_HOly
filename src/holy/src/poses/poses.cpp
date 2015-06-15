@@ -175,16 +175,19 @@ bool Poses::parseRoboPositions(std::string filename)
     for(loop; loop != CSV::Iterator(); ++loop)
     {
         // correct table needs 8 values
-        if ((*loop).size() != 8) {
+        if ((*loop).size() == 7) {
+            continue;
+        }
+        else if ((*loop).size() != 8) {
             Poses::walkingPoses.resize(0);
-            std::cout << "PARSE FAILED" << std::endl;
+            std::cout << "PARSE FAILED -> wrong size: " << (*loop).size() << std::endl;
             return false;
         }
 
         // get position name
         currentPosName = (*loop)[7];
-        if(currentPosName == "")
-            continue;
+//        if(currentPosName == "")
+//            continue;
         if(currentPosName == "finished")
             break;
 
@@ -197,10 +200,13 @@ bool Poses::parseRoboPositions(std::string filename)
             else {
                 numberOfPositions++;
                 priorPosName = currentPosName;
-                if (currentPosName == "pose_default")
+                if (currentPosName == "pose_default") {
                     Poses::walkingPoses.push_back(Poses::pose_default);
-                else
+                    continue;
+                }
+                else {
                     Poses::walkingPoses.push_back(Poses::walkingPoses.at(numberOfPositions-1));
+                }
             }
         }
         // get LimbString
@@ -208,7 +214,7 @@ bool Poses::parseRoboPositions(std::string filename)
 
         if(limb == Core::Limb::ERROR) {
             Poses::walkingPoses.resize(0);
-            std::cout << "PARSE FAILED" << std::endl;
+            std::cout << "PARSE FAILED -> wrong limb name" << std::endl;
             return false;
         }
 
@@ -225,6 +231,8 @@ bool Poses::parseRoboPositions(std::string filename)
 
         Poses::walkingPoses[numberOfPositions] += RoboPose(limbPosVector,
                                                     currentPosName);
+
+        Poses::walkingPoses[numberOfPositions].objname = currentPosName;
     }
 
     return true;
@@ -242,4 +250,10 @@ bool Poses::getWorkingDirectory()
     cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
 
     std::cout << "The current working directory is: " << cCurrentPath << std::endl;
+
+    std::string path = std::string(cCurrentPath);
+
+    path = path.substr(0, path.size()-4);
+
+    chdir(path.c_str());
 }

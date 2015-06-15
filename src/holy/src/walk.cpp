@@ -27,9 +27,11 @@ void Walk::executeStateMachine()
         core->setPoseTarget(Poses::walkingPoses.at(i)).move();
 
         if(!ros::ok()) break;
-        ros::spinOnce();
-        rate.sleep();
-    }  
+    }
+
+    if(!ros::ok()) return;
+    ros::spinOnce();
+    rate.sleep();
 }
 
 
