@@ -45,7 +45,7 @@ public:
     static const std::string getLimbGroup (const Core::Limb limb);
     static const Core::Limb getLimbEnum(const std::string limbString);
 
-    Core& move();
+    Core& move(const double speed_scale = 1.0);
 
     Core& moveto_default_state();
 

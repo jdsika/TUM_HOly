@@ -15,6 +15,7 @@
 #include <moveit/robot_model_loader/robot_model_loader.h>
 #include <moveit/robot_state/robot_state.h>
 #include <moveit/robot_model/robot_model.h>
+#include <moveit/planning_interface/planning_interface.h>
 
 
 #include "poses/limbpose.h"
@@ -160,10 +161,26 @@ const Core::Limb Core::getLimbEnum(const std::string limbString)
 
 }
 
-Core &Core::move()
+Core &Core::move(const double speed_scale)
 {
+    moveit::planning_interface::MoveGroup::Plan plan;
+    group->plan(plan);
 
-    group->move();
+    const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
+    for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
+    {
+        p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
+        for(double &v : p.velocities)
+        {
+            v *= speed_scale;
+        }
+        for(double &a : p.accelerations)
+        {
+            a *= speed_scale*speed_scale;
+        }
+    }
+
+    group->execute(plan);
 
     return *this;
 }

@@ -186,8 +186,7 @@ bool Poses::parseRoboPositions(std::string filename)
 
         // get position name
         currentPosName = (*loop)[7];
-//        if(currentPosName == "")
-//            continue;
+
         if(currentPosName == "finished")
             break;
 
@@ -196,6 +195,7 @@ bool Poses::parseRoboPositions(std::string filename)
             if (currentPosName == "continue") {
                 ++loop;
                 currentPosName = (*loop)[7];
+                priorPosName = currentPosName;
             }
             else {
                 numberOfPositions++;

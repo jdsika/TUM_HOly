@@ -6,125 +6,125 @@ joint_limits:
     max_position: 0.5215534679
     min_position: -2.0862138715
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_AR:
     max_position: 1.1228739367
     min_position: -1.1167380136
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_EB:
     max_position: 2.0739420252
     min_position: -2.0984857178
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_HAA:
     max_position: 2.1905245651
     min_position: -1.2640001692
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_HFE:
     max_position: 2.6875343404
     min_position: -0.5645049299
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_HR:
     max_position: 1.4603497101
     min_position: -0.9940195505
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_KFE:
     max_position: 2.0739420252
     min_position: -0.0736310778
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_SAA:
     max_position: 3.1354567304
     min_position: -3.1415926536
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   L_SFE:
     max_position: 1.9512235622
     min_position: -1.9144080233
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_AFE:
     max_position: 2.0739420252
     min_position: -0.5031456984
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_AR:
     max_position: 1.3989904786
     min_position: -1.0246991663
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_EB:
     max_position: 2.1353012567
     min_position: -2.1291653336
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_HAA:
     max_position: 0.5645049299
     min_position: -2.1966604883
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_HFE:
     max_position: 0.7240389319
     min_position: -2.712078033
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_HR:
     max_position: 0.9694758579
     min_position: -1.4848934027
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_KFE:
     max_position: 0.0490873852
     min_position: -2.5280003384
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_SAA:
     min_position: -3.1415926536
     max_position: 3.1354567304
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0
   R_SFE:
     max_position: 1.8898643307
     min_position: -2.0371264863
     has_velocity_limits: true
-    max_velocity: 1.0
+    max_velocity: 4
     has_acceleration_limits: false
     max_acceleration: 0

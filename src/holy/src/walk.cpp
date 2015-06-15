@@ -19,19 +19,16 @@ void Walk::executeStateMachine()
     // parse files before each walking attempt
     if(!Poses::parseRoboPositions(Poses::filename)) return;
 
-    ros::Rate rate(0.25);
-
     // all loaded walking poses will be executed
+    // do not start wih position_default
     for(int i = 0; i < Poses::walkingPoses.size();++i)
     {
+        if(!ros::ok()) return;
         core->setPoseTarget(Poses::walkingPoses.at(i)).move();
-
-        if(!ros::ok()) break;
     }
 
     if(!ros::ok()) return;
     ros::spinOnce();
-    rate.sleep();
 }
 
 
