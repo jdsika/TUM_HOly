@@ -57,25 +57,27 @@
     <virtual_joint name="Baselink" type="fixed" parent_frame="ParentFrame" child_link="base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="L_calf" link2="L_foot" reason="Adjacent" />
+    <disable_collisions link1="L_calf" link2="L_foot_pad" reason="Never" />
     <disable_collisions link1="L_calf" link2="L_hip_split" reason="User" />
     <disable_collisions link1="L_calf" link2="L_upper_leg" reason="Adjacent" />
     <disable_collisions link1="L_foot" link2="L_foot_pad" reason="Adjacent" />
-    <disable_collisions link1="L_foot_pad" link2="R_foot_pad" reason="Default" />
+    <disable_collisions link1="L_foot_pad" link2="L_upper_leg" reason="Never" />
+    <disable_collisions link1="L_forearm" link2="L_shoulder" reason="Never" />
     <disable_collisions link1="L_forearm" link2="L_upper_arm" reason="Adjacent" />
+    <disable_collisions link1="L_forearm" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="L_hip" link2="L_hip_split" reason="Adjacent" />
     <disable_collisions link1="L_hip" link2="L_shoulder" reason="Never" />
     <disable_collisions link1="L_hip" link2="L_upper_leg" reason="Default" />
-    <disable_collisions link1="L_hip" link2="R_hip" reason="Never" />
+    <disable_collisions link1="L_hip" link2="R_hip" reason="User" />
     <disable_collisions link1="L_hip" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="L_hip" link2="R_upper_arm" reason="Never" />
     <disable_collisions link1="L_hip" link2="base_link" reason="Adjacent" />
     <disable_collisions link1="L_hip_split" link2="L_shoulder" reason="Never" />
-    <disable_collisions link1="L_hip_split" link2="L_upper_arm" reason="Never" />
     <disable_collisions link1="L_hip_split" link2="L_upper_leg" reason="Adjacent" />
     <disable_collisions link1="L_hip_split" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="L_hip_split" link2="R_upper_arm" reason="Never" />
-    <disable_collisions link1="L_hip_split" link2="base_link" reason="Never" />
     <disable_collisions link1="L_shoulder" link2="L_upper_arm" reason="Adjacent" />
+    <disable_collisions link1="L_shoulder" link2="R_forearm" reason="Never" />
     <disable_collisions link1="L_shoulder" link2="R_hip" reason="Never" />
     <disable_collisions link1="L_shoulder" link2="R_hip_split" reason="Never" />
     <disable_collisions link1="L_shoulder" link2="R_shoulder" reason="Never" />
@@ -85,21 +87,23 @@
     <disable_collisions link1="L_upper_arm" link2="R_hip" reason="Never" />
     <disable_collisions link1="L_upper_arm" link2="R_hip_split" reason="Never" />
     <disable_collisions link1="L_upper_arm" link2="R_shoulder" reason="Never" />
+    <disable_collisions link1="L_upper_arm" link2="R_upper_arm" reason="Never" />
     <disable_collisions link1="L_upper_leg" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="L_upper_leg" link2="base_link" reason="Default" />
     <disable_collisions link1="R_calf" link2="R_foot" reason="Adjacent" />
+    <disable_collisions link1="R_calf" link2="R_foot_pad" reason="Never" />
     <disable_collisions link1="R_calf" link2="R_hip_split" reason="User" />
     <disable_collisions link1="R_calf" link2="R_upper_leg" reason="Adjacent" />
     <disable_collisions link1="R_foot" link2="R_foot_pad" reason="Adjacent" />
+    <disable_collisions link1="R_foot_pad" link2="R_upper_leg" reason="Never" />
+    <disable_collisions link1="R_forearm" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="R_forearm" link2="R_upper_arm" reason="Adjacent" />
     <disable_collisions link1="R_hip" link2="R_hip_split" reason="Adjacent" />
     <disable_collisions link1="R_hip" link2="R_shoulder" reason="Never" />
     <disable_collisions link1="R_hip" link2="R_upper_leg" reason="Default" />
     <disable_collisions link1="R_hip" link2="base_link" reason="Adjacent" />
     <disable_collisions link1="R_hip_split" link2="R_shoulder" reason="Never" />
-    <disable_collisions link1="R_hip_split" link2="R_upper_arm" reason="Never" />
     <disable_collisions link1="R_hip_split" link2="R_upper_leg" reason="Adjacent" />
-    <disable_collisions link1="R_hip_split" link2="base_link" reason="Never" />
     <disable_collisions link1="R_shoulder" link2="R_upper_arm" reason="Adjacent" />
     <disable_collisions link1="R_shoulder" link2="base_link" reason="Adjacent" />
     <disable_collisions link1="R_upper_leg" link2="base_link" reason="Default" />

@@ -20,8 +20,8 @@
   <run_depend>joint_state_publisher</run_depend>
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>xacro</run_depend>
-  <build_depend>bioloid_interface</build_depend>
-  <run_depend>bioloid_interface</run_depend>
+  <build_depend>holy_controllers</build_depend>
+  <run_depend>holy_controllers</run_depend>
 
 
   <buildtool_depend>catkin</buildtool_depend>
