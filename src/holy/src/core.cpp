@@ -161,26 +161,41 @@ const Core::Limb Core::getLimbEnum(const std::string limbString)
 
 }
 
+static std::vector<double> last_positions(18);
+
 Core &Core::move(const double speed_scale)
 {
-    moveit::planning_interface::MoveGroup::Plan plan;
-    group->plan(plan);
 
-    const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
-    for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
+    std::vector<double> positions(18);
+    group->getJointValueTarget().copyJointGroupPositions("All", positions);
+    if( last_positions != positions)
     {
-        p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
-        for(double &v : p.velocities)
-        {
-            v *= speed_scale;
-        }
-        for(double &a : p.accelerations)
-        {
-            a *= speed_scale*speed_scale;
-        }
+        last_positions = positions;
+        group->move();
     }
 
-    group->execute(plan);
+//    moveit::planning_interface::MoveGroup::Plan plan;
+//    bool success = group->plan(plan);
+
+
+//    if(success)
+//    {
+//        const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
+//        for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
+//        {
+//            p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
+//            for(double &v : p.velocities)
+//            {
+//                v *= speed_scale;
+//            }
+//            for(double &a : p.accelerations)
+//            {
+//                a *= speed_scale*speed_scale;
+//            }
+//        }
+
+//        group->execute(plan);
+//    }
 
     return *this;
 }
@@ -212,7 +227,7 @@ bool groupStateValidityCallback(
 
 Core &Core::setPoseTarget(const RoboPose &rp)
 {
-    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
+//    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
 
     for(const LimbPose lp : rp.getLimbs())
     {

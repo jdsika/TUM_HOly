@@ -15,7 +15,8 @@
  #endif
 
 //
-const std::string Poses::filename = "positions.csv";
+//const std::string Poses::filename = "positions.csv";
+const std::string Poses::filename = "position_test.csv";
 
 // R, P, Y, X, Y, Z
 // Feet: Toes up(+) down(-) / ankles left(+) right(-) / twist left right / X / Y / Z
@@ -29,8 +30,8 @@ const RoboPose Poses::pose_default(std::vector<LimbPose> {
                        //changed to have lower arms
                                        LimbPose(Core::Limb::LEFT_HAND,  d2r(90-70),  0, d2r(90-1), -0.15, 0, 0.03),
                                        LimbPose(Core::Limb::RIGHT_HAND, d2r(90-70),  0, d2r(-90+1),  0.15, 0, 0.03),
-                                       LimbPose(Core::Limb::LEFT_FOOT,  0,  0,  0, -0.03, 0.005, -0.2+0.01),
-                                       LimbPose(Core::Limb::RIGHT_FOOT, 0,  0,  0,  0.03, 0.005, -0.2+0.01)
+                                       LimbPose(Core::Limb::LEFT_FOOT,  d2r(2),  0,  0, -0.03, 0.005, -0.2+0.01),
+                                       LimbPose(Core::Limb::RIGHT_FOOT, d2r(2),  0,  0,  0.03, 0.005, -0.2+0.01)
                                    } , "pose_default");
 
 

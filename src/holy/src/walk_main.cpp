@@ -19,16 +19,6 @@
 int main(int argc, char **argv)
 {
     Poses::getWorkingDirectory();
-    //Poses::printCSVRows(Poses::filename);
-    Poses::parseRoboPositions(Poses::filename);
-
-//    std::cout << "Size walkingPoses: " << Poses::walkingPoses.size() << std::endl;
-
-//    for (int i = 0; i < Poses::walkingPoses.size(); i++)
-//        (Poses::walkingPoses[i]).printInfo();
-
- //   return 0;
-
     Core core(argc, argv);
     Walk walk(&core);
 

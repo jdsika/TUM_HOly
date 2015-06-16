@@ -85,9 +85,9 @@ R_HAA_controller:
     joint_speed: 511
     motor:
         id: 7
-        init: 358
-        min: 0
-        max: 450
+        init: 512
+        min: 300
+        max: 800
 
 L_HAA_controller:
     controller:
@@ -98,9 +98,9 @@ L_HAA_controller:
     joint_speed: 511
     motor:
         id: 8
-        init: 666
-        min: 460
-        max: 1023
+        init: 512
+        min: 220
+        max: 720
 
 R_HR_controller:
     controller:
