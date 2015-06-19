@@ -116,35 +116,6 @@ int main(int argc, char **argv)
 
     //walk.executeStateMachine();*/
 
-    while(ros::ok())
-    {
-        // Init
-        core.setPoseTarget(Poses::init_shift_toleft).move();
-        core.setPoseTarget(Poses::init_lift_right).move();
-        core.setPoseTarget(Poses::init_fwd_right).move();
-        core.setPoseTarget(Poses::init_dual_right).move();
-        core.setPoseTarget(Poses::init_shift_frontright).move();
-        // Loop
-        core.setPoseTarget(Poses::loop_lift_left).move();
-        core.setPoseTarget(Poses::loop_fwd_left).move();
-        core.setPoseTarget(Poses::loop_dual_left).move();
-        core.setPoseTarget(Poses::loop_shift_frontleft).move();
-        core.setPoseTarget(Poses::loop_lift_right).move();
-        core.setPoseTarget(Poses::loop_fwd_right).move();
-        core.setPoseTarget(Poses::loop_dual_right).move();
-        core.setPoseTarget(Poses::loop_shift_frontright).move();
-        // Stop
-        core.setPoseTarget(Poses::stop_lift_left).move();
-        core.setPoseTarget(Poses::stop_fwd_left).move();
-        core.setPoseTarget(Poses::pose_default).move();
-
-
-        //walk.executeStateMachine();
-
-        ros::spinOnce();
->>>>>>> c3918450851da6f9c667406da8c48f0b366edd7f
-    }
-
     return 0;
 
 }
