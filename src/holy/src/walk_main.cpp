@@ -13,12 +13,13 @@
 #include "core.h"
 #include "walk.h"
 #include "poses/poses.h"
+#include "poses/parser.h"
 #include "poses/robopose.h"
 
 
 int main(int argc, char **argv)
 {
-    Poses::getWorkingDirectory();
+    Parser::getWorkingDirectory();
     Core core(argc, argv);
     Walk walk(&core);
 

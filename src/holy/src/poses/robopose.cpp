@@ -110,7 +110,7 @@ void RoboPose::printInfoImpl() const
     for(const LimbPose & lp : limbs)
     {
         std::cout << " - " << Core::getLimbString(lp.limb) << ": \n"
-                  << "   " << r2d(lp.default_roll) << "° / " << r2d(lp.default_pitch) << "° / " << r2d(lp.default_yaw) << "°\n"
+                  << "   " << Poses::r2d(lp.default_roll) << "° / " << Poses::r2d(lp.default_pitch) << "° / " << Poses::r2d(lp.default_yaw) << "°\n"
                   << "   " << lp.default_x << "m / " << lp.default_y << "m / " << lp.default_z << "m\n";
     }
     std::flush(std::cout);
