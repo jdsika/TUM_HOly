@@ -22,12 +22,12 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-    ros::Duration(2.0).sleep();
+    //ros::Duration(2.0).sleep();
 
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
 
-    ros::Duration(2.0).sleep();
+    ros::Duration(0.5).sleep();
 
     ros::Rate rate(0.25);
 
@@ -36,12 +36,20 @@ int main(int argc, char **argv)
     //std::cout << "Walk (w) or Stairs (s) ?" << std::endl;
     //std::coud << "Your choice: ";
     //std::cin >> input;
-
-    while(true) {
-
-        walk.executeStateMachine();
-
-        if(!ros::ok()) break;
+    while(ros::ok()) {
+        // Init
+        core.setPoseTarget(Poses::init_shift_toleft).move();
+        core.setPoseTarget(Poses::init_lift_right).move();
+        core.setPoseTarget(Poses::init_fwd_right).move();
+        core.setPoseTarget(Poses::init_dual_right).move();
+        core.setPoseTarget(Poses::init_shift_frontright).move();
+        // Loop
+        core.setPoseTarget(Poses::loop_lift_left).move();
+        core.setPoseTarget(Poses::loop_fwd_left).move();
+        core.setPoseTarget(Poses::loop_dual_left).move();
+        core.setPoseTarget(Poses::loop_shift_frontleft).move();
+        core.setPoseTarget(Poses::pose_default).move();
+        //walk.executeStateMachine();
 
     }
 

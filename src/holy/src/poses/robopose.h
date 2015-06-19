@@ -46,14 +46,16 @@ public:
     RoboPose& operator+=(const RoboPose& rrp);
     RoboPose operator- (const RoboPose& rrp) const;
     RoboPose& operator-=(const RoboPose& rrp);
-
+    // Compute Z offset because of weight shifting
+    double compute_Z_off(double angle);
 
     std::string objname;
+
+    //RoboPose& set_step_height(Core::Limb limb,double height);
 
 private:
     // The limb poses that constitute this RoboPose
     std::vector<LimbPose> limbs;
-
 
     void printInfoImpl() const;
 

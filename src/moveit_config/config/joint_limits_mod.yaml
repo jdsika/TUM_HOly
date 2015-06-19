@@ -24,8 +24,8 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   L_HAA:
-    max_position: 2.1905245651
-    min_position: -1.2640001692
+    max_position: 1.2762720155
+    min_position: -1.7916895603
     has_velocity_limits: true
     max_velocity: 1.0
     has_acceleration_limits: false
@@ -87,8 +87,8 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   R_HAA:
-    max_position: 0.5645049299
-    min_position: -2.1966604883
+    max_position: 1.7671458676
+    min_position: -1.3008157081
     has_velocity_limits: true
     max_velocity: 1.0
     has_acceleration_limits: false
@@ -128,4 +128,3 @@ joint_limits:
     max_velocity: 1.0
     has_acceleration_limits: false
     max_acceleration: 0
-
