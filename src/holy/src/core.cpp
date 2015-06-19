@@ -55,7 +55,7 @@ Core::Core(int argc, char** argv)
     updateTF();
 
     // Bring limbs to zero position
-    moveto_default_state();
+    //moveto_default_state();
 
     // Jetzt Robot State abspeichern, damit Start State von späteren Planungen nicht der Power-on State ist
     //robot_state = group->getCurrentState();
@@ -71,6 +71,12 @@ Core::Core(int argc, char** argv)
         ros::param::get("/robot_description_planning/joint_limits/"+id+"/max_position", map_max[id]);
         ros::param::get("/robot_description_planning/joint_limits/"+id+"/min_position", map_min[id]);
     }
+
+    // limits arms so we dont point weirdly
+    map_max["L_EB"] =  0.1;
+    map_min["L_EB"] = -0.1;
+    map_max["R_EB"] =  0.1;
+    map_min["R_EB"] = -0.1;
 
 }
 
@@ -212,12 +218,12 @@ bool groupStateValidityCallback(
         const double val = joint_group_variable_values[i];
         if( val < map_min.at(id) )
         {
-            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
+//            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because < " << map_min.at(id)<<std::endl;
             return false;
         }
         if( val > map_max.at(id))
         {
-            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
+//            std::cout << "rejecting "<<joint_group->getJointModelNames().at(i)<<": " << joint_group_variable_values[i]<<", because > " << map_max.at(id)<<std::endl;
             return false;
         }
     }
@@ -227,7 +233,7 @@ bool groupStateValidityCallback(
 
 Core &Core::setPoseTarget(const RoboPose &rp)
 {
-//    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
+    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
 
     for(const LimbPose lp : rp.getLimbs())
     {
@@ -244,13 +250,13 @@ Core &Core::setPoseTarget(const LimbPose &lp)
 
     bool success=robot_state->setFromIK(robot_state->getJointModelGroup(Core::getLimbGroup(lp.limb)), // Group
                                         lp, // pose
-                                        30, // Attempts
+                                        1, // Attempts
                                         2.0, // timeout
                                         groupStateValidityCallback, // Constraint
                                         kQO); // enable Approx IK
     if(!success)
     {
-        std::cout<< "setFromIK Failed" << std::endl;
+        std::cout<< "setFromIK for " << getLimbString(lp.limb) << " failed" << std::endl;
     } else {
         std::vector<double> positions;
         robot_state->copyJointGroupPositions("All",positions);

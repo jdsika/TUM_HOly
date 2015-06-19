@@ -200,3 +200,9 @@ RoboPose& RoboPose::operator-=(const RoboPose &rrp)
     *this = *this - rrp;
     return *this;
 }
+
+/*RoboPose &RoboPose::set_step_height(Core::Limb limb,double height) {
+    getLimb(limb).z+=height;
+    return *this;
+}*/
+
