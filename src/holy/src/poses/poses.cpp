@@ -89,29 +89,27 @@ RoboPose Poses::dual_left =
 // Absolute poses:
 // Init
 RoboPose Poses::init_shift_toleft = Poses::pose_default+Poses::shift_toleft;
-
 RoboPose Poses::init_shift_toright = Poses::pose_default+Poses::shift_toright;
-
 RoboPose Poses::init_lift_left = Poses::init_shift_toright+Poses::lift_left;
-
 RoboPose Poses::init_lift_right = Poses::init_shift_toleft+Poses::lift_right;
-
 RoboPose Poses::init_fwd_left = Poses::init_lift_left+Poses::fwd_left;
-
 RoboPose Poses::init_fwd_right = Poses::init_lift_right+Poses::fwd_right;
-
 RoboPose Poses::init_dual_right = Poses::init_fwd_right+ Poses::dual_right- Poses::shift_toleft - Poses::lift_right;
-
 RoboPose Poses::init_shift_frontright = Poses::init_dual_right+ Poses::shift_toright + Poses::dual_right ;
 
 // Loop
 RoboPose Poses::loop_lift_left = Poses::init_shift_frontright+Poses::lift_left;
 RoboPose Poses::loop_fwd_left = Poses::loop_lift_left+Poses::fwd_left+Poses::fwd_left;
-RoboPose Poses::loop_dual_left = Poses::loop_fwd_left+ Poses::dual_right- Poses::shift_toright - Poses::lift_left;
-RoboPose Poses::loop_shift_frontleft = Poses::loop_dual_left+ Poses::shift_toleft + Poses::dual_right ;
-
+RoboPose Poses::loop_dual_left = Poses::loop_fwd_left+ Poses::dual_left- Poses::shift_toright - Poses::lift_left;
+RoboPose Poses::loop_shift_frontleft = Poses::loop_dual_left+ Poses::shift_toleft + Poses::dual_left ;
+RoboPose Poses::loop_lift_right = Poses::loop_shift_frontleft+Poses::lift_right;
+RoboPose Poses::loop_fwd_right = Poses::loop_lift_right+Poses::fwd_right+Poses::fwd_right;
+RoboPose Poses::loop_dual_right = Poses::loop_fwd_right+ Poses::dual_right- Poses::shift_toleft - Poses::lift_right;
+RoboPose Poses::loop_shift_frontright = Poses::loop_dual_right + Poses::shift_toright + Poses::dual_right;
 
 // Stop
+RoboPose Poses::stop_lift_left = Poses::init_shift_frontright+Poses::lift_left;
+RoboPose Poses::stop_fwd_left = Poses::stop_lift_left+Poses::fwd_left;
 
 /* Old poses
 const RoboPose Poses::pose_shift_weight_toright = Poses::pose_default

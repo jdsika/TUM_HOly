@@ -48,6 +48,13 @@ int main(int argc, char **argv)
         core.setPoseTarget(Poses::loop_fwd_left).move();
         core.setPoseTarget(Poses::loop_dual_left).move();
         core.setPoseTarget(Poses::loop_shift_frontleft).move();
+        core.setPoseTarget(Poses::loop_lift_right).move();
+        core.setPoseTarget(Poses::loop_fwd_right).move();
+        core.setPoseTarget(Poses::loop_dual_right).move();
+        core.setPoseTarget(Poses::loop_shift_frontright).move();
+        // Stop
+        core.setPoseTarget(Poses::stop_lift_left).move();
+        core.setPoseTarget(Poses::stop_fwd_left).move();
         core.setPoseTarget(Poses::pose_default).move();
         //walk.executeStateMachine();
 

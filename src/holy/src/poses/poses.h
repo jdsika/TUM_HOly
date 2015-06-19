@@ -64,10 +64,18 @@ public:
     static RoboPose init_fwd_right;
     static RoboPose init_dual_right;
     static RoboPose init_shift_frontright;
+
     static RoboPose loop_lift_left;
     static RoboPose loop_fwd_left;
     static RoboPose loop_dual_left;
     static RoboPose loop_shift_frontleft;
+    static RoboPose loop_lift_right;
+    static RoboPose loop_fwd_right;
+    static RoboPose loop_dual_right;
+    static RoboPose loop_shift_frontright;
+
+    static RoboPose stop_lift_left;
+    static RoboPose stop_fwd_left;
     /*// Linken Fuss nach aussen ziehen, Insgesamt nach rechts lehnen durch pitch auf beiden fuessen
     static const RoboPose pose_shift_weight_toright;
     // Linken Fuss anheben und beide fuesse noch weiter pitchen um servo-verbiegung zu kompensieren
