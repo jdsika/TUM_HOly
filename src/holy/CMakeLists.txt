@@ -30,6 +30,7 @@ add_executable(walk
     src/poses/poses.cpp
     src/poses/limbpose.cpp
     src/poses/robopose.cpp
+    src/poses/parser.cpp
     src/CSV/csvrow.cpp
     src/CSV/csviterator.cpp
 )

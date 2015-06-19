@@ -3,9 +3,7 @@
 #include "limbpose.h"
 #include "poses.h"
 
-
-//#include <exception> // runtime_exception
-//#include <utility> // swap
+#include <exception> // runtime_exception
 
 RoboPose::RoboPose()
 {
@@ -110,8 +108,8 @@ void RoboPose::printInfoImpl() const
     for(const LimbPose & lp : limbs)
     {
         std::cout << " - " << Core::getLimbString(lp.limb) << ": \n"
-                  << "   " << r2d(lp.roll) << "° / " << r2d(lp.pitch) << "° / " << r2d(lp.yaw) << "°\n"
-                  << "   " << lp.x << "m / " << lp.y << "m / " << lp.z << "m\n";
+                  << "   " << Poses::r2d(lp.default_roll) << "° / " << Poses::r2d(lp.default_pitch) << "° / " << Poses::r2d(lp.default_yaw) << "°\n"
+                  << "   " << lp.default_x << "m / " << lp.default_y << "m / " << lp.default_z << "m\n";
     }
     std::flush(std::cout);
 }

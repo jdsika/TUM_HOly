@@ -26,7 +26,7 @@ public:
     // Set a Limb of this RoboPose. Returns a reference to itself for convenient method chaining.
     RoboPose& setLimb(LimbPose limbPose);
 
-    // Get a pointer to a specific limb in this RoboPose. May throw a runtime_exception if the limb is not found
+    // Get a reference of a specific limb in this RoboPose. May throw a runtime_exception if the limb is not found
     LimbPose & getLimb(Core::Limb limb);
     const LimbPose & getLimb(Core::Limb limb) const;
 
