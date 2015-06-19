@@ -3,15 +3,15 @@
 LimbPose::operator geometry_msgs::Pose() const
 {
     tf::Quaternion q;
-    q.setRPY(default_roll, default_pitch, default_yaw);
+    q.setRPY(calcRoll(), calcPitch(), calcYaw());
     geometry_msgs::Pose gpose;
     gpose.orientation.x = q.getX();
     gpose.orientation.y = q.getY();
     gpose.orientation.z = q.getZ();
     gpose.orientation.w = q.getW();
-    gpose.position.x = default_x;
-    gpose.position.y = default_y;
-    gpose.position.z = default_z;
+    gpose.position.x = calcX();
+    gpose.position.y = calcY();
+    gpose.position.z = calcZ();
     return gpose;
 }
 
@@ -181,6 +181,35 @@ double LimbPose::calcY(const std::map<std::string, double> new_inputs)
 double LimbPose::calcZ(const std::map<std::string, double> new_inputs)
 {
     setParameterInputs(new_inputs);
+    return calcValue(5);
+}
+
+double LimbPose::calcRoll() const
+{
+    return calcValue(0);
+}
+
+double LimbPose::calcPitch() const
+{
+    return calcValue(1);
+}
+
+double LimbPose::calcYaw() const
+{
+    return calcValue(2);
+}
+
+double LimbPose::calcX() const
+{
+    return calcValue(3);
+}
+
+double LimbPose::calcY() const
+{
+    return calcValue(4);
+}
+double LimbPose::calcZ() const
+{
     return calcValue(5);
 }
 

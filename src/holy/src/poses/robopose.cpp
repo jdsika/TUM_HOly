@@ -3,9 +3,7 @@
 #include "limbpose.h"
 #include "poses.h"
 
-
-//#include <exception> // runtime_exception
-//#include <utility> // swap
+#include <exception> // runtime_exception
 
 RoboPose::RoboPose()
 {

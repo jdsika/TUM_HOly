@@ -53,6 +53,12 @@ public:
     double calcX(const std::map<std::string, double> new_inputs = {});
     double calcY(const std::map<std::string, double> new_inputs = {});
     double calcZ(const std::map<std::string, double> new_inputs = {});
+    double calcRoll() const;
+    double calcPitch() const;
+    double calcYaw() const;
+    double calcX() const;
+    double calcY() const;
+    double calcZ() const;
 
     // The unparameterized / default pose of the limb
     double default_roll, default_pitch, default_yaw, default_x, default_y, default_z;
