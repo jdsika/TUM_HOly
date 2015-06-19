@@ -12,6 +12,8 @@
 #include <moveit/planning_scene/planning_scene.h>
 #include <moveit/move_group_interface/move_group.h>
 #include <moveit/planning_interface/planning_interface.h>
+#include <sensor_msgs/Joy.h>
+#include "actionlib_msgs/GoalStatusArray.h"
 
 // Forward declarations
 namespace ros{
@@ -49,7 +51,23 @@ public:
 
     Core& moveto_default_state();
 
+    // Control inputs getter/setter
+    bool get_stop();
+
+    double get_vel();
+
+    double get_turning_angle();
+
+    bool set_stop(bool yes_no);
+
+    bool set_vel(double vel);
+
+    double set_turning_angle(double angle);
+
 private:
+    // Control inputs
+    bool stop;
+    double velocity,turning_angle;
 
     ros::NodeHandle *node_handle;
 
@@ -62,6 +80,15 @@ private:
 
     moveit::core::RobotStatePtr robot_state;
 
+    void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
+
+    void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
+
+    bool goal_success;
+
+    ros::Subscriber goal_sub;
+
+    ros::Subscriber joy_sub;
 
     void updateTF();
 };

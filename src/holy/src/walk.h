@@ -15,6 +15,10 @@ public:
 
     void executeStateMachine();
 
+    // FSMs
+    typedef enum {STAND,INIT,LOOP,STOP} Walk_FSM;
+    Walk_FSM walk_fsm;
+
 private:
     Core* core;
 

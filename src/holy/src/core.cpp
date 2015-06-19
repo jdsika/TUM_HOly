@@ -16,10 +16,11 @@
 #include <moveit/robot_state/robot_state.h>
 #include <moveit/robot_model/robot_model.h>
 #include <moveit/planning_interface/planning_interface.h>
-
-
+#include <sensor_msgs/Joy.h>
+#include <sensor_msgs/Joy.h>
 #include "poses/limbpose.h"
 #include "poses/robopose.h"
+#include "actionlib_msgs/GoalStatusArray.h"
 
 std::map<std::string, double> map_min, map_max;
 
@@ -78,6 +79,17 @@ Core::Core(int argc, char** argv)
     map_max["R_EB"] =  0.1;
     map_min["R_EB"] = -0.1;
 
+    // Subscribe to Joystick messages
+    joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
+
+    stop=false; // Change to 1 for default
+    velocity=1.0;
+    turning_angle=0;
+
+    // Subscribe to goal status
+    goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("move_group/status", 10, &Core::goalCallback, this);
+
+    bool goal_success = false;
 }
 
 Core::~Core()
@@ -92,6 +104,54 @@ Core::~Core()
     delete node_handle;
     delete aSpin;
 }
+void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal) {
+    bool success=true;
+    if (!goal->status_list.empty()) {
+        for (int i=0; i<4; i++) {
+            if (goal->status_list[i].status!=3) {
+                success=false;
+            }
+        }
+    }
+    goal_success=success;
+}
+
+void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
+    if (joy->axes[0]<0.1){
+        stop=true;
+    }
+    else {
+        stop=false;
+        velocity=joy->axes[0]; // adjust
+        turning_angle=joy->axes[1]*180/M_PI; // adjust
+    }
+}
+
+
+bool Core::get_stop() {
+    return stop;
+}
+
+double Core::get_vel() {
+    return velocity;
+}
+
+double Core::get_turning_angle() {
+    return turning_angle;
+}
+
+bool Core::set_stop(bool yes_no) {
+    stop=yes_no;
+}
+
+bool Core::set_vel(double vel) {
+    velocity=vel;
+}
+
+double Core::set_turning_angle(double angle) {
+    turning_angle=angle;
+}
+
 
 tf::StampedTransform *Core::getTF(Core::Limb limb)
 {

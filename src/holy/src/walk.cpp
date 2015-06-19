@@ -7,6 +7,7 @@
 Walk::Walk(Core *core) : core{core}
 {
 
+    walk_fsm=Walk::STAND;
 }
 
 Walk::~Walk()
