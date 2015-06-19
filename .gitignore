@@ -1,6 +1,7 @@
 build
 devel
 install
+build-src*
 .catkin_workspace
 
 # gedit backup files
