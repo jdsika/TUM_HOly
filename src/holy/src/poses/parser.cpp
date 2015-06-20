@@ -28,6 +28,8 @@ Parser::Parser()
 
 std::vector<RoboPose> Parser::walkingPoses = std::vector<RoboPose> ();
 
+Poses poses;
+
 bool Parser::printCSVRows(std::string filename)
 {
 
@@ -91,7 +93,7 @@ bool Parser::parseRoboPositions(std::string filename)
                 numberOfPositions++;
                 priorPosName = currentPosName;
                 if (currentPosName == "pose_default") {
-                    Parser::walkingPoses.push_back(Poses::pose_default);
+                    Parser::walkingPoses.push_back(poses.pose_default);
                     continue;
                 }
                 else {

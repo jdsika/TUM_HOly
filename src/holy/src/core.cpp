@@ -28,7 +28,6 @@ Core::Core(int argc, char** argv)
 
 {
     // Initialize ROS System
-    ros::init(argc, argv, "holy_walk");
     node_handle = new ros::NodeHandle;
 
     // asychronous spinner creating as many threads as there are cores
@@ -82,14 +81,18 @@ Core::Core(int argc, char** argv)
     // Subscribe to Joystick messages
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
-    stop=true; // Change to 1 for default
+    stop=false; // Change to 1 for default
     velocity=1.0;
     turning_angle=0;
 
     // Subscribe to goal status
-    goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 1, &Core::goalCallback, this);
+    goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 10, &Core::goalCallback, this);
+    //goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/move_group/status", 10, &Core::goalCallback, this);
 
-    bool goal_success = false;
+    goal_success = false;
+
+    ros::param::get("/move_group/moveit_controller_manager",controller);
+
 }
 
 Core::~Core()
@@ -107,23 +110,23 @@ Core::~Core()
 void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal) {
     bool success=true;
     if (!goal->status_list.empty()) {
-        if (goal->status_list[0].status!=3 || goal->status_list.size() >=1) {
-            success=false;
-            //std::cout << "lol";
+        for (int i=0; i<goal->status_list.size(); i++) {
+            if (goal->status_list[0].status!=3) {
+                success=false;
+            }
         }
     }
     goal_success=success;
 }
 
 void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
-        std::cout << "lol";
     if (joy->axes[1]<0.1){
         stop=true;
     }
     else {
         stop=false;
         velocity=1.0+joy->axes[1]; // adjust
-        turning_angle=joy->axes[1]*180/M_PI; // adjust
+        turning_angle=20*joy->axes[0]; // adjust
     }
 }
 
@@ -262,6 +265,12 @@ Core &Core::move(const double speed_scale)
                 }
             }
             group->asyncExecute(plan);
+            // if simulation, wait a second and go on
+            if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
+                ros::Duration(1.0).sleep();
+                goal_success=true;
+            }
+
         }
     }
 
@@ -297,7 +306,7 @@ bool groupStateValidityCallback(
 
 Core &Core::setPoseTarget(const RoboPose &rp)
 {
-    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
+    //std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
 
     for(const LimbPose lp : rp.getLimbs())
     {

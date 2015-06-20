@@ -66,10 +66,16 @@ public:
 
     bool get_goal_success();
 
+    void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
+
+    void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
+
 private:
     // Control inputs
     bool stop;
     double velocity,turning_angle;
+
+    std::string controller;
 
     ros::NodeHandle *node_handle;
 
@@ -81,10 +87,6 @@ private:
     ros::AsyncSpinner *aSpin;
 
     moveit::core::RobotStatePtr robot_state;
-
-    void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
-
-    void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
 
     bool goal_success;
 
