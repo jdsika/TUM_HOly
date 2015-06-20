@@ -3,4 +3,6 @@
   <include file="$(find holy_controllers)/launch/init_controller.launch" /> 
 
   <include file="$(find moveit_config)/launch/move_group.launch" /> 
+
+  <node name="joy_node" pkg="joy" type="joy_node" required="true" output="screen"></node>
 </launch>

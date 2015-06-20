@@ -64,6 +64,8 @@ public:
 
     double set_turning_angle(double angle);
 
+    bool get_goal_success();
+
 private:
     // Control inputs
     bool stop;

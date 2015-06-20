@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     Core core(argc, argv);
     Walk walk(&core);
 
-
+    ros::Rate rate(1);
     // In Start Position gehen
     core.setPoseTarget(Poses::pose_default).move();
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     // LimbPose parameterization test
     //
 
-    LimbPose lp = Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND);
+    /*LimbPose lp = Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND);
 
     // fuege neuen parameter Roll-Influence hinzu, der zum standard roll-wert 10* den input wert hinzufuegt
     lp.setParameterAdd("Roll-Influence", 10, 0, 0 , 0, 0, 0);
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     // Roll sollte standard * 1.3*(-2.0) + 0 sein
     core.setPoseTarget(lp).move();
 
-    return 0;
+    return 0;*/
 
 
     //std::cout << "Walk (w) or Stairs (s) ?" << std::endl;
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     //std::cin >> input;
     while(ros::ok()) {
 
-        if (walk.walk_fsm==Walk::STAND) {
+        /*if (walk.walk_fsm==Walk::STAND) {
             // Stand
 
             if (!core.get_stop()) {
@@ -76,44 +76,69 @@ int main(int argc, char **argv)
         else if (walk.walk_fsm==Walk::INIT) {
 
             //Init
-            core.setPoseTarget(Poses::init_shift_toleft).move();
-            core.setPoseTarget(Poses::init_lift_right).move();
-            core.setPoseTarget(Poses::init_fwd_right).move();
-            core.setPoseTarget(Poses::init_dual_right).move();
-            core.setPoseTarget(Poses::init_shift_frontright).move();
-
-            // Go to Loop
-            walk.walk_fsm=Walk::LOOP;
+            if (walk.init_fsm==Walk::iSHIFT_LEFT) {
+                if (core.get_goal_success()) {
+                    core.setPoseTarget(Poses::init_shift_toleft).move(core.get_vel());
+                    walk.init_fsm=Walk::iLIFT_RIGHT;
+                }
+            }
+            else if (walk.init_fsm==Walk::iLIFT_RIGHT) {
+                if (core.get_goal_success()) {
+                    core.setPoseTarget(Poses::init_lift_right).move(core.get_vel());
+                    walk.init_fsm=Walk::iFWD_RIGHT;
+                }
+            }
+            else if (walk.init_fsm==Walk::iFWD_RIGHT) {
+                if (core.get_goal_success()) {
+                    std::cout<<"ja";
+                    core.setPoseTarget(Poses::init_fwd_right).move(core.get_vel());
+                    walk.init_fsm=Walk::iDUAL_RIGHT;
+                }
+            }
+            else if (walk.init_fsm==Walk::iDUAL_RIGHT) {
+                if (core.get_goal_success()) {
+                    core.setPoseTarget(Poses::init_dual_right).move(core.get_vel());
+                    walk.init_fsm=Walk::iSHIFT_FRONT_RIGHT;
+                }
+            }
+            else if (walk.init_fsm==Walk::iSHIFT_FRONT_RIGHT) {
+                if (core.get_goal_success()) {
+                    core.setPoseTarget(Poses::init_shift_frontright).move(core.get_vel());
+                    walk.init_fsm=Walk::iSHIFT_LEFT;
+                    // Go to Loop
+                    //walk.walk_fsm=Walk::LOOP;
+                }
+            }
         }
 
         else if (walk.walk_fsm==Walk::LOOP) {
 
             // Loop
-            core.setPoseTarget(Poses::loop_lift_left).move();
-            core.setPoseTarget(Poses::loop_fwd_left).move();
-            core.setPoseTarget(Poses::loop_dual_left).move();
-            core.setPoseTarget(Poses::loop_shift_frontleft).move();
-            core.setPoseTarget(Poses::loop_lift_right).move();
-            core.setPoseTarget(Poses::loop_fwd_right).move();
-            core.setPoseTarget(Poses::loop_dual_right).move();
-            core.setPoseTarget(Poses::loop_shift_frontright).move();
+            core.setPoseTarget(Poses::loop_lift_left).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_fwd_left).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_dual_left).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_shift_frontleft).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_lift_right).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_fwd_right).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_dual_right).move(core.get_vel());
+            core.setPoseTarget(Poses::loop_shift_frontright).move(core.get_vel());
 
             // Go to stop if control input
             if (core.get_stop()) {
-                walk.walk_fsm=Walk::LOOP;
+                walk.walk_fsm=Walk::STOP;
             }
         }
         else if (walk.walk_fsm==Walk::STOP) {
 
             // Stop
-            core.setPoseTarget(Poses::stop_lift_left).move();
-            core.setPoseTarget(Poses::stop_fwd_left).move();
-            core.setPoseTarget(Poses::pose_default).move();
+            core.setPoseTarget(Poses::stop_lift_left).move(core.get_vel());
+            core.setPoseTarget(Poses::stop_fwd_left).move(core.get_vel());
+            core.setPoseTarget(Poses::pose_default).move(core.get_vel());
             walk.walk_fsm=Walk::STAND;
-        }
+        }*/
         rate.sleep();
         ros::spinOnce();
-
+    }
     //walk.executeStateMachine();*/
 
     return 0;

@@ -102,8 +102,8 @@ static const RoboPose dual_right =
 
 static const RoboPose dual_left =
         RoboPose( std::vector<LimbPose> {
-                      LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, -Poses::fwd_right.getLimb(Core::Limb::LEFT_FOOT).default_y/2, 0),
-                      LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0, -Poses::fwd_right.getLimb(Core::Limb::LEFT_FOOT).default_y/2, 0),
+                      LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, -Poses::fwd_left.getLimb(Core::Limb::LEFT_FOOT).default_y/2, 0),
+                      LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0, -Poses::fwd_left.getLimb(Core::Limb::LEFT_FOOT).default_y/2, 0),
                   }, "dual_left") ;
 
 // Absolute poses:

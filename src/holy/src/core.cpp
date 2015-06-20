@@ -82,12 +82,12 @@ Core::Core(int argc, char** argv)
     // Subscribe to Joystick messages
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
-    stop=false; // Change to 1 for default
+    stop=true; // Change to 1 for default
     velocity=1.0;
     turning_angle=0;
 
     // Subscribe to goal status
-    goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("move_group/status", 10, &Core::goalCallback, this);
+    goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 1, &Core::goalCallback, this);
 
     bool goal_success = false;
 }
@@ -107,26 +107,30 @@ Core::~Core()
 void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal) {
     bool success=true;
     if (!goal->status_list.empty()) {
-        for (int i=0; i<4; i++) {
-            if (goal->status_list[i].status!=3) {
-                success=false;
-            }
+        if (goal->status_list[0].status!=3 || goal->status_list.size() >=1) {
+            success=false;
+            //std::cout << "lol";
         }
     }
     goal_success=success;
 }
 
 void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
-    if (joy->axes[0]<0.1){
+        std::cout << "lol";
+    if (joy->axes[1]<0.1){
         stop=true;
     }
     else {
         stop=false;
-        velocity=joy->axes[0]; // adjust
+        velocity=1.0+joy->axes[1]; // adjust
         turning_angle=joy->axes[1]*180/M_PI; // adjust
     }
 }
 
+
+bool Core::get_goal_success() {
+    return goal_success;
+}
 
 bool Core::get_stop() {
     return stop;
@@ -231,37 +235,37 @@ static std::vector<double> last_positions(18);
 
 Core &Core::move(const double speed_scale)
 {
-
+    goal_success=false;
     std::vector<double> positions(18);
     group->getJointValueTarget().copyJointGroupPositions("All", positions);
     if( last_positions != positions)
     {
         last_positions = positions;
-        group->move();
+        //group->move();
+        moveit::planning_interface::MoveGroup::Plan plan;
+        bool success = group->plan(plan);
+
+
+        if(success)
+        {
+            const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
+            for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
+            {
+                //p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
+                for(double &v : p.velocities)
+                {
+                   // v *= speed_scale;
+                }
+                for(double &a : p.accelerations)
+                {
+                    //a *= speed_scale*speed_scale;
+                }
+            }
+            group->asyncExecute(plan);
+        }
     }
 
-//    moveit::planning_interface::MoveGroup::Plan plan;
-//    bool success = group->plan(plan);
 
-
-//    if(success)
-//    {
-//        const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
-//        for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
-//        {
-//            p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
-//            for(double &v : p.velocities)
-//            {
-//                v *= speed_scale;
-//            }
-//            for(double &a : p.accelerations)
-//            {
-//                a *= speed_scale*speed_scale;
-//            }
-//        }
-
-//        group->execute(plan);
-//    }
 
     return *this;
 }
