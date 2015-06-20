@@ -254,14 +254,14 @@ Core &Core::move(const double speed_scale)
             const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
             for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
             {
-                //p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
+                p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
                 for(double &v : p.velocities)
                 {
-                   // v *= speed_scale;
+                    v *= speed_scale;
                 }
                 for(double &a : p.accelerations)
                 {
-                    //a *= speed_scale*speed_scale;
+                    a *= speed_scale*speed_scale;
                 }
             }
             group->asyncExecute(plan);
