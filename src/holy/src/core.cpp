@@ -81,15 +81,22 @@ Core::Core(int argc, char** argv)
     // Subscribe to Joystick messages
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
-    stop=false; // Change to 1 for default
-    velocity=1.0;
-    turning_angle=0;
+    stop = true; // Change to 1 for default
+    velocity = 1.0;
+    turning_angle = 0;
+    step_length = 0;
+    temp_velocity=velocity;
+    temp_turning=turning_angle;
+    temp_step_length=step_length;
 
     // Subscribe to goal status
     goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 10, &Core::goalCallback, this);
     //goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/move_group/status", 10, &Core::goalCallback, this);
 
+    goal_success_checker_locker.lock();
     goal_success = false;
+    goal_id_of_last_success="";
+    goal_success_checker_locker.unlock();
 
     ros::param::get("/move_group/moveit_controller_manager",controller);
 
@@ -107,32 +114,79 @@ Core::~Core()
     delete node_handle;
     delete aSpin;
 }
-void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal) {
-    bool success=true;
-    if (!goal->status_list.empty()) {
-        for (int i=0; i<goal->status_list.size(); i++) {
-            if (goal->status_list[0].status!=3) {
-                success=false;
+void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal)
+{
+    bool r = true;
+    goal_success_checker_locker.lock();
+
+    if (!goal->status_list.empty())
+    {
+        for (int i=0; i<goal->status_list.size(); i++)
+        {
+            if (goal->status_list[i].status!=3)
+            {
+                r = false; // at least one state is not succeeded, which means it is generally not right yet
+                break;
             }
         }
     }
-    goal_success=success;
+
+    if(r && !goal->status_list.empty())
+    {
+        // state says succeeded, but is it the new pose already?
+        std::string new_id = goal->status_list.back().goal_id.id;
+        if(new_id != static_cast<std::string>(goal_id_of_last_success)) // ID did change, which is what we want
+        {
+            goal_success = true;
+            goal_id_of_last_success = new_id;
+        }
+    }
+
+    goal_success_checker_locker.unlock();
 }
 
+double Core::getStep_length() const
+{
+    return step_length;
+}
+
+
+
 void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
-    if (joy->axes[1]<0.1){
+    if (joy->axes[1]<0.02){
         stop=true;
     }
     else {
         stop=false;
-        velocity=1.0+joy->axes[1]; // adjust
-        turning_angle=20*joy->axes[0]; // adjust
+
+        velocity = 1.0 + joy->axes[1] * 12; // adjust vel
+        turning_angle = 20 * joy->axes[2]; // adjust turn
+        step_length = 0.03 * joy->axes[3]; // adjust stepsize
+
+        // Display the values if they have changed quite a bit from what was displayed before
+        if(fabs(temp_velocity - velocity) > 0.1 || fabs(temp_turning - turning_angle) > 0.1 || fabs(temp_step_length - step_length) > 0.001)
+        {
+            ROS_INFO("vel: %.2f, angle: %.2f, step_length: %.2fcm", velocity, turning_angle, 100*step_length);
+            temp_turning = turning_angle;
+            temp_velocity = velocity;
+            temp_step_length = step_length;
+        }
+
+        // When walking reverse, turn like you expect it from driving a car
+        if(step_length < 0)
+        {
+            turning_angle *= -1;
+        }
+
     }
 }
 
 
 bool Core::get_goal_success() {
-    return goal_success;
+    goal_success_checker_locker.lock();
+    bool goal_success_temp = goal_success;
+    goal_success_checker_locker.unlock();
+    return goal_success_temp;
 }
 
 bool Core::get_stop() {
@@ -238,12 +292,15 @@ static std::vector<double> last_positions(18);
 
 Core &Core::move(const double speed_scale)
 {
+    goal_success_checker_locker.lock();
     goal_success=false;
-    std::vector<double> positions(18);
-    group->getJointValueTarget().copyJointGroupPositions("All", positions);
-    if( last_positions != positions)
+    goal_success_checker_locker.unlock();
+
+    std::vector<double> end_positions(18);
+    group->getJointValueTarget().copyJointGroupPositions("All", end_positions);
+    if( last_positions != end_positions)
     {
-        last_positions = positions;
+        last_positions = end_positions;
         //group->move();
         moveit::planning_interface::MoveGroup::Plan plan;
         bool success = group->plan(plan);
@@ -252,23 +309,72 @@ Core &Core::move(const double speed_scale)
         if(success)
         {
             const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
-            for( trajectory_msgs::JointTrajectoryPoint &p : plan.trajectory_.joint_trajectory.points )
+            std::vector<double> start_positions = plan.trajectory_.joint_trajectory.points.front().positions;
+            std::vector<double> length(18);
+            std::vector<double> acc(18);
+            int max_length_id=0;
+            double max_length=-1;
+
+            for( int i=0; i<18; i++ )
             {
-                p.time_from_start = (p.time_from_start - startTime) * (1/speed_scale) + startTime;
-                for(double &v : p.velocities)
-                {
-                    v *= speed_scale;
-                }
-                for(double &a : p.accelerations)
-                {
-                    a *= speed_scale*speed_scale;
+                length[i]=plan.trajectory_.joint_trajectory.points.back().positions[i]-plan.trajectory_.joint_trajectory.points.front().positions[i];
+                if (fabs(length[i])>max_length) {
+                    max_length=fabs(length[i]);
+                    max_length_id=i;
                 }
             }
+            double a_max = speed_scale;
+            for( int i=0; i<18; i++ )
+            {
+                acc[i]=a_max*(length[i]/max_length);
+
+            }
+
+            double t_end=2*sqrt(max_length/a_max)+startTime.toSec();
+            double num_points = 100;
+            plan.trajectory_.joint_trajectory.points.resize(num_points,plan.trajectory_.joint_trajectory.points.front());
+            double delta_t = (t_end - startTime.toSec())/(num_points-1);
+
+            for( int point=0; point<num_points; point++ )
+            {
+                plan.trajectory_.joint_trajectory.points[point].time_from_start = ros::Duration().fromSec(startTime.toSec() + delta_t*point);
+                if (point<num_points/2) {
+                    for (int joint=0; joint<18; joint++) {
+                        plan.trajectory_.joint_trajectory.points[point].positions[joint]=start_positions[joint]+0.5*acc[joint]*(point*delta_t)*(point*delta_t);
+                    }
+
+                }
+                else {
+                    for (int joint=0; joint<18; joint++) {
+                        plan.trajectory_.joint_trajectory.points[point].positions[joint]=end_positions[joint]-0.5*acc[joint]*((num_points-1-point)*delta_t)*((num_points-1-point)*delta_t);
+                    }
+                }
+                for (int joint=0; joint<18; joint++) {
+                    plan.trajectory_.joint_trajectory.points[point].accelerations[joint] = acc[joint];
+                }
+                for (int joint=0; joint<18; joint++) {
+                    if(point == 0 || point == num_points-1)
+                    {
+                        plan.trajectory_.joint_trajectory.points[point].velocities[joint]= 0;
+                    } else {
+                        double p_last = plan.trajectory_.joint_trajectory.points[point-1].positions[joint];
+                        double p_next = plan.trajectory_.joint_trajectory.points[point+1].positions[joint];
+                        plan.trajectory_.joint_trajectory.points[point].velocities[joint] = (p_next - p_last) / (2 * delta_t);
+                    }
+
+                }
+
+            }
+
+
             group->asyncExecute(plan);
+
             // if simulation, wait a second and go on
             if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
                 ros::Duration(1.0).sleep();
+                goal_success_checker_locker.lock();
                 goal_success=true;
+                goal_success_checker_locker.unlock();
             }
 
         }
@@ -372,18 +478,18 @@ Core &Core::moveto_default_state()
         {"R_EB",  0.0},
         {"R_HAA", 0.0},
         {"R_HR",  0.0},
-        {"R_HFE",-0.3},
-        {"R_KFE",-0.4},
-        {"R_AFE", 0.18},
+        {"R_HFE", 0.0},
+        {"R_KFE", 0.0},
+        {"R_AFE", 0.0},
         {"R_AR",  0.0},
         {"L_SAA", 0.0},
         {"L_SFE", 0.0},
         {"L_EB",  0.0},
         {"L_HAA", 0.0},
         {"L_HR",  0.0},
-        {"L_HFE", 0.3},
-        {"L_KFE", 0.4},
-        {"L_AFE",-0.18},
+        {"L_HFE", 0.0},
+        {"L_KFE", 0.0},
+        {"L_AFE", 0.0},
         {"L_AR",  0.0},
     };
 

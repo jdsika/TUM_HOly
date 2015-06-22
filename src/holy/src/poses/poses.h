@@ -61,16 +61,17 @@ public:
     RoboPose shift_toright;
     RoboPose lift_right;
     RoboPose lift_left;
+    RoboPose turn_right;
+    RoboPose turn_left;
     RoboPose fwd_right;
     RoboPose fwd_left;
     RoboPose dual_right;
     RoboPose dual_left;
+    RoboPose arms_fwd_left_foot;
+    RoboPose arms_fwd_right_foot;
 
     RoboPose init_shift_toleft;
-    RoboPose init_shift_toright;
-    RoboPose init_lift_left;
     RoboPose init_lift_right;
-    RoboPose init_fwd_left;
     RoboPose init_fwd_right;
     RoboPose init_dual_right;
     RoboPose init_shift_frontright;
@@ -86,6 +87,8 @@ public:
 
     RoboPose stop_lift_left;
     RoboPose stop_fwd_left;
+    RoboPose stop_lift_right;
+    RoboPose stop_fwd_right;
 
     void set_step_length(double length);
     void set_step_height(double height);

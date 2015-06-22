@@ -165,7 +165,7 @@
     <child link="R_upper_leg"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="-1.0 0 0"/>
-    <limit effort="1000.0" lower="-2.712078033" upper="0.7240389319" velocity="1.0"/>
+    <limit effort="1000.0" lower="-2.8041168803" upper="0.6320000846" velocity="1.0"/>
   </joint>
   <link name="R_calf">
     <visual>
@@ -249,7 +249,7 @@
     <child link="L_hip_split"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.9940195505" upper="1.4603497101" velocity="1.0"/>
+    <limit effort="1000.0" lower="-1.0246991663" upper="1.4296700943" velocity="1.0"/>
   </joint>
   <link name="L_upper_leg">
     <visual>

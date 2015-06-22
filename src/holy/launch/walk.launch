@@ -4,4 +4,5 @@
   planning_plugin: 'ompl_interface/OMPLPlanner' 
  </rosparam>
   <node name="walk" pkg="holy" type="walk" required="true" output="screen"></node>
+
 </launch>

@@ -7,6 +7,7 @@
 #define _CORE_H_
 
 #include <map>
+#include <mutex>
 
 #include <moveit/robot_model/robot_model.h>
 #include <moveit/planning_scene/planning_scene.h>
@@ -70,10 +71,13 @@ public:
 
     void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
 
+    double getStep_length() const;
+
 private:
     // Control inputs
     bool stop;
-    double velocity,turning_angle;
+    double velocity,turning_angle, step_length;
+    double temp_velocity, temp_turning, temp_step_length;
 
     std::string controller;
 
@@ -88,7 +92,9 @@ private:
 
     moveit::core::RobotStatePtr robot_state;
 
+    std::mutex goal_success_checker_locker;
     bool goal_success;
+    std::string goal_id_of_last_success;
 
     ros::Subscriber goal_sub;
 

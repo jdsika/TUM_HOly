@@ -10,8 +10,8 @@ Walk::Walk(Core *core) : core{core}
 
     walk_fsm=Walk::STAND;
     init_fsm=Walk::iSHIFT_LEFT;
-    loop_fsm=Walk::lLIFT_LEFT;
-    stop_fsm=Walk::sLIFT_LEFT;
+    loop_fsm=Walk::lFWD_LEFT;
+    stop_fsm=Walk::sFWD_LEFT;
 }
 
 Walk::~Walk()
