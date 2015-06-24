@@ -81,7 +81,7 @@ Core::Core(int argc, char** argv)
     // Subscribe to Joystick messages
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
-    stop = true; // Change to 1 for default
+    stop = false; // Change to 1 for default
     velocity = 1.0;
     turning_angle = 0;
     step_length = 0;

@@ -12,11 +12,8 @@
 
 #include "core.h"
 #include "walk.h"
-#include "poses/poses.h"
 #include "poses/parser.h"
 #include "poses/robopose.h"
-
-#define DEBUG 1
 
 int main(int argc, char **argv)
 {
@@ -24,13 +21,12 @@ int main(int argc, char **argv)
     Parser::getWorkingDirectory();
     Core core(argc, argv);
     Walk walk(&core);
-    Poses poses;
-
+    Poses default_poses;
     //ros::Subscriber goal_sub;
     //goal_sub = n.subscribe<actionlib_msgs::GoalStatusArray>("/move_group/status", 10, &Core::goalCallback, &core);
     ros::Rate rate(100);
     // In Start Position gehen
-    core.setPoseTarget(poses.pose_default).move();
+    core.setPoseTarget(default_poses.pose_default).move();
 
     ros::Duration(0.5).sleep();
 
@@ -68,174 +64,10 @@ int main(int argc, char **argv)
     //std::cout << "Walk (w) or Stairs (s) ?" << std::endl;
     //std::coud << "Your choice: ";
     //std::cin >> input;
-    poses.set_step_height(0.01); // max 0.05
+
     while(ros::ok()) {
 
-        // update parameters
-        poses.set_turning_angle(core.get_turning_angle());
-        poses.set_step_length(core.getStep_length()); // max 0.033
-        poses.update();
-        //**********************STAND***********************
-
-        if (walk.walk_fsm==Walk::STAND) {
-
-            if (!core.get_stop()) {
-                walk.walk_fsm=Walk::INIT;
-                if (DEBUG) ROS_INFO("INIT");
-            }
-        }
-
-        //**********************INIT***********************
-
-        else if (walk.walk_fsm==Walk::INIT) {
-
-            //Init
-            if (walk.init_fsm==Walk::iSHIFT_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.init_shift_toleft).move(core.get_vel()/3);
-                    walk.init_fsm=Walk::iFWD_RIGHT;
-                }
-            }
-            /*else if (walk.init_fsm==Walk::iLIFT_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.init_lift_right).move(core.get_vel());
-                    walk.init_fsm=Walk::iFWD_RIGHT;
-                }
-            }*/
-            else if (walk.init_fsm==Walk::iFWD_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.init_fwd_right).move(core.get_vel());
-                    walk.init_fsm=Walk::iDUAL_RIGHT;
-                }
-            }
-            else if (walk.init_fsm==Walk::iDUAL_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.init_dual_right).move(core.get_vel());
-                    walk.init_fsm=Walk::iSHIFT_FRONT_RIGHT;
-                }
-            }
-            else if (walk.init_fsm==Walk::iSHIFT_FRONT_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.init_shift_frontright).move(core.get_vel()/3);
-                    walk.init_fsm=Walk::iSHIFT_LEFT;
-                    // Go to Loop
-                    if (!core.get_stop()) {
-                        walk.walk_fsm=Walk::LOOP;
-                        if (DEBUG) ROS_INFO("LOOP");
-                    }
-                    else {
-                        walk.walk_fsm=Walk::STOP;
-                        if (DEBUG) ROS_INFO("STOP");
-                    }
-
-
-                }
-            }
-        }
-
-        //**********************LOOP***********************
-
-        else if (walk.walk_fsm==Walk::LOOP) {
-
-            // Loop
-           /* if (walk.loop_fsm==Walk::lLIFT_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_lift_left).move(core.get_vel());
-                    walk.loop_fsm=Walk::lFWD_LEFT;
-                }
-            }*/
-            if (walk.loop_fsm==Walk::lFWD_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_fwd_left).move(core.get_vel());
-                    walk.loop_fsm=Walk::lDUAL_LEFT;
-                }
-            }
-            else if (walk.loop_fsm==Walk::lDUAL_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_dual_left).move(core.get_vel());
-                    walk.loop_fsm=Walk::lSHIFT_FRONT_LEFT;
-                }
-            }
-            else if (walk.loop_fsm==Walk::lSHIFT_FRONT_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_shift_frontleft).move(core.get_vel()/3);
-                    if (!core.get_stop()) {
-                        walk.loop_fsm=Walk::lFWD_RIGHT;
-                    }
-                    else {
-                        walk.loop_fsm=Walk::lFWD_LEFT;
-                        walk.walk_fsm=Walk::STOP;
-                        walk.stop_fsm=Walk::sFWD_RIGHT;
-                        if (DEBUG) ROS_INFO("STOP");
-                    }
-
-                }
-            }
-            /*else if (walk.loop_fsm==Walk::lLIFT_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_lift_right).move(core.get_vel());
-                    walk.loop_fsm=Walk::lFWD_RIGHT;
-                }
-            }*/
-            else if (walk.loop_fsm==Walk::lFWD_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_fwd_right).move(core.get_vel());
-                    walk.loop_fsm=Walk::lDUAL_RIGHT;
-                }
-            }
-            else if (walk.loop_fsm==Walk::lDUAL_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_dual_right).move(core.get_vel());
-                    walk.loop_fsm=Walk::lSHIFT_FRONT_RIGHT;
-                }
-            }
-            else if (walk.loop_fsm==Walk::lSHIFT_FRONT_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.loop_shift_frontright).move(core.get_vel()/3);
-                    walk.loop_fsm=Walk::lFWD_LEFT;
-                    // Go to stop if control input
-                    if (core.get_stop()) {
-                        walk.walk_fsm=Walk::STOP;
-                        if (DEBUG) ROS_INFO("STOP");
-                    }
-                }
-            }
-        }
-
-        //**********************STOP***********************
-
-        else if (walk.walk_fsm==Walk::STOP) {
-
-            // Stop
-            /*if (walk.stop_fsm==Walk::sLIFT_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.stop_lift_left).move(core.get_vel());
-                    walk.stop_fsm=Walk::sFWD_LEFT;
-                }
-            }*/
-            if (walk.stop_fsm==Walk::sFWD_LEFT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.stop_fwd_left).move(core.get_vel());
-                    walk.stop_fsm=Walk::sDEFAULT;
-                }
-            }
-            else if (walk.stop_fsm==Walk::sFWD_RIGHT) {
-                if (core.get_goal_success()) {
-                    core.setPoseTarget(poses.stop_fwd_right).move(core.get_vel());
-                    walk.stop_fsm=Walk::sDEFAULT;
-                }
-            }
-            else if (walk.stop_fsm==Walk::sDEFAULT) {
-                if (core.get_goal_success()) {;
-                    core.setPoseTarget(poses.pose_default).move(core.get_vel());
-                    walk.stop_fsm=Walk::sFWD_LEFT;
-                    // Go to Stand
-                    walk.walk_fsm=Walk::STAND;
-                    if (DEBUG) ROS_INFO("STAND");
-                }
-            }
-
-        }
+        walk.StateMachine();
         rate.sleep();
         ros::spinOnce();
     }

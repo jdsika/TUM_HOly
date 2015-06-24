@@ -4,14 +4,13 @@
 #include "poses/poses.h"
 #include "poses/parser.h"
 
+#define DEBUG 1
 
 Walk::Walk(Core *core) : core{core}
 {
 
-    walk_fsm=Walk::STAND;
-    init_fsm=Walk::iSHIFT_LEFT;
-    loop_fsm=Walk::lFWD_LEFT;
-    stop_fsm=Walk::sFWD_LEFT;
+    init_StateMachine();
+
 }
 
 Walk::~Walk()
@@ -36,4 +35,179 @@ void Walk::executeStateMachine()
     ros::spinOnce();
 }
 
+void Walk::StateMachine() {
 
+    // update parameters
+    walk_poses.set_step_height(0.01); // max 0.05
+    walk_poses.set_turning_angle(core->get_turning_angle());
+    walk_poses.set_step_length(core->getStep_length()); // max 0.033
+    walk_poses.update();
+
+    //**********************STAND***********************
+
+    if (walk_fsm==STAND) {
+
+        if (!core->get_stop()) {
+            walk_fsm=INIT;
+            if (DEBUG) ROS_INFO("INIT");
+        }
+    }
+
+    //**********************INIT***********************
+
+    else if (walk_fsm==INIT) {
+
+        //Init
+        if (init_fsm==iSHIFT_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.init_shift_toleft).move(core->get_vel()/3);
+                init_fsm=iFWD_RIGHT;
+            }
+        }
+        /*else if (init_fsm==iLIFT_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(poses.init_lift_right).move(core->get_vel());
+                init_fsm=iFWD_RIGHT;
+            }
+        }*/
+        else if (init_fsm==iFWD_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.init_fwd_right).move(core->get_vel());
+                init_fsm=iDUAL_RIGHT;
+            }
+        }
+        else if (init_fsm==iDUAL_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.init_dual_right).move(core->get_vel());
+                init_fsm=iSHIFT_FRONT_RIGHT;
+            }
+        }
+        else if (init_fsm==iSHIFT_FRONT_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.init_shift_frontright).move(core->get_vel()/3);
+                init_fsm=iSHIFT_LEFT;
+                // Go to Loop
+                if (!core->get_stop()) {
+                    walk_fsm=LOOP;
+                    if (DEBUG) ROS_INFO("LOOP");
+                }
+                else {
+                    walk_fsm=STOP;
+                    if (DEBUG) ROS_INFO("STOP");
+                }
+            }
+        }
+    }
+
+    //**********************LOOP***********************
+
+    else if (walk_fsm==LOOP) {
+
+        // Loop
+       /* if (loop_fsm==lLIFT_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(poses.loop_lift_left).move(core->get_vel());
+                loop_fsm=lFWD_LEFT;
+            }
+        }*/
+        if (loop_fsm==lFWD_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_fwd_left).move(core->get_vel());
+                loop_fsm=lDUAL_LEFT;
+            }
+        }
+        else if (loop_fsm==lDUAL_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_dual_left).move(core->get_vel());
+                loop_fsm=lSHIFT_FRONT_LEFT;
+            }
+        }
+        else if (loop_fsm==lSHIFT_FRONT_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_shift_frontleft).move(core->get_vel()/3);
+                if (!core->get_stop()) {
+                    loop_fsm=lFWD_RIGHT;
+                }
+                else {
+                    loop_fsm=lFWD_LEFT;
+                    walk_fsm=STOP;
+                    stop_fsm=sFWD_RIGHT;
+                    if (DEBUG) ROS_INFO("STOP");
+                }
+
+            }
+        }
+        /*else if (loop_fsm==lLIFT_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(poses.loop_lift_right).move(core->get_vel());
+                loop_fsm=lFWD_RIGHT;
+            }
+        }*/
+        else if (loop_fsm==lFWD_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_fwd_right).move(core->get_vel());
+                loop_fsm=lDUAL_RIGHT;
+            }
+        }
+        else if (loop_fsm==lDUAL_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_dual_right).move(core->get_vel());
+                loop_fsm=lSHIFT_FRONT_RIGHT;
+            }
+        }
+        else if (loop_fsm==lSHIFT_FRONT_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.loop_shift_frontright).move(core->get_vel()/3);
+                loop_fsm=lFWD_LEFT;
+                // Go to stop if control input
+                if (core->get_stop()) {
+                    walk_fsm=STOP;
+                    if (DEBUG) ROS_INFO("STOP");
+                }
+            }
+        }
+    }
+
+    //**********************STOP***********************
+
+    else if (walk_fsm==STOP) {
+
+        // Stop
+        /*if (stop_fsm==sLIFT_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(poses.stop_lift_left).move(core->get_vel());
+                stop_fsm=sFWD_LEFT;
+            }
+        }*/
+        if (stop_fsm==sFWD_LEFT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.stop_fwd_left).move(core->get_vel());
+                stop_fsm=sDEFAULT;
+            }
+        }
+        else if (stop_fsm==sFWD_RIGHT) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(walk_poses.stop_fwd_right).move(core->get_vel());
+                stop_fsm=sDEFAULT;
+            }
+        }
+        else if (stop_fsm==sDEFAULT) {
+            if (core->get_goal_success()) {;
+                core->setPoseTarget(walk_poses.pose_default).move(core->get_vel());
+                stop_fsm=sFWD_LEFT;
+                // Go to Stand
+                walk_fsm=STAND;
+                if (DEBUG) ROS_INFO("STAND");
+            }
+        }
+
+    }
+}
+
+void Walk::init_StateMachine() {
+    // Init to first element in FSM
+    walk_fsm=STAND;
+    init_fsm=iSHIFT_LEFT;
+    loop_fsm=lFWD_LEFT;
+    stop_fsm=sFWD_LEFT;
+}
