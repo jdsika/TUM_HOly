@@ -10,8 +10,12 @@
 #include <moveit_msgs/DisplayTrajectory.h>
 #include <tf/transform_listener.h>
 
+#include "holy_main.h"
 #include "core.h"
 #include "walk.h"
+#include "fight.h"
+#include "kinect.h"
+#include "stairs.h"
 #include "poses/parser.h"
 #include "poses/robopose.h"
 
@@ -21,20 +25,19 @@ int main(int argc, char **argv)
     Parser::getWorkingDirectory();
     Core core(argc, argv);
     Walk walk(&core);
-    Poses default_poses;
-    //ros::Subscriber goal_sub;
-    //goal_sub = n.subscribe<actionlib_msgs::GoalStatusArray>("/move_group/status", 10, &Core::goalCallback, &core);
+    Stairs stairs(&core);
+    Kinect kinect(&core);
+    Fight fight(&core);
+
+    HOLY_FSM holy_fsm=STAIRS;
+
     ros::Rate rate(100);
-    // In Start Position gehen
-    core.setPoseTarget(default_poses.pose_default).move();
 
-    ros::Duration(0.5).sleep();
-
-    //
+    /*//
     // LimbPose parameterization test
     //
 
-    /*LimbPose lp = Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND);
+    LimbPose lp = Poses::pose_default.getLimb(Core::Limb::RIGHT_HAND);
 
     // fuege neuen parameter Roll-Influence hinzu, der zum standard roll-wert 10* den input wert hinzufuegt
     lp.setParameterAdd("Roll-Influence", 10, 0, 0 , 0, 0, 0);
@@ -58,21 +61,54 @@ int main(int argc, char **argv)
     // Roll sollte standard * 1.3*(-2.0) + 0 sein
     core.setPoseTarget(lp).move();
 
-    return 0;*/
-
-
-    //std::cout << "Walk (w) or Stairs (s) ?" << std::endl;
-    //std::coud << "Your choice: ";
-    //std::cin >> input;
+    return 0; */
 
     while(ros::ok()) {
+        // STAND
+        if (core.get_isstanding()==true) {
+            if (core.get_buttons()[0]==1) {
+                // GOTO STAIRS
+                holy_fsm=STAIRS;
+            }
+            else if (core.get_buttons()[1]==1) {
+                // GOTO WALK
+                holy_fsm=WALK;
+            }
+            else if (core.get_buttons()[2]==1) {
+                // GOTO KINECT
+                holy_fsm=KINECT;
+            }
+            else if (core.get_buttons()[3]==1) {
+                // GOTO FIGHT
+                holy_fsm=FIGHT;
+            }
+        }
+        // WALK
+        if (holy_fsm==WALK) {
+            walk.StateMachine();
+        }
+        // STAIRS
+        else if (holy_fsm==STAIRS) {
+            stairs.StateMachine();
+        }
+        // KINECT
+        else if (holy_fsm==KINECT) {
+            kinect.StateMachine();
+        }
+        // FIGHT
+        else if (holy_fsm==FIGHT) {
+            fight.StateMachine();
+        }
+        else {
+            ROS_INFO("State not known");
+        }
 
-        walk.StateMachine();
         rate.sleep();
         ros::spinOnce();
     }
     //walk.executeStateMachine();*/
 
     return 0;
+
 
 }

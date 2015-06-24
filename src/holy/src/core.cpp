@@ -34,12 +34,7 @@ Core::Core(int argc, char** argv)
     aSpin = new ros::AsyncSpinner(0);
     aSpin->start();
 
-    //moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
     group = new moveit::planning_interface::MoveGroup("All");
-//    group->setGoalOrientationTolerance(0.0000050*M_PI/180.0);
-//    group->setGoalPositionTolerance(0.0000002);
-//    group->setGoalJointTolerance(0.00005*M_PI/180.0);
-
     ros::Publisher display_publisher = node_handle->advertise<moveit_msgs::DisplayTrajectory>("/move_group/display_planned_path", 1, true);
     moveit_msgs::DisplayTrajectory display_trajectory;
 
@@ -58,7 +53,6 @@ Core::Core(int argc, char** argv)
     //moveto_default_state();
 
     // Jetzt Robot State abspeichern, damit Start State von späteren Planungen nicht der Power-on State ist
-    //robot_state = group->getCurrentState();
     robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
     robot_model::RobotModelPtr kin_model = robot_model_loader.getModel();
     robot_state = moveit::core::RobotStatePtr (new moveit::core::RobotState(kin_model));
@@ -82,19 +76,18 @@ Core::Core(int argc, char** argv)
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
     stop = false; // Change to 1 for default
+    isstanding = true;
     velocity = 1.0;
     turning_angle = 0;
     step_length = 0;
     temp_velocity=velocity;
     temp_turning=turning_angle;
     temp_step_length=step_length;
-
     // Subscribe to goal status
     goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 10, &Core::goalCallback, this);
-    //goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/move_group/status", 10, &Core::goalCallback, this);
-
+    buttons = {0,0,0,0,0,0,0,0,0};
     goal_success_checker_locker.lock();
-    goal_success = false;
+    goal_success = true;
     goal_id_of_last_success="";
     goal_success_checker_locker.unlock();
 
@@ -162,7 +155,8 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
         velocity = 1.0 + joy->axes[1] * 12; // adjust vel
         turning_angle = 20 * joy->axes[2]; // adjust turn
         step_length = 0.03 * joy->axes[3]; // adjust stepsize
-
+        buttons=joy->buttons;
+        // Buttons: 0-> , 1-> ,2 ->
         // Display the values if they have changed quite a bit from what was displayed before
         if(fabs(temp_velocity - velocity) > 0.1 || fabs(temp_turning - turning_angle) > 0.1 || fabs(temp_step_length - step_length) > 0.001)
         {
@@ -177,7 +171,6 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
         {
             turning_angle *= -1;
         }
-
     }
 }
 
@@ -187,6 +180,10 @@ bool Core::get_goal_success() {
     bool goal_success_temp = goal_success;
     goal_success_checker_locker.unlock();
     return goal_success_temp;
+}
+
+std::vector<int> Core::get_buttons() {
+    return buttons;
 }
 
 bool Core::get_stop() {
@@ -512,3 +509,10 @@ void Core::updateTF()
     listener->lookupTransform("/base_link", "/L_forearm", ros::Time(0), *transforms[Limb::LEFT_HAND]);
 }
 
+bool Core::get_isstanding() {
+    return isstanding;
+}
+
+void Core::set_isstanding(bool yes_no) {
+    isstanding=yes_no;
+}

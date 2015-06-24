@@ -3,6 +3,6 @@
  <rosparam>
   planning_plugin: 'ompl_interface/OMPLPlanner' 
  </rosparam>
-  <node name="walk" pkg="holy" type="walk" required="true" output="screen"></node>
+  <node name="holy" pkg="holy" type="holy" required="true" output="screen"></node>
 
 </launch>
