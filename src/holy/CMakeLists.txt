@@ -23,6 +23,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
 
 ## Declare a cpp executable
 add_executable(holy
+    src/holy_fsm_defines
     src/holy_main.cpp
     src/core.cpp
     src/walk.cpp

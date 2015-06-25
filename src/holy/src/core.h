@@ -71,13 +71,14 @@ public:
 
     void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
 
-    std::vector<int> get_buttons();
-
     double getStep_length() const;
 
     bool get_isstanding();
 
     void set_isstanding(bool yes_no);
+
+    std::vector<int> get_buttons() const;
+    void set_buttons(const int position, const int value);
 
 private:
     // Control inputs
@@ -85,6 +86,8 @@ private:
     double velocity,turning_angle, step_length;
     double temp_velocity, temp_turning, temp_step_length;
     std::vector<int> buttons;
+    bool init_buttons;
+    bool show_buttons;
 
     std::string controller;
 

@@ -45,10 +45,10 @@ void Walk::StateMachine() {
 
     //**********************STAND***********************
 
-    if (walk_fsm==STAND) {
+    if (walk_fsm == Walk_FSM::STAND) {
 
         if (!core->get_stop()) {
-            walk_fsm=INIT;
+            walk_fsm = Walk_FSM::INIT;
             core->set_isstanding(false);
             if (DEBUG) ROS_INFO("INIT");
         }
@@ -56,7 +56,7 @@ void Walk::StateMachine() {
 
     //**********************INIT***********************
 
-    else if (walk_fsm==INIT) {
+    else if (walk_fsm == Walk_FSM::INIT) {
 
         //Init
         if (init_fsm==iSHIFT_LEFT) {
@@ -89,11 +89,11 @@ void Walk::StateMachine() {
                 init_fsm=iSHIFT_LEFT;
                 // Go to Loop
                 if (!core->get_stop()) {
-                    walk_fsm=LOOP;
+                    walk_fsm = Walk_FSM::LOOP;
                     if (DEBUG) ROS_INFO("LOOP");
                 }
                 else {
-                    walk_fsm=STOP;
+                    walk_fsm = Walk_FSM::STOP;
                     if (DEBUG) ROS_INFO("STOP");
                 }
             }
@@ -102,7 +102,7 @@ void Walk::StateMachine() {
 
     //**********************LOOP***********************
 
-    else if (walk_fsm==LOOP) {
+    else if (walk_fsm == Walk_FSM::LOOP) {
 
         // Loop
        /* if (loop_fsm==lLIFT_LEFT) {
@@ -131,7 +131,7 @@ void Walk::StateMachine() {
                 }
                 else {
                     loop_fsm=lFWD_LEFT;
-                    walk_fsm=STOP;
+                    walk_fsm = Walk_FSM::STOP;
                     stop_fsm=sFWD_RIGHT;
                     if (DEBUG) ROS_INFO("STOP");
                 }
@@ -162,7 +162,7 @@ void Walk::StateMachine() {
                 loop_fsm=lFWD_LEFT;
                 // Go to stop if control input
                 if (core->get_stop()) {
-                    walk_fsm=STOP;
+                    walk_fsm = Walk_FSM::STOP;
                     if (DEBUG) ROS_INFO("STOP");
                 }
             }
@@ -171,7 +171,7 @@ void Walk::StateMachine() {
 
     //**********************STOP***********************
 
-    else if (walk_fsm==STOP) {
+    else if (walk_fsm == Walk_FSM::STOP) {
 
         // Stop
         /*if (stop_fsm==sLIFT_LEFT) {
@@ -193,7 +193,7 @@ void Walk::StateMachine() {
             }
         }
         else if (stop_fsm==sDEFAULT) {
-            if (core->get_goal_success()) {;
+            if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.pose_default).move(core->get_vel());
                 stop_fsm=sFWD_LEFT;
                 // Go to Stand
@@ -207,8 +207,8 @@ void Walk::StateMachine() {
 
 void Walk::init_StateMachine() {
     // Init to first element in FSM
-    walk_fsm=STOP;
-    init_fsm=iSHIFT_LEFT;
-    loop_fsm=lFWD_LEFT;
-    stop_fsm=sDEFAULT;
+    walk_fsm = Walk_FSM::STOP;
+    init_fsm = iSHIFT_LEFT;
+    loop_fsm = lFWD_LEFT;
+    stop_fsm = sDEFAULT;
 }

@@ -10,7 +10,7 @@
 #include <moveit_msgs/DisplayTrajectory.h>
 #include <tf/transform_listener.h>
 
-#include "holy_main.h"
+#include "holy_fsm_defines.h"
 #include "core.h"
 #include "walk.h"
 #include "fight.h"
@@ -18,6 +18,7 @@
 #include "stairs.h"
 #include "poses/parser.h"
 #include "poses/robopose.h"
+#include "poses/poses.h"
 
 int main(int argc, char **argv)
 {
@@ -29,7 +30,7 @@ int main(int argc, char **argv)
     Kinect kinect(&core);
     Fight fight(&core);
 
-    HOLY_FSM holy_fsm = HOLY_FSM::WAIT;
+    Holy_FSM holy_fsm = Holy_FSM::START;
 
     ros::Rate rate(100);
 
@@ -63,44 +64,63 @@ int main(int argc, char **argv)
 
     return 0; */
 
+    ROS_INFO("Waiting for action");
+
     while(ros::ok()) {
         // STAND
         if (core.get_isstanding()==true) {
-            if (core.get_buttons()[0]==1) {
+            if (core.get_buttons()[10]==1
+                    && holy_fsm != Holy_FSM::STAIRS) {
                 // GOTO STAIRS
-                holy_fsm = HOLY_FSM::STAIRS;
+                holy_fsm = Holy_FSM::STAIRS;
+                ROS_INFO("Holy_FSM -> STAIRS");
             }
-            else if (core.get_buttons()[1]==1) {
+            else if (core.get_buttons()[11]==1
+                     && holy_fsm != Holy_FSM::WALK) {
                 // GOTO WALK
-                holy_fsm = HOLY_FSM::WALK;
+                holy_fsm = Holy_FSM::WALK;
+                ROS_INFO("Holy_FSM -> WALK");
             }
-            else if (core.get_buttons()[2]==1) {
+            else if (core.get_buttons()[8]==1
+                     && holy_fsm != Holy_FSM::KINECT) {
                 // GOTO KINECT
-                holy_fsm = HOLY_FSM::KINECT;
+                holy_fsm = Holy_FSM::KINECT;
+                ROS_INFO("Holy_FSM -> KINECT");
             }
-            else if (core.get_buttons()[3]==1) {
+            else if (core.get_buttons()[9]==1
+                     && holy_fsm != Holy_FSM::FIGHT) {
                 // GOTO FIGHT
-                holy_fsm = HOLY_FSM::FIGHT;
+                holy_fsm = Holy_FSM::FIGHT;
+                ROS_INFO("Holy_FSM -> FIGHT");
             }
         }
         // WALK
-        if (holy_fsm == HOLY_FSM::WALK) {
+        if (holy_fsm == Holy_FSM::WALK) {
             walk.StateMachine();
         }
         // STAIRS
-        else if (holy_fsm == HOLY_FSM::STAIRS) {
+        else if (holy_fsm == Holy_FSM::STAIRS) {
             stairs.StateMachine();
         }
         // KINECT
-        else if (holy_fsm == HOLY_FSM::KINECT) {
+        else if (holy_fsm == Holy_FSM::KINECT) {
             kinect.StateMachine();
         }
         // FIGHT
-        else if (holy_fsm == HOLY_FSM::FIGHT) {
+        else if (holy_fsm == Holy_FSM::FIGHT) {
             fight.StateMachine();
         }
+        else if(holy_fsm == Holy_FSM::START) {
+            if(core.get_goal_success()) {
+                // default position
+                core.setPoseTarget(Poses::pose_default).move(core.get_vel());
+                core.set_isstanding(true);
+                ROS_INFO("Went to default position");
+                holy_fsm = Holy_FSM::WAIT;
+            }
+        }
         else {
-            ROS_INFO("Waiting for action");
+            // idle
         }
 
         rate.sleep();

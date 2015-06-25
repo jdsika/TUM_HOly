@@ -7,6 +7,7 @@
 #define _KINECT_H_
 
 #include "poses/poses.h"
+#include "holy_fsm_defines.h"
 
 class Core;
 
@@ -17,8 +18,6 @@ public:
 
     void executeStateMachine();
 
-    // FSMs
-    typedef enum {STAND, LBALANCE, RBALANCE, DUALBALANCE} Kinect_FSM;
 
     Kinect_FSM kinect_fsm;
 

@@ -85,7 +85,11 @@ Core::Core(int argc, char** argv)
     temp_step_length=step_length;
     // Subscribe to goal status
     goal_sub = node_handle->subscribe<actionlib_msgs::GoalStatusArray>("/holy_joint_trajectory_action_controller/follow_joint_trajectory/status", 10, &Core::goalCallback, this);
-    buttons = {0,0,0,0,0,0,0,0,0};
+
+    // we have to initialize the values with a minimum in order to not crash
+    buttons = {0,0,0,0,0,0,0,0,0,0,0,0};
+    init_buttons = false;
+    show_buttons = false;
     goal_success_checker_locker.lock();
     goal_success = true;
     goal_id_of_last_success="";
@@ -145,7 +149,43 @@ double Core::getStep_length() const
 
 
 
-void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
+void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    // it depends on the joystick how many buttons there are on the pad
+    if (!init_buttons)
+    {
+        if(buttons.size() != joy->buttons.size())
+        {
+            buttons.resize(joy->buttons.size());
+            for(int i = 0; i < buttons.size(); ++i)
+            {
+                buttons[i] = 0;
+            }
+        }
+        init_buttons = true;
+    }
+
+    // if the previous button combination has changed the new will be stored
+    bool zeros = std::all_of(joy->buttons.begin(), joy->buttons.end(), [](int i) { return i==0; });
+
+    if(!zeros) {
+        // always fetch the buttons
+        buttons=joy->buttons;
+
+        if (show_buttons) {
+            std::cout << "Button values: ";
+            for(int values : buttons) {
+                std::cout << values << " ";
+            }
+            std::cout << std::endl;
+            show_buttons = false;
+        }
+    }
+    else
+    {
+        show_buttons = true;
+    }
+
     if (joy->axes[1]<0.02){
         stop=true;
     }
@@ -155,7 +195,7 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy) {
         velocity = 1.0 + joy->axes[1] * 12; // adjust vel
         turning_angle = 20 * joy->axes[2]; // adjust turn
         step_length = 0.03 * joy->axes[3]; // adjust stepsize
-        buttons=joy->buttons;
+
         // Buttons: 0-> , 1-> ,2 ->
         // Display the values if they have changed quite a bit from what was displayed before
         if(fabs(temp_velocity - velocity) > 0.1 || fabs(temp_turning - turning_angle) > 0.1 || fabs(temp_step_length - step_length) > 0.001)
@@ -182,8 +222,14 @@ bool Core::get_goal_success() {
     return goal_success_temp;
 }
 
-std::vector<int> Core::get_buttons() {
+std::vector<int> Core::get_buttons() const{
     return buttons;
+}
+
+void Core::set_buttons(const int position, const int value)
+{
+    if (position < buttons.size())
+        buttons[position] = value;
 }
 
 bool Core::get_stop() {
@@ -516,3 +562,4 @@ bool Core::get_isstanding() {
 void Core::set_isstanding(bool yes_no) {
     isstanding=yes_no;
 }
+

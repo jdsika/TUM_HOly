@@ -11,6 +11,14 @@
 // Feet:  No / Yes / Yes / Yes / No / No
 // Hands: No / ?   / Yes / Yes / No / No
 
+RoboPose Poses::pose_default = RoboPose (std::vector<LimbPose> {
+                                             //changed to have lower arms
+                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(10),  0, d2r(90-1), -0.15, 0, 0.03),
+                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(10),  0, d2r(-90+1),  0.15, 0, 0.03),
+                                             LimbPose(Core::Limb::LEFT_FOOT,  d2r(0),  0,  0, -0.03, 0.00, -0.2),
+                                             LimbPose(Core::Limb::RIGHT_FOOT, d2r(0),  0,  0,  0.03, 0.00, -0.2)
+                                         } , "pose_default");
+
 void Poses::update() {
     // update Poses according to new parameters
 

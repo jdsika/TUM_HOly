@@ -29,7 +29,7 @@ void Kinect::StateMachine() {
 
     //**********************STAND***********************
 
-    if (kinect_fsm==STAND) {
+    if (kinect_fsm == Kinect_FSM::STAND) {
 
         if (!core->get_stop()) {
             //kinect_fsm=INIT;
@@ -41,5 +41,5 @@ void Kinect::StateMachine() {
 
 void Kinect::init_StateMachine() {
     // Init to first element in FSM
-    kinect_fsm=STAND;
+    kinect_fsm = Kinect_FSM::STAND;
 }

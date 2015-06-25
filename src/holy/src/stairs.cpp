@@ -27,10 +27,10 @@ void Stairs::StateMachine() {
 
     //**********************STAND***********************
 
-    if (stairs_fsm==STAND) {
+    if (stairs_fsm == Stairs_FSM::STAND) {
 
         if (!core->get_stop()) {
-            stairs_fsm=INIT;
+            stairs_fsm = Stairs_FSM::INIT;
             core->set_isstanding(false);
             if (DEBUG) ROS_INFO("INIT");
         }
@@ -38,7 +38,7 @@ void Stairs::StateMachine() {
 
     //**********************INIT***********************
 
-    else if (stairs_fsm==INIT) {
+    else if (stairs_fsm == Stairs_FSM::INIT) {
 
         //Init
         if (init_fsm==iSHIFT_LEFT) {
@@ -71,11 +71,11 @@ void Stairs::StateMachine() {
                 init_fsm=iSHIFT_LEFT;
                 // Go to Loop
                 if (!core->get_stop()) {
-                    stairs_fsm=LOOP;
+                    stairs_fsm = Stairs_FSM::LOOP;
                     if (DEBUG) ROS_INFO("LOOP");
                 }
                 else {
-                    stairs_fsm=STOP;
+                    stairs_fsm = Stairs_FSM::STOP;
                     if (DEBUG) ROS_INFO("STOP");
                 }
             }
@@ -84,7 +84,7 @@ void Stairs::StateMachine() {
 
     //**********************LOOP***********************
 
-    else if (stairs_fsm==LOOP) {
+    else if (stairs_fsm == Stairs_FSM::LOOP) {
 
         // Loop
         if (loop_fsm==lLIFT_LEFT) {
@@ -113,7 +113,7 @@ void Stairs::StateMachine() {
                 }
                 else {
                     loop_fsm=lFWD_LEFT;
-                    stairs_fsm=STOP;
+                    stairs_fsm = Stairs_FSM::STOP;
                     stop_fsm=sFWD_RIGHT;
                     if (DEBUG) ROS_INFO("STOP");
                 }
@@ -143,7 +143,7 @@ void Stairs::StateMachine() {
                 loop_fsm=lLIFT_LEFT;
                 // Go to stop if control input
                 if (core->get_stop()) {
-                    stairs_fsm=STOP;
+                    stairs_fsm = Stairs_FSM::STOP;
                     if (DEBUG) ROS_INFO("STOP");
                 }
             }
@@ -152,7 +152,7 @@ void Stairs::StateMachine() {
 
     //**********************STOP***********************
 
-    else if (stairs_fsm==STOP) {
+    else if (stairs_fsm == Stairs_FSM::STOP) {
 
         // Stop
         if (stop_fsm==sLIFT_LEFT) {
@@ -178,7 +178,7 @@ void Stairs::StateMachine() {
                 core->setPoseTarget(stairs_poses.pose_default).move(core->get_vel());
                 stop_fsm=sLIFT_LEFT;
                 // Go to Stand
-                stairs_fsm=STAND;
+                stairs_fsm = Stairs_FSM::STAND;
                 core->set_isstanding(true);
                 if (DEBUG) ROS_INFO("STAND");
             }
@@ -188,7 +188,7 @@ void Stairs::StateMachine() {
 
 void Stairs::init_StateMachine() {
     // Init to first element in FSM
-    stairs_fsm=STOP;
+    stairs_fsm = Stairs_FSM::STOP;
     init_fsm=iSHIFT_LEFT;
     loop_fsm=lLIFT_LEFT;
     stop_fsm=sDEFAULT;
