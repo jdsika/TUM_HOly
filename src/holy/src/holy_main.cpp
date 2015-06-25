@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     Kinect kinect(&core);
     Fight fight(&core);
 
-    HOLY_FSM holy_fsm=STAIRS;
+    HOLY_FSM holy_fsm = HOLY_FSM::WAIT;
 
     ros::Rate rate(100);
 
@@ -68,39 +68,39 @@ int main(int argc, char **argv)
         if (core.get_isstanding()==true) {
             if (core.get_buttons()[0]==1) {
                 // GOTO STAIRS
-                holy_fsm=STAIRS;
+                holy_fsm = HOLY_FSM::STAIRS;
             }
             else if (core.get_buttons()[1]==1) {
                 // GOTO WALK
-                holy_fsm=WALK;
+                holy_fsm = HOLY_FSM::WALK;
             }
             else if (core.get_buttons()[2]==1) {
                 // GOTO KINECT
-                holy_fsm=KINECT;
+                holy_fsm = HOLY_FSM::KINECT;
             }
             else if (core.get_buttons()[3]==1) {
                 // GOTO FIGHT
-                holy_fsm=FIGHT;
+                holy_fsm = HOLY_FSM::FIGHT;
             }
         }
         // WALK
-        if (holy_fsm==WALK) {
+        if (holy_fsm == HOLY_FSM::WALK) {
             walk.StateMachine();
         }
         // STAIRS
-        else if (holy_fsm==STAIRS) {
+        else if (holy_fsm == HOLY_FSM::STAIRS) {
             stairs.StateMachine();
         }
         // KINECT
-        else if (holy_fsm==KINECT) {
+        else if (holy_fsm == HOLY_FSM::KINECT) {
             kinect.StateMachine();
         }
         // FIGHT
-        else if (holy_fsm==FIGHT) {
+        else if (holy_fsm == HOLY_FSM::FIGHT) {
             fight.StateMachine();
         }
         else {
-            ROS_INFO("State not known");
+            ROS_INFO("Waiting for action");
         }
 
         rate.sleep();
@@ -109,6 +109,4 @@ int main(int argc, char **argv)
     //walk.executeStateMachine();*/
 
     return 0;
-
-
 }
