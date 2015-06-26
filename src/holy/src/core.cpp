@@ -245,6 +245,11 @@ double Core::get_vel() {
     return velocity;
 }
 
+double Core::get_vel_slow() const
+{
+    return velocity / 3;
+}
+
 double Core::get_turning_angle() {
     return turning_angle;
 }

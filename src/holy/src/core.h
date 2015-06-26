@@ -54,31 +54,19 @@ public:
 
     // Control inputs getter/setter
     bool get_stop();
-
-    double get_vel();
-
-    double get_turning_angle();
-
     bool set_stop(bool yes_no);
-
+    double get_vel();
+    double get_vel_slow() const;
     bool set_vel(double vel);
-
+    double get_turning_angle();
     double set_turning_angle(double angle);
-
     bool get_goal_success();
-
     void set_goal_success(const bool yes_no);
-
     void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
-
     void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);
-
     double getStep_length() const;
-
     bool get_isstanding();
-
     void set_isstanding(bool yes_no);
-
     std::vector<int> get_buttons() const;
     void set_buttons(const int position, const int value);
 
