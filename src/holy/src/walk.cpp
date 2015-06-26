@@ -61,7 +61,7 @@ void Walk::StateMachine() {
         //Init
         if (init_fsm==iSHIFT_LEFT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(walk_poses.init_shift_toleft).move(core->get_vel()/3);
+                core->setPoseTarget(walk_poses.init_shift_toleft).move(core->get_vel_slow());
                 init_fsm=iFWD_RIGHT;
             }
         }
@@ -85,7 +85,7 @@ void Walk::StateMachine() {
         }
         else if (init_fsm==iSHIFT_FRONT_RIGHT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(walk_poses.init_shift_frontright).move(core->get_vel()/3);
+                core->setPoseTarget(walk_poses.init_shift_frontright).move(core->get_vel_slow());
                 init_fsm=iSHIFT_LEFT;
                 // Go to Loop
                 if (!core->get_stop()) {
@@ -125,7 +125,7 @@ void Walk::StateMachine() {
         }
         else if (loop_fsm==lSHIFT_FRONT_LEFT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(walk_poses.loop_shift_frontleft).move(core->get_vel()/3);
+                core->setPoseTarget(walk_poses.loop_shift_frontleft).move(core->get_vel_slow());
                 if (!core->get_stop()) {
                     loop_fsm=lFWD_RIGHT;
                 }
@@ -158,7 +158,7 @@ void Walk::StateMachine() {
         }
         else if (loop_fsm==lSHIFT_FRONT_RIGHT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(walk_poses.loop_shift_frontright).move(core->get_vel()/3);  
+                core->setPoseTarget(walk_poses.loop_shift_frontright).move(core->get_vel_slow());
                 // Go to stop if control input
                 if (!core->get_stop()) {
                     loop_fsm=lFWD_LEFT;
