@@ -99,6 +99,7 @@ int main(int argc, char **argv)
                 ROS_INFO("Holy_FSM -> FIGHT");
             }
         }
+
         // WALK
         if (holy_fsm == Holy_FSM::WALK) {
             walk.StateMachine();
