@@ -22,6 +22,8 @@
 #include "poses/robopose.h"
 #include "actionlib_msgs/GoalStatusArray.h"
 
+#define DEBUG 0
+
 std::map<std::string, double> map_min, map_max;
 
 Core::Core(int argc, char** argv)
@@ -90,13 +92,11 @@ Core::Core(int argc, char** argv)
     buttons = {0,0,0,0,0,0,0,0,0,0,0,0};
     init_buttons = false;
     show_buttons = false;
-    goal_success_checker_locker.lock();
-    goal_success = true;
+
+    this->set_goal_success(true);
     goal_id_of_last_success="";
-    goal_success_checker_locker.unlock();
 
     ros::param::get("/move_group/moveit_controller_manager",controller);
-
 }
 
 Core::~Core()
@@ -114,7 +114,6 @@ Core::~Core()
 void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal)
 {
     bool r = true;
-    goal_success_checker_locker.lock();
 
     if (!goal->status_list.empty())
     {
@@ -134,12 +133,11 @@ void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal)
         std::string new_id = goal->status_list.back().goal_id.id;
         if(new_id != static_cast<std::string>(goal_id_of_last_success)) // ID did change, which is what we want
         {
-            goal_success = true;
+            ROS_INFO("GOAL SUCCESS == TRUE");
+            this->set_goal_success(true);
             goal_id_of_last_success = new_id;
         }
     }
-
-    goal_success_checker_locker.unlock();
 }
 
 double Core::getStep_length() const
@@ -172,7 +170,7 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         // always fetch the buttons
         buttons=joy->buttons;
 
-        if (show_buttons) {
+        if (show_buttons && DEBUG) {
             std::cout << "Button values: ";
             for(int values : buttons) {
                 std::cout << values << " ";
@@ -198,7 +196,7 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
         // Buttons: 0-> , 1-> ,2 ->
         // Display the values if they have changed quite a bit from what was displayed before
-        if(fabs(temp_velocity - velocity) > 0.1 || fabs(temp_turning - turning_angle) > 0.1 || fabs(temp_step_length - step_length) > 0.001)
+        if((fabs(temp_velocity - velocity) > 0.1 || fabs(temp_turning - turning_angle) > 0.1 || fabs(temp_step_length - step_length) > 0.001) && DEBUG)
         {
             ROS_INFO("vel: %.2f, angle: %.2f, step_length: %.2fcm", velocity, turning_angle, 100*step_length);
             temp_turning = turning_angle;
@@ -220,6 +218,13 @@ bool Core::get_goal_success() {
     bool goal_success_temp = goal_success;
     goal_success_checker_locker.unlock();
     return goal_success_temp;
+}
+
+void Core::set_goal_success(const bool yes_no)
+{
+    goal_success_checker_locker.lock();
+    goal_success = yes_no;
+    goal_success_checker_locker.unlock();
 }
 
 std::vector<int> Core::get_buttons() const{
@@ -335,9 +340,7 @@ static std::vector<double> last_positions(18);
 
 Core &Core::move(const double speed_scale)
 {
-    goal_success_checker_locker.lock();
-    goal_success=false;
-    goal_success_checker_locker.unlock();
+    this->set_goal_success(false);
 
     std::vector<double> end_positions(18);
     group->getJointValueTarget().copyJointGroupPositions("All", end_positions);
@@ -409,22 +412,16 @@ Core &Core::move(const double speed_scale)
 
             }
 
-
             group->asyncExecute(plan);
 
             // if simulation, wait a second and go on
             if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
                 ros::Duration(1.0).sleep();
-                goal_success_checker_locker.lock();
-                goal_success=true;
-                goal_success_checker_locker.unlock();
+                this->set_goal_success(true);
             }
 
         }
     }
-
-
-
     return *this;
 }
 

@@ -67,6 +67,8 @@ public:
 
     bool get_goal_success();
 
+    void set_goal_success(const bool yes_no);
+
     void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
 
     void goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal);

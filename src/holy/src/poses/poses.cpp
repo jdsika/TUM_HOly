@@ -127,7 +127,6 @@ void Poses::update() {
     stop_fwd_left = stop_lift_left+fwd_left;
     stop_lift_right = loop_shift_frontleft+lift_right;
     stop_fwd_right= stop_lift_right+fwd_right;
-
 }
 
 void Poses::set_step_length(double length) {

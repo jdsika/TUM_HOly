@@ -31,6 +31,7 @@ int main(int argc, char **argv)
     Fight fight(&core);
 
     Holy_FSM holy_fsm = Holy_FSM::START;
+    Holy_FSM holy_fsm_tmp = Holy_FSM::START;
 
     ros::Rate rate(100);
 
@@ -72,24 +73,28 @@ int main(int argc, char **argv)
             if (core.get_buttons()[10]==1
                     && holy_fsm != Holy_FSM::STAIRS) {
                 // GOTO STAIRS
+                holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::STAIRS;
                 ROS_INFO("Holy_FSM -> STAIRS");
             }
             else if (core.get_buttons()[11]==1
                      && holy_fsm != Holy_FSM::WALK) {
                 // GOTO WALK
+                holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::WALK;
                 ROS_INFO("Holy_FSM -> WALK");
             }
             else if (core.get_buttons()[8]==1
                      && holy_fsm != Holy_FSM::KINECT) {
                 // GOTO KINECT
+                holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::KINECT;
                 ROS_INFO("Holy_FSM -> KINECT");
             }
             else if (core.get_buttons()[9]==1
                      && holy_fsm != Holy_FSM::FIGHT) {
                 // GOTO FIGHT
+                holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::FIGHT;
                 ROS_INFO("Holy_FSM -> FIGHT");
             }
@@ -111,16 +116,20 @@ int main(int argc, char **argv)
             fight.StateMachine();
         }
         else if(holy_fsm == Holy_FSM::START) {
-            if(core.get_goal_success()) {
+            if(core.get_goal_success()) { // initialized with true
                 // default position
                 core.setPoseTarget(Poses::pose_default).move(core.get_vel());
-                core.set_isstanding(true);
+                core.set_isstanding(true); // init is true but we should check this
                 ROS_INFO("Went to default position");
+                holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::WAIT;
             }
         }
         else {
-            // idle
+            if (holy_fsm != holy_fsm_tmp) {
+                holy_fsm_tmp = holy_fsm;
+                ROS_INFO("Idle");
+            }
         }
 
         rate.sleep();
