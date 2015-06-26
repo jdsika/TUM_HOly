@@ -78,7 +78,7 @@ Core::Core(int argc, char** argv)
     joy_sub = node_handle->subscribe<sensor_msgs::Joy>("joy", 10, &Core::joyCallback, this);
 
     stop = false; // Change to 1 for default
-    isstanding = true;
+    isstanding = false; // we have to get in the default position at the beginning
     velocity = 1.0;
     turning_angle = 0;
     step_length = 0;
@@ -133,7 +133,7 @@ void Core::goalCallback(const actionlib_msgs::GoalStatusArrayConstPtr& goal)
         std::string new_id = goal->status_list.back().goal_id.id;
         if(new_id != static_cast<std::string>(goal_id_of_last_success)) // ID did change, which is what we want
         {
-            ROS_INFO("GOAL SUCCESS == TRUE");
+            //ROS_INFO("GOAL SUCCESS == TRUE");
             this->set_goal_success(true);
             goal_id_of_last_success = new_id;
         }
@@ -181,6 +181,10 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     }
     else
     {
+        for(int i = 0; i < buttons.size(); ++i)
+        {
+            buttons[i] = 0;
+        }
         show_buttons = true;
     }
 
@@ -340,12 +344,12 @@ static std::vector<double> last_positions(18);
 
 Core &Core::move(const double speed_scale)
 {
-    this->set_goal_success(false);
-
     std::vector<double> end_positions(18);
     group->getJointValueTarget().copyJointGroupPositions("All", end_positions);
     if( last_positions != end_positions)
     {
+        this->set_goal_success(false);
+
         last_positions = end_positions;
         //group->move();
         moveit::planning_interface::MoveGroup::Plan plan;
