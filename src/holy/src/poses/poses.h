@@ -57,6 +57,7 @@ public:
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static RoboPose pose_default;
 
+    // POSES FOR WALKING
     RoboPose shift_toleft;
     RoboPose shift_toright;
     RoboPose lift_right;
@@ -89,6 +90,13 @@ public:
     RoboPose stop_fwd_left;
     RoboPose stop_lift_right;
     RoboPose stop_fwd_right;
+
+    // POSES FOR FIGHTING
+    RoboPose fight_stance;
+    RoboPose fight_punch_right_forward;
+    RoboPose fight_punch_left_forward;
+    RoboPose fight_punch_right_sideways;
+    RoboPose fight_punch_left_sideways;
 
     void set_step_length(double length);
     void set_step_height(double height);

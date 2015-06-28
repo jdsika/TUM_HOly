@@ -31,6 +31,7 @@ void Stairs::StateMachine() {
 
         if (!core->get_stop()) {
             stairs_fsm = Stairs_FSM::INIT;
+            init_fsm = iSHIFT_LEFT;
             core->set_isstanding(false);
             if (DEBUG) ROS_INFO("INIT");
         }
@@ -72,6 +73,7 @@ void Stairs::StateMachine() {
                 // Go to Loop
                 if (!core->get_stop()) {
                     stairs_fsm = Stairs_FSM::LOOP;
+                    loop_fsm = lLIFT_LEFT;
                     if (DEBUG) ROS_INFO("LOOP");
                 }
                 else {
@@ -140,10 +142,12 @@ void Stairs::StateMachine() {
         else if (loop_fsm==lSHIFT_FRONT_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(stairs_poses.loop_shift_frontright).move(core->get_vel()/3);
-                loop_fsm=lLIFT_LEFT;
-                // Go to stop if control input
-                if (core->get_stop()) {
+                if (!core->get_stop()) {
+                    loop_fsm=lLIFT_LEFT;
+                }
+                else {
                     stairs_fsm = Stairs_FSM::STOP;
+                    stop_fsm=sFWD_RIGHT;
                     if (DEBUG) ROS_INFO("STOP");
                 }
             }
@@ -155,28 +159,28 @@ void Stairs::StateMachine() {
     else if (stairs_fsm == Stairs_FSM::STOP) {
 
         // Stop
-        if (stop_fsm==sLIFT_LEFT) {
+        if (stop_fsm == sLIFT_LEFT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(stairs_poses.stop_lift_left).move(core->get_vel());
-                stop_fsm=sFWD_LEFT;
+                stop_fsm = sFWD_LEFT;
             }
         }
-        if (stop_fsm==sFWD_LEFT) {
+        if (stop_fsm == sFWD_LEFT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(stairs_poses.stop_fwd_left).move(core->get_vel());
-                stop_fsm=sDEFAULT;
+                stop_fsm = sDEFAULT;
             }
         }
         else if (stop_fsm==sFWD_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(stairs_poses.stop_fwd_right).move(core->get_vel());
-                stop_fsm=sDEFAULT;
+                stop_fsm = sDEFAULT;
             }
         }
-        else if (stop_fsm==sDEFAULT) {
+        else if (stop_fsm == sDEFAULT) {
             if (core->get_goal_success()) {;
                 core->setPoseTarget(stairs_poses.pose_default).move(core->get_vel());
-                stop_fsm=sLIFT_LEFT;
+                stop_fsm = sDEFAULT;
                 // Go to Stand
                 stairs_fsm = Stairs_FSM::STAND;
                 core->set_isstanding(true);
@@ -189,7 +193,7 @@ void Stairs::StateMachine() {
 void Stairs::init_StateMachine() {
     // Init to first element in FSM
     stairs_fsm = Stairs_FSM::STOP;
-    init_fsm=iSHIFT_LEFT;
-    loop_fsm=lLIFT_LEFT;
-    stop_fsm=sDEFAULT;
+    init_fsm = iSHIFT_LEFT;
+    loop_fsm = lLIFT_LEFT;
+    stop_fsm = sDEFAULT;
 }
