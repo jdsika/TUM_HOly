@@ -16,9 +16,6 @@ public:
     Kinect(Core* core);
     ~Kinect();
 
-    void executeStateMachine();
-
-
     Kinect_FSM kinect_fsm;
 
     // State machine

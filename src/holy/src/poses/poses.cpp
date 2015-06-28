@@ -101,10 +101,31 @@ void Poses::update() {
                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  0, 0,  0, 0, 0),
                         }, "arms_fwd_right_foot");
 
+    // Fighting Poses
+    // R, P, Y, X, Y, Z
+    fight_stance = pose_default +
+            RoboPose( std::vector<LimbPose> {
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0), 0, 0, 0, 0, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0), 0, 0, 0, 0, 0),
+                            LimbPose(Core::Limb::LEFT_FOOT,  d2r(0), 0, 0, -0.02, 0.00, 0.02),
+                            LimbPose(Core::Limb::RIGHT_FOOT, d2r(0), 0, 0,  0.02, 0.00, 0.02)
+                        }, "fight_stance");
 
+    fight_punch_right_forward = fight_stance +
+            RoboPose( std::vector<LimbPose> {
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0), 0, 0, 0, 0, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(70), 0, 0, 0, 0.03, 0)
+                        }, "punch_right");
+
+    fight_punch_left_forward = fight_stance +
+            RoboPose( std::vector<LimbPose> {
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(70), 0, 0, 0, 0.03, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0), 0, 0, 0, 0, 0)
+                        }, "punch_left");
 
 
     // Absolute poses:
+    // walking poses
     // Init
     init_shift_toleft = pose_default+shift_toleft+arms_fwd_right_foot;
     init_lift_right = init_shift_toleft+lift_right+turn_right;
@@ -127,6 +148,9 @@ void Poses::update() {
     stop_fwd_left = stop_lift_left+fwd_left;
     stop_lift_right = loop_shift_frontleft+lift_right;
     stop_fwd_right= stop_lift_right+fwd_right;
+
+    // Fighting poses
+
 }
 
 void Poses::set_step_length(double length) {

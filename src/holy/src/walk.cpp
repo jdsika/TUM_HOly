@@ -58,9 +58,6 @@ void Walk::StateMachine() {
 
     else if (walk_fsm == Walk_FSM::INIT) {
 
-        //ROS_INFO("DO INIT");
-        ROS_INFO("goal success %i", core->get_goal_success());
-
         //Init
         if (init_fsm==iSHIFT_LEFT) {
             if (core->get_goal_success()) {

@@ -70,32 +70,44 @@ int main(int argc, char **argv)
     while(ros::ok()) {
         // STAND
         if (core.get_isstanding()==true) {
-            if (core.get_buttons()[10]==1
+            if (core.get_buttons()[static_cast<int>(Controller_Button::L1)] == 1
                     && holy_fsm != Holy_FSM::STAIRS) {
                 // GOTO STAIRS
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::STAIRS;
+
+                // initializing stairs fsm
+                stairs.init_StateMachine();
                 ROS_INFO("Holy_FSM -> STAIRS");
             }
-            else if (core.get_buttons()[11]==1
+            else if (core.get_buttons()[static_cast<int>(Controller_Button::R1)]==1
                      && holy_fsm != Holy_FSM::WALK) {
                 // GOTO WALK
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::WALK;
+
+                // initializing walk fsm
+                walk.init_StateMachine();
                 ROS_INFO("Holy_FSM -> WALK");
             }
-            else if (core.get_buttons()[8]==1
+            else if (core.get_buttons()[static_cast<int>(Controller_Button::L2)]==1
                      && holy_fsm != Holy_FSM::KINECT) {
                 // GOTO KINECT
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::KINECT;
+
+                // initializing kinect fsm
+                kinect.init_StateMachine();
                 ROS_INFO("Holy_FSM -> KINECT");
             }
-            else if (core.get_buttons()[9]==1
+            else if (core.get_buttons()[static_cast<int>(Controller_Button::R2)]==1
                      && holy_fsm != Holy_FSM::FIGHT) {
                 // GOTO FIGHT
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::FIGHT;
+
+                // initializing fight fsm
+                fight.init_StateMachine();
                 ROS_INFO("Holy_FSM -> FIGHT");
             }
         }

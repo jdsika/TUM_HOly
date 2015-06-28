@@ -37,6 +37,9 @@ void Kinect::StateMachine() {
             if (DEBUG) ROS_INFO("INIT");
         }
     }
+    else if (kinect_fsm == Kinect_FSM::STOP) {
+
+    }
 }
 
 void Kinect::init_StateMachine() {

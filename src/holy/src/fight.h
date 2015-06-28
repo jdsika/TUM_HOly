@@ -7,6 +7,7 @@
 #define _Fight_H_
 
 #include "poses/poses.h"
+#include "holy_fsm_defines.h"
 
 class Core;
 
@@ -15,9 +16,6 @@ public:
     Fight(Core* core);
     ~Fight();
 
-    // FSMs
-    typedef enum {STAND,RPunch,LPunch} Fight_FSM;
-
     Fight_FSM fight_fsm;
 
     // State machine
@@ -25,12 +23,14 @@ public:
 
     void init_StateMachine();
 
+    typedef enum {RP_forward, RP_back, LP_forward, LP_back} LOOP_FSM;
+
 
 private:
     Core* core;
     // poses object
     Poses fight_poses;
-
+    LOOP_FSM loop_fsm;
 };
 
 #endif

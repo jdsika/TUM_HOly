@@ -11,8 +11,6 @@ public:
     Stairs(Core* core);
     ~Stairs();
 
-    void executeStateMachine();
-
     // FSMs
     typedef enum {iSHIFT_LEFT,iLIFT_RIGHT,iFWD_RIGHT,iDUAL_RIGHT, iSHIFT_FRONT_RIGHT} INIT_FSM;
     typedef enum {lLIFT_LEFT,lFWD_LEFT,lDUAL_LEFT,lSHIFT_FRONT_LEFT,lLIFT_RIGHT,lFWD_RIGHT,lDUAL_RIGHT,lSHIFT_FRONT_RIGHT} LOOP_FSM;
