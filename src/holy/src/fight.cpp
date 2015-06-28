@@ -51,12 +51,30 @@ void Fight::StateMachine() {
         if (loop_fsm == RP_forward) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(fight_poses.fight_punch_right_forward).move(core->get_vel());
+                if (core->get_buttons()[static_cast<int>(Controller_Button::X)] == 1)
+                    loop_fsm = RP_sideways;
+                else
+                    fight_fsm = Fight_FSM::STANCE;
+            }
+        }
+        else if (loop_fsm == RP_sideways) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(fight_poses.fight_punch_right_sideways).move(core->get_vel());
                 fight_fsm = Fight_FSM::STANCE;
             }
         }
         else if (loop_fsm == LP_forward) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(fight_poses.fight_punch_left_forward).move(core->get_vel());
+                if (core->get_buttons()[static_cast<int>(Controller_Button::Kreis)] == 1)
+                    loop_fsm = LP_sideways;
+                else
+                    fight_fsm = Fight_FSM::STANCE;
+            }
+        }
+        else if (loop_fsm == LP_sideways) {
+            if (core->get_goal_success()) {
+                core->setPoseTarget(fight_poses.fight_punch_left_sideways).move(core->get_vel());
                 fight_fsm = Fight_FSM::STANCE;
             }
         }

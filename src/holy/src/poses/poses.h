@@ -95,6 +95,8 @@ public:
     RoboPose fight_stance;
     RoboPose fight_punch_right_forward;
     RoboPose fight_punch_left_forward;
+    RoboPose fight_punch_right_sideways;
+    RoboPose fight_punch_left_sideways;
 
     void set_step_length(double length);
     void set_step_height(double height);

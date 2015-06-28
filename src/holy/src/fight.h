@@ -23,7 +23,7 @@ public:
 
     void init_StateMachine();
 
-    typedef enum {RP_forward, RP_back, LP_forward, LP_back} LOOP_FSM;
+    typedef enum {RP_forward, RP_sideways, LP_forward, LP_sideways} LOOP_FSM;
 
 
 private:
