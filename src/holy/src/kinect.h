@@ -8,6 +8,9 @@
 
 #include "poses/poses.h"
 #include "holy_fsm_defines.h"
+#include "poses/robopose.h"
+#include <tf/transform_listener.h>
+
 
 class Core;
 
@@ -18,13 +21,23 @@ public:
 
     void executeStateMachine();
 
-
     Kinect_FSM kinect_fsm;
 
     // State machine
     void StateMachine();
 
     void init_StateMachine();
+    tf::TransformListener* kin_listener;
+
+    std::map<Core::Limb, tf::StampedTransform> kin_transforms;
+    double compute_norm(tf::StampedTransform &frame1);
+
+    RoboPose pose_from_kinect;
+    RoboPose pose_dual_stand;
+    RoboPose pose_right_stand;
+    RoboPose pose_left_stand;
+    void updateTF();
+    void human_to_robopose();
 
 
 private:

@@ -425,7 +425,7 @@ Core &Core::move(const double speed_scale)
 
             // if simulation, wait a second and go on
             if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
-                ros::Duration(1.0).sleep();
+                ros::Duration(0.3).sleep();
                 this->set_goal_success(true);
             }
 

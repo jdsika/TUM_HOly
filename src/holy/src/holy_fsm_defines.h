@@ -5,7 +5,7 @@
 enum class Holy_FSM {START,WALK,STAIRS,KINECT,FIGHT, WAIT};
 
 // Kinect FSM
-enum class Kinect_FSM {STAND, LBALANCE, RBALANCE, DUALBALANCE};
+enum class Kinect_FSM {STAND, LBALANCE, RBALANCE};
 
 // Stairs FSM
 enum class Stairs_FSM {STAND,INIT,LOOP,STOP};
@@ -13,6 +13,6 @@ enum class Stairs_FSM {STAND,INIT,LOOP,STOP};
 // Walk FSM
 enum class Walk_FSM {STAND,INIT,LOOP,STOP};
 
-#endif // STAIRS_H
+#endif
 
 

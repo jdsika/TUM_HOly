@@ -30,8 +30,8 @@ int main(int argc, char **argv)
     Kinect kinect(&core);
     Fight fight(&core);
 
-    Holy_FSM holy_fsm = Holy_FSM::START;
-    Holy_FSM holy_fsm_tmp = Holy_FSM::START;
+    Holy_FSM holy_fsm = Holy_FSM::KINECT;
+    Holy_FSM holy_fsm_tmp = Holy_FSM::KINECT;
 
     ros::Rate rate(100);
 
