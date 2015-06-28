@@ -73,7 +73,6 @@ void Kinect::StateMachine() {
         // update parameters
         //kinect_poses.update();
 
-<<<<<<< HEAD
         // Construct a Robopose based on Kinect input and send it to robot
         // 3 Modes: Dual support, left and right support
         // Automatically changed due to height of human foot ( left foot raised --> lean right, left foot is movable)
@@ -88,33 +87,13 @@ void Kinect::StateMachine() {
 
         }
         else if (kinect_fsm == Kinect_FSM::LBALANCE) {
-
-=======
-    if (kinect_fsm == Kinect_FSM::WAIT) {
-
-        if (core->get_buttons()[static_cast<int>(Controller_Button::DreiEck)] == 1) {
-            kinect_fsm = Kinect_FSM::INIT;
-            core->set_isstanding(false);
-            if (DEBUG) ROS_INFO("INIT");
->>>>>>> 133c01c481cb23e569e6bd4df28fab38085899fe
         }
     }
-    else if (kinect_fsm == Kinect_FSM::INIT) {
-        kinect_fsm = Kinect_FSM::STOP;
-    }
-    else if (kinect_fsm == Kinect_FSM::STOP) {
-        if (core->get_goal_success()) {
-            core->setPoseTarget(kinect_poses.pose_default).move(core->get_vel());
-            // Go to Stand
-            core->set_isstanding(true);
-            if (DEBUG) ROS_INFO("STAND");
-            kinect_fsm = Kinect_FSM::WAIT;
-        }
 
-    }
+
 }
 
 void Kinect::init_StateMachine() {
     // Init to first element in FSM
-    kinect_fsm = Kinect_FSM::STOP;
+    kinect_fsm = Kinect_FSM::STAND;
 }
