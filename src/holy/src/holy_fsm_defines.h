@@ -24,7 +24,8 @@ enum class Controller_Button : int {L1 = 10,
                                     L2 = 8,
                                     R1 = 11,
                                     R2 = 9,
-                                    DreiEck = 12, Kreis =13, X = 14, VierEck = 15 };
+                                    DreiEck = 12, Kreis =13, X = 14, VierEck = 15,
+                                    PS = 16};
 
 #endif
 

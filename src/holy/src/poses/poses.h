@@ -56,6 +56,7 @@ public:
 
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static RoboPose pose_default;
+    static RoboPose pose_relax;
 
     // POSES FOR WALKING
     RoboPose shift_toleft;

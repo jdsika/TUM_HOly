@@ -27,7 +27,7 @@ void Fight::StateMachine() {
     fight_poses.set_step_length(core->getStep_length()); // max 0.033
     fight_poses.update();
 
-    velocity = core->get_vel();
+    //velocity = core->get_vel();
 
     switch(fight_fsm) {
     //************** WAIT FOR BUTTON CLICK ***************
@@ -35,17 +35,23 @@ void Fight::StateMachine() {
     {
         if (core->get_buttons()[static_cast<int>(Controller_Button::X)] == 1)
         {
+            // reset button
+            core->set_buttons(static_cast<int>(Controller_Button::X), 0);
+
             core->set_isstanding(false);
             loop_fsm = RP_forward;
-            fight_fsm_tmp = fight_fsm;
+            fight_fsm_tmp = Fight_FSM::LOOP;
             fight_fsm = Fight_FSM::LOOP;
             if (DEBUG) ROS_INFO("Right Punch");
         }
         else if (core->get_buttons()[static_cast<int>(Controller_Button::Kreis)] == 1)
         {
+            // reset button
+            core->set_buttons(static_cast<int>(Controller_Button::Kreis), 0);
+
             core->set_isstanding(false);
             loop_fsm = LP_forward;
-            fight_fsm_tmp = fight_fsm;
+            fight_fsm_tmp = Fight_FSM::LOOP;
             fight_fsm = Fight_FSM::LOOP;
             if (DEBUG) ROS_INFO("Left Punch");
         }
@@ -57,30 +63,28 @@ void Fight::StateMachine() {
         if (loop_fsm == RP_forward) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(fight_poses.fight_punch_right_forward).move(velocity * velocity_mult);
-                if (core->get_buttons()[static_cast<int>(Controller_Button::X)] == 1)
-                    loop_fsm = RP_sideways;
-                else
-                    fight_fsm = Fight_FSM::STANCE;
+                loop_fsm = RP_sideways;
             }
         }
         else if (loop_fsm == RP_sideways) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(fight_poses.fight_punch_right_sideways).move(velocity * velocity_mult);
+                if (core->get_buttons()[static_cast<int>(Controller_Button::X)] == 1) {
+                    core->setPoseTarget(fight_poses.fight_punch_right_sideways).move(velocity * velocity_mult);
+                }
                 fight_fsm = Fight_FSM::STANCE;
             }
         }
         else if (loop_fsm == LP_forward) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(fight_poses.fight_punch_left_forward).move(velocity * velocity_mult);
-                if (core->get_buttons()[static_cast<int>(Controller_Button::Kreis)] == 1)
-                    loop_fsm = LP_sideways;
-                else
-                    fight_fsm = Fight_FSM::STANCE;
+                loop_fsm = LP_sideways;
             }
         }
         else if (loop_fsm == LP_sideways) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(fight_poses.fight_punch_left_sideways).move(velocity * velocity_mult);
+                if (core->get_buttons()[static_cast<int>(Controller_Button::Kreis)] == 1) {
+                    core->setPoseTarget(fight_poses.fight_punch_left_sideways).move(velocity * velocity_mult);
+                }
                 fight_fsm = Fight_FSM::STANCE;
             }
         }
@@ -116,5 +120,5 @@ void Fight::init_StateMachine() {
     fight_fsm_tmp = Fight_FSM::STANCE;
     loop_fsm = RP_forward;
 
-    velocity = 1.0;
+    velocity = 2.0;
 }

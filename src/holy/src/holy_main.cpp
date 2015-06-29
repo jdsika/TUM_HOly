@@ -110,6 +110,15 @@ int main(int argc, char **argv)
                 fight.init_StateMachine();
                 ROS_INFO("Holy_FSM -> FIGHT");
             }
+            else if (core.get_buttons()[static_cast<int>(Controller_Button::PS)]==1
+                     && holy_fsm != Holy_FSM::START
+                     && holy_fsm != Holy_FSM::WAIT) {
+                // GOTO FIGHT
+                holy_fsm_tmp = holy_fsm;
+                holy_fsm = Holy_FSM::START;
+
+                ROS_INFO("Holy_FSM -> RELAX");
+            }
         }
 
         // WALK
@@ -131,7 +140,7 @@ int main(int argc, char **argv)
         else if(holy_fsm == Holy_FSM::START) {
             if(core.get_goal_success()) { // initialized with true
                 // default position
-                core.setPoseTarget(Poses::pose_default).move(core.get_vel());
+                core.setPoseTarget(Poses::pose_relax).move(core.get_vel());
                 core.set_isstanding(true); // init is true but we should check this
                 ROS_INFO("Went to default position");
                 holy_fsm_tmp = holy_fsm;
