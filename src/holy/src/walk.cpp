@@ -199,7 +199,6 @@ void Walk::StateMachine() {
         else if (stop_fsm==sDEFAULT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.pose_default).move(core->get_vel());
-                //stop_fsm=sFWD_LEFT;
                 // Go to Stand
                 core->set_isstanding(true);
                 if (DEBUG) ROS_INFO("STAND");

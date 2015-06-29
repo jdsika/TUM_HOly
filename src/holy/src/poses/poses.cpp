@@ -107,7 +107,7 @@ void Poses::update() {
             RoboPose( std::vector<LimbPose> {
                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0), 0, 0, 0, 0, 0),
                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0), 0, 0, 0, 0, 0),
-                            LimbPose(Core::Limb::LEFT_FOOT,  d2r(0), 0, 0, -0.02, -0.02, 0.02),
+                            LimbPose(Core::Limb::LEFT_FOOT,  d2r(0), 0, 0, -0.02, -0.02, 0.01),
                             LimbPose(Core::Limb::RIGHT_FOOT, d2r(0), 0, 0,  0.02,  0.02, 0.02)
                         }, "fight_stance");
 

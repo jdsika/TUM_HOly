@@ -17,6 +17,7 @@ public:
     ~Fight();
 
     Fight_FSM fight_fsm;
+    Fight_FSM fight_fsm_tmp;
 
     // State machine
     void StateMachine();
@@ -31,6 +32,9 @@ private:
     // poses object
     Poses fight_poses;
     LOOP_FSM loop_fsm;
+
+    double velocity;
+    const static double velocity_mult;
 };
 
 #endif
