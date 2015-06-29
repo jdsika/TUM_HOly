@@ -58,7 +58,7 @@ public:
     static RoboPose pose_default;
     static RoboPose pose_relax;
 
-    // POSES FOR WALKING
+    // Relative poses
     RoboPose shift_toleft;
     RoboPose shift_toright;
     RoboPose lift_right;
@@ -71,7 +71,21 @@ public:
     RoboPose dual_left;
     RoboPose arms_fwd_left_foot;
     RoboPose arms_fwd_right_foot;
+    RoboPose arms_fwd_dual;
+    RoboPose arm_left_fwd;
+    RoboPose arm_right_fwd;
 
+    // Stairs compensates
+    RoboPose comp_shift_toleft;
+    RoboPose comp_shift_toright;
+    RoboPose comp_left_pad;
+    RoboPose comp_fwd_right;
+    RoboPose comp_dual_right;
+    RoboPose comp_right_down;
+    RoboPose comp_shift_frontright;
+    RoboPose lean_fwd_right;
+
+    // Absolute poses
     RoboPose init_shift_toleft;
     RoboPose init_lift_right;
     RoboPose init_fwd_right;
@@ -91,6 +105,17 @@ public:
     RoboPose stop_fwd_left;
     RoboPose stop_lift_right;
     RoboPose stop_fwd_right;
+    // STAIR POSES
+    RoboPose stairs_shift_toleft;
+    RoboPose stairs_lift_right;
+    RoboPose stairs_fwd_right;
+    RoboPose stairs_dual_right;
+    RoboPose stairs_right_down;
+    RoboPose stairs_shift_frontright;
+    RoboPose stairs_lean_frontright;
+    RoboPose stairs_adjust_left_pad;
+    RoboPose stairs_fwd_left;
+    RoboPose stairs_jippie;
 
     // POSES FOR FIGHTING
     RoboPose fight_stance;
@@ -100,6 +125,7 @@ public:
     RoboPose fight_punch_left_sideways;
 
     void set_step_length(double length);
+    double get_step_length();
     void set_step_height(double height);
     void set_turning_angle(double angle);
 

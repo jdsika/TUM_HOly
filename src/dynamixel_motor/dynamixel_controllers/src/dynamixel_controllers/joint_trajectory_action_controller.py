@@ -99,10 +99,10 @@ class JointTrajectoryActionController():
         #self.min_velocity = rospy.get_param(self.controller_namespace + '/joint_trajectory_action_node/min_velocity', 0.1)
         self.min_velocity = rospy.get_param(self.controller_namespace + '/joint_trajectory_action_node/min_velocity', 0.3)
         for joint in self.joint_names:
-            #self.goal_constraints.append(rospy.get_param(ns + '/' + joint + '/goal', -1.0))
-            #self.trajectory_constraints.append(rospy.get_param(ns + '/' + joint + '/trajectory', -1.0))
-	    self.goal_constraints.append(rospy.get_param(ns + '/' + joint + '/goal', 0.5))
+            self.goal_constraints.append(rospy.get_param(ns + '/' + joint + '/goal', -1.0))
             self.trajectory_constraints.append(rospy.get_param(ns + '/' + joint + '/trajectory', -1.0))
+#	    self.goal_constraints.append(rospy.get_param(ns + '/' + joint + '/goal', 0.5))
+#           self.trajectory_constraints.append(rospy.get_param(ns + '/' + joint + '/trajectory', -1.0))
             
         # Message containing current state for all controlled joints
         self.msg = FollowJointTrajectoryFeedback()

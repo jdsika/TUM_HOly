@@ -461,7 +461,7 @@ bool groupStateValidityCallback(
 
 Core &Core::setPoseTarget(const RoboPose &rp)
 {
-    //std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
+    std::cout << "Set targets for \""<<rp.objname<<"\"..."<<std::endl;
 
     for(const LimbPose lp : rp.getLimbs())
     {

@@ -69,8 +69,10 @@ class DynamixelIO(object):
             self.ser.baudrate = baudrate
             self.port_name = port
             self.readback_echo = readback_echo
+	    self.position_cache = dict() # create position chache dict to prevent sending unchanged values
         except SerialOpenError:
            raise SerialOpenError(port, baudrate)
+
 
     def __del__(self):
         """ Destructor calls DynamixelIO.close """
@@ -796,21 +798,26 @@ class DynamixelIO(object):
             position = vals[1]
             speed = vals[2]
 
-            # split speed into 2 bytes
-            if speed >= 0:
-                loSpeedVal = int(speed % 256)
-                hiSpeedVal = int(speed >> 8)
-            else:
-                loSpeedVal = int((1023 - speed) % 256)
-                hiSpeedVal = int((1023 - speed) >> 8)
+	    # only send values if they changed
+	    if not sid in self.position_cache.keys() or self.position_cache[sid] != position:
+		    self.position_cache[sid]=position;
+		    
+		    # split speed into 2 bytes
+		    if speed >= 0:
+		        loSpeedVal = int(speed % 256)
+		        hiSpeedVal = int(speed >> 8)
+		    else:
+		        loSpeedVal = int((1023 - speed) % 256)
+		        hiSpeedVal = int((1023 - speed) >> 8)
 
-            # split position into 2 bytes
-            loPositionVal = int(position % 256)
-            hiPositionVal = int(position >> 8)
-            writeableVals.append( (sid, loPositionVal, hiPositionVal, loSpeedVal, hiSpeedVal) )
+		    # split position into 2 bytes
+		    loPositionVal = int(position % 256)
+		    hiPositionVal = int(position >> 8)
+		    writeableVals.append( (sid, loPositionVal, hiPositionVal, loSpeedVal, hiSpeedVal) )
 
-        # use sync write to broadcast multi servo message
-        self.sync_write(DXL_GOAL_POSITION_L, tuple(writeableVals))
+	if not writeableVals == []:
+            # use sync write to broadcast multi servo message
+            self.sync_write(DXL_GOAL_POSITION_L, tuple(writeableVals))
 
 
     #################################
@@ -830,6 +837,7 @@ class DynamixelIO(object):
         if response:
             self.exception_on_error(response[4], servo_id, 'fetching firmware version')
         return response[5]
+
 
     def get_return_delay_time(self, servo_id):
         """ Reads the servo's return delay time. """

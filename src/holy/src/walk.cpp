@@ -201,6 +201,7 @@ void Walk::StateMachine() {
                 core->setPoseTarget(walk_poses.pose_default).move(core->get_vel());
                 // Go to Stand
                 core->set_isstanding(true);
+                init_StateMachine();
                 if (DEBUG) ROS_INFO("STAND");
                 walk_fsm = Walk_FSM::STAND;
             }

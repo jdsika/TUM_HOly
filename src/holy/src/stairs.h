@@ -12,7 +12,7 @@ public:
     ~Stairs();
 
     // FSMs
-    typedef enum {iSHIFT_LEFT,iLIFT_RIGHT,iFWD_RIGHT,iDUAL_RIGHT, iSHIFT_FRONT_RIGHT} INIT_FSM;
+    typedef enum {iSHIFT_LEFT,iLIFT_RIGHT,iFWD_RIGHT,iDUAL_RIGHT,iFWD_LEFT,iADJUST_LEFT_PAD,iLEAN_FWD_RIGHT,iRIGHT_DOWN,iSHIFT_FRONT_RIGHT, iJIPPIE} INIT_FSM;
     typedef enum {lLIFT_LEFT,lFWD_LEFT,lDUAL_LEFT,lSHIFT_FRONT_LEFT,lLIFT_RIGHT,lFWD_RIGHT,lDUAL_RIGHT,lSHIFT_FRONT_RIGHT} LOOP_FSM;
     typedef enum {sLIFT_LEFT,sFWD_LEFT,sLIFT_RIGHT,sFWD_RIGHT,sDEFAULT} STOP_FSM;
 
@@ -30,6 +30,7 @@ private:
     Core* core;
     // poses object
     Poses stairs_poses;
+    double velocity;
 
 };
 
