@@ -11,7 +11,7 @@ private:
 
 public:
     static bool setCompliance();
-    static bool runComplianceBash(std::string filename);
+    static int runComplianceBash(std::string filename);
 
     const static std::string resetBashFilename;
     const static std::string setBashFilename;

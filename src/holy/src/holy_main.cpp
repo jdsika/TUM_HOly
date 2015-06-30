@@ -9,7 +9,7 @@
 #include "fsm/stairs.h"
 
 #include "poses/poses.h"
-
+#include "core/motors.h"
 #include "poses/parser.h"
 
 int main(int argc, char **argv)
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::STAIRS;
 
                 // trying to call the service for compliance here
-                //setCompliance();
+                Motors::runComplianceBash(Motors::setBashFilename);
 
                 // initializing stairs fsm
                 stairs.init_StateMachine();
@@ -54,6 +54,9 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::WALK;
 
+                // trying to call the service for compliance here
+                Motors::runComplianceBash(Motors::resetBashFilename);
+
                 // initializing walk fsm
                 walk.init_StateMachine();
                 ROS_INFO("Holy_FSM -> WALK");
@@ -64,6 +67,9 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::KINECT;
 
+                // trying to call the service for compliance here
+                Motors::runComplianceBash(Motors::resetBashFilename);
+
                 // initializing kinect fsm
                 kinect.init_StateMachine();
                 ROS_INFO("Holy_FSM -> KINECT");
@@ -73,6 +79,9 @@ int main(int argc, char **argv)
                 // GOTO FIGHT
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::FIGHT;
+
+                // trying to call the service for compliance here
+                Motors::runComplianceBash(Motors::resetBashFilename);
 
                 // initializing fight fsm
                 fight.init_StateMachine();
