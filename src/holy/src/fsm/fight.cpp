@@ -1,8 +1,8 @@
 #include "fight.h"
 
-#include "core.h"
-#include "poses/poses.h"
-#include "poses/parser.h"
+#include "../core/core.h"
+#include "../poses/poses.h"
+#include "../poses/parser.h"
 
 #define DEBUG 1
 
@@ -11,11 +11,6 @@ const double Fight::velocity_mult = 10.0;
 Fight::Fight(Core *core) : core{core}
 {
     init_StateMachine();
-}
-
-Fight::~Fight()
-{
-
 }
 
 

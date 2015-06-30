@@ -1,7 +1,7 @@
 #include "poses.h"
 
 #include "limbpose.h"
-#include "../core.h"
+#include "../core/core.h"
 
 // R, P, Y, X, Y, Z
 // Feet: Toes up(+) down(-) / ankles left(+) right(-) / twist left right / X / Y / Z

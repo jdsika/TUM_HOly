@@ -5,7 +5,7 @@
 #ifndef LIMBPOSE_H
 #define LIMBPOSE_H
 
-#include "../core.h"
+#include "../core/core.h"
 
 class LimbPose {
 public:

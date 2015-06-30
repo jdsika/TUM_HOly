@@ -6,15 +6,14 @@
 #ifndef _Fight_H_
 #define _Fight_H_
 
-#include "poses/poses.h"
-#include "holy_fsm_defines.h"
+#include "../poses/poses.h"
+#include "fsm_defines.h"
 
 class Core;
 
 class Fight {
 public:
     Fight(Core* core);
-    ~Fight();
 
     Fight_FSM fight_fsm;
     Fight_FSM fight_fsm_tmp;

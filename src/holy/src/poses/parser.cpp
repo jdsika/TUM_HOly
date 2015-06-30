@@ -5,7 +5,7 @@
 
 #include "poses.h"
 
-#include "../core.h"
+#include "../core/core.h"
 
 
 #include "../CSV/csviterator.h"
@@ -130,7 +130,7 @@ bool Parser::parseRoboPositions(std::string filename)
     return true;
 }
 
-bool Parser::getWorkingDirectory()
+bool Parser::setWorkingDirectory(std::string mypath)
 {
     char cCurrentPath[FILENAME_MAX];
 
@@ -141,11 +141,11 @@ bool Parser::getWorkingDirectory()
 
     cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
 
-    std::cout << "The current working directory is: " << cCurrentPath << std::endl;
-
     std::string path = std::string(cCurrentPath);
 
-    path = path.substr(0, path.size()-4);
+    path = path.substr(0, path.size()-4) + mypath;
+
+    std::cout << "The current working directory is: " << path << std::endl;
 
     chdir(path.c_str());
 }

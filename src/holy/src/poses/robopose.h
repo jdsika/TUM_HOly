@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "../core.h"
+#include "../core/core.h"
 
 
 class LimbPose;

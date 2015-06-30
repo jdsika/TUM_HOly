@@ -6,15 +6,14 @@
 #ifndef _WALK_H_
 #define _WALK_H_
 
-#include "poses/poses.h"
-#include "holy_fsm_defines.h"
+#include "../poses/poses.h"
+#include "fsm_defines.h"
 
 class Core;
 
 class Walk {
 public:
     Walk(Core* core);
-    ~Walk();
 
     void executeStateMachine();
 

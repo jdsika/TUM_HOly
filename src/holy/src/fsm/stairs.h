@@ -1,8 +1,8 @@
 #ifndef STAIRS_H
 #define STAIRS_H
 
-#include "poses/poses.h"
-#include "holy_fsm_defines.h"
+#include "../poses/poses.h"
+#include "fsm_defines.h"
 
 class Core;
 

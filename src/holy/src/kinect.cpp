@@ -1,6 +1,6 @@
 #include "kinect.h"
 
-#include "core.h"
+#include "core/core.h"
 #include "poses/poses.h"
 #include "poses/robopose.h"
 #include <tf/transform_listener.h>

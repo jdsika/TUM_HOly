@@ -1,52 +1,21 @@
 #include <ros/ros.h>
 
-#include "holy_fsm_defines.h"
+#include "fsm/fsm_defines.h"
 
-#include "core.h"
-#include "walk.h"
-#include "fight.h"
+#include "core/core.h"
+#include "fsm/walk.h"
+#include "fsm/fight.h"
 #include "kinect.h"
-#include "stairs.h"
+#include "fsm/stairs.h"
 
 #include "poses/poses.h"
 
-//#include <ros/service.h>    // this is used to set the compliance slope, margin and punch
-//#include <string>
-//#include <vector>
-
-//bool setCompliance()
-//{
-//    std::vector<std::string> side = {"/L_","/R_"};
-//    std::vector<std::string> joint = {"HAA", "HR", "HFE", "KFE", "AFE", "AR"};
-//    std::vector<std::string> service = {"_controller/set_speed",
-//                           "_controller/torque_enable",
-//                          "_controller/set_compliance_slope",
-//                          "_controller/set_compliance_margin",
-//                          "_controller/set_compliance_punch"
-//                          };
-
-//    std::vector<bool> answers;
-
-//    answers.resize(side.size()*joint.size()*service.size());
-
-//    std::vector<double> values = {5.3, 1.0, 12.0, 0.0, 0.0};
-
-//    for( std::string s : side) {
-//        for( std::string m : joint) {
-//            for(int i = 0; i < values.size(); ++i)
-//            {
-//                //ros::service::call(s+m+service.at(i), values[i], answers[i]);
-//                //std::cout << s+m+service.at(i) << std::endl;
-//            }
-//        }
-//    }
-
-
-//    return true;
-//}
+#include "poses/parser.h"
 
 int main(int argc, char **argv)
 {
+    Parser::setWorkingDirectory("");
+
     ros::init(argc, argv, "holy_walk");
 
     Core core(argc, argv);

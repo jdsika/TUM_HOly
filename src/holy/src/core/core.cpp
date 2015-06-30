@@ -18,8 +18,8 @@
 #include <moveit/planning_interface/planning_interface.h>
 #include <sensor_msgs/Joy.h>
 #include <sensor_msgs/Joy.h>
-#include "poses/limbpose.h"
-#include "poses/robopose.h"
+#include "../poses/limbpose.h"
+#include "../poses/robopose.h"
 #include "actionlib_msgs/GoalStatusArray.h"
 
 #define DEBUG 0

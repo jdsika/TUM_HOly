@@ -7,7 +7,7 @@
 #define _KINECT_H_
 
 #include "poses/poses.h"
-#include "holy_fsm_defines.h"
+#include "fsm/fsm_defines.h"
 #include "poses/robopose.h"
 #include <tf/transform_listener.h>
 

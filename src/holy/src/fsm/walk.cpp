@@ -1,21 +1,14 @@
 #include "walk.h"
 
-#include "core.h"
-#include "poses/poses.h"
-#include "poses/parser.h"
+#include "../core/core.h"
+#include "../poses/poses.h"
+#include "../poses/parser.h"
 
 #define DEBUG 1
 
 Walk::Walk(Core *core) : core{core}
 {
-
     init_StateMachine();
-
-}
-
-Walk::~Walk()
-{
-
 }
 
 void Walk::executeStateMachine()
