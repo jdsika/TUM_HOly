@@ -75,6 +75,9 @@ public:
     RoboPose arm_left_fwd;
     RoboPose arm_right_fwd;
 
+    // Carlo compensate for walking
+    RoboPose comp_left_pad_forward;
+
     // Stairs compensates
     RoboPose comp_shift_toleft;
     RoboPose comp_shift_toright;

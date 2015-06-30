@@ -10,7 +10,7 @@ enum class Kinect_FSM {STAND, LBALANCE, RBALANCE};
 
 
 // Stairs FSM
-enum class Stairs_FSM {STAND,INIT,LOOP,STOP};
+enum class Stairs_FSM {WAIT,CLIMB,STOP, CHEER};
 
 // Walk FSM
 enum class Walk_FSM {STAND,INIT,LOOP,STOP};

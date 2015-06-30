@@ -38,7 +38,7 @@ void Walk::executeStateMachine()
 void Walk::StateMachine() {
 
     // update parameters
-    walk_poses.set_step_height(0.01); // max 0.05
+    walk_poses.set_step_height(0.015); // max 0.05
     walk_poses.set_turning_angle(core->get_turning_angle());
     walk_poses.set_step_length(core->getStep_length()); // max 0.033
     walk_poses.update();
@@ -63,24 +63,21 @@ void Walk::StateMachine() {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.init_shift_toleft).move(core->get_vel_slow());
                 init_fsm=iFWD_RIGHT;
+                if (DEBUG) ROS_INFO("iSHIFT_LEFT");
             }
         }
-        /*else if (init_fsm==iLIFT_RIGHT) {
-            if (core->get_goal_success()) {
-                core->setPoseTarget(poses.init_lift_right).move(core->get_vel());
-                init_fsm=iFWD_RIGHT;
-            }
-        }*/
         else if (init_fsm==iFWD_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.init_fwd_right).move(core->get_vel());
                 init_fsm=iDUAL_RIGHT;
+                if (DEBUG) ROS_INFO("iFWD_RIGHT");
             }
         }
         else if (init_fsm==iDUAL_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.init_dual_right).move(core->get_vel());
                 init_fsm=iSHIFT_FRONT_RIGHT;
+                if (DEBUG) ROS_INFO("iDUAL_RIGHT");
             }
         }
         else if (init_fsm==iSHIFT_FRONT_RIGHT) {
@@ -90,11 +87,11 @@ void Walk::StateMachine() {
                 // Go to Loop
                 if (!core->get_stop()) {
                     walk_fsm = Walk_FSM::LOOP;
-                    if (DEBUG) ROS_INFO("LOOP");
+                    if (DEBUG) ROS_INFO("iSHIFT_FRONT_RIGHT -> LOOP");
                 }
                 else {
                     walk_fsm = Walk_FSM::STOP;
-                    if (DEBUG) ROS_INFO("STOP");
+                    if (DEBUG) ROS_INFO("iSHIFT_FRONT_RIGHT -> STOP");
                 }
             }
         }
@@ -105,22 +102,18 @@ void Walk::StateMachine() {
     else if (walk_fsm == Walk_FSM::LOOP) {
 
         // Loop
-       /* if (loop_fsm==lLIFT_LEFT) {
-            if (core->get_goal_success()) {
-                core->setPoseTarget(poses.loop_lift_left).move(core->get_vel());
-                loop_fsm=lFWD_LEFT;
-            }
-        }*/
         if (loop_fsm==lFWD_LEFT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.loop_fwd_left).move(core->get_vel());
                 loop_fsm=lDUAL_LEFT;
+                if (DEBUG) ROS_INFO("lFWD_LEFT");
             }
         }
         else if (loop_fsm==lDUAL_LEFT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.loop_dual_left).move(core->get_vel());
                 loop_fsm=lSHIFT_FRONT_LEFT;
+                if (DEBUG) ROS_INFO("lDUAL_LEFT");
             }
         }
         else if (loop_fsm==lSHIFT_FRONT_LEFT) {
@@ -138,12 +131,6 @@ void Walk::StateMachine() {
 
             }
         }
-        /*else if (loop_fsm==lLIFT_RIGHT) {
-            if (core->get_goal_success()) {
-                core->setPoseTarget(poses.loop_lift_right).move(core->get_vel());
-                loop_fsm=lFWD_RIGHT;
-            }
-        }*/
         else if (loop_fsm==lFWD_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(walk_poses.loop_fwd_right).move(core->get_vel());

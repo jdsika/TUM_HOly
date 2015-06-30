@@ -49,7 +49,7 @@ void Poses::update() {
 
     lift_left =
             RoboPose( std::vector<LimbPose> {
-                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), -0.01, 0,step_height),
+                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), -0.01, 0,step_height), // Compensate x due to weak motors
                         }, "lift_left");
 
     turn_right =
@@ -99,16 +99,32 @@ void Poses::update() {
                             LimbPose(Core::Limb::LEFT_HAND,  d2r(70),  0, 0, 0, 0, 0),
                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  0, 0,  0, 0, 0),
                         }, "arms_fwd_right_foot");
+
     arm_left_fwd =
             RoboPose( std::vector<LimbPose> {
                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  d2r(-90), d2r(0), 0, 0, 0),
                         }, "arm_left_fwd");
+
     arm_right_fwd =
             RoboPose( std::vector<LimbPose> {
                             LimbPose(Core::Limb::RIGHT_HAND,  d2r(0), d2r(90), d2r(-45), 0, 0, 0),
                         }, "arm_right_fwd");
 
-    // Stairs
+    lean_fwd_right =
+            RoboPose( std::vector<LimbPose> {
+                            LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(0), d2r(0), 0, -0.01, -0.00)
+                        }, "lean_fwd_right");
+
+
+    // carlo compensate for walking - not used
+//    comp_left_pad_forward =
+//            RoboPose( std::vector<LimbPose> {
+//                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(-5), d2r(0), d2r(0), 0.00, 0.00, 0.00),
+//                            LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
+//                        }, "comp_left_pad_forward");
+
+
+    // Extra poses to compensate the stair climbing
     comp_dual_right =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0, -0.01),
@@ -143,16 +159,7 @@ void Poses::update() {
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0, 0)
                         }, "comp_shift_frontright");
-    lean_fwd_right =
-            RoboPose( std::vector<LimbPose> {
-                            LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(0), d2r(0), 0, -0.01, -0.00)
-                        }, "lean_fwd_right");
 
-    arms_fwd_dual =
-            RoboPose( std::vector<LimbPose> {
-                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  0, d2r(10), 0, 0, 0),
-                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  0, d2r(10),  0, 0, 0),
-                        }, "arms_fwd_dual");
 
     // Fighting Poses
     // R, P, Y, X, Y, Z
@@ -190,13 +197,6 @@ void Poses::update() {
 
 
     // Absolute poses:
-    // walking poses
-    // Init
-    init_shift_toleft = pose_default+shift_toleft+arms_fwd_right_foot;
-    init_lift_right = init_shift_toleft+lift_right+turn_right;
-    init_fwd_right = init_lift_right+fwd_right;
-    init_dual_right = init_fwd_right+ dual_right- shift_toleft - lift_right - arms_fwd_right_foot;
-    init_shift_frontright = init_dual_right+ shift_toright + dual_right-turn_right+arms_fwd_left_foot;
 
     // STAIRS absolute
     stairs_shift_toleft = pose_default + shift_toleft + arms_fwd_right_foot;
@@ -222,10 +222,18 @@ void Poses::update() {
 //    stairs_dual_right.printInfo();
 //    stairs_right_down.printInfo();
 
+    // walking poses
+    // Init
+    init_shift_toleft = pose_default+shift_toleft+arms_fwd_right_foot;
+    init_lift_right = init_shift_toleft+lift_right+turn_right;
+    init_fwd_right = init_lift_right+fwd_right;
+    init_dual_right = init_fwd_right+ dual_right- shift_toleft - lift_right - arms_fwd_right_foot;
+    init_shift_frontright = init_dual_right+ shift_toright + dual_right-turn_right+arms_fwd_left_foot;
+
     // Loop
     loop_lift_left = init_shift_frontright+lift_left+turn_left;
     loop_fwd_left = loop_lift_left+fwd_left+fwd_left;
-    loop_dual_left = loop_fwd_left+ dual_left- shift_toright - lift_left -arms_fwd_left_foot;
+    loop_dual_left = loop_fwd_left+ dual_left- shift_toright - lift_left - arms_fwd_left_foot;
     loop_shift_frontleft = loop_dual_left+ shift_toleft + dual_left-turn_left + arms_fwd_right_foot;
     loop_lift_right = loop_shift_frontleft+lift_right+turn_right;
     loop_fwd_right = loop_lift_right+fwd_right+fwd_right;
@@ -237,9 +245,6 @@ void Poses::update() {
     stop_fwd_left = stop_lift_left+fwd_left;
     stop_lift_right = loop_shift_frontleft+lift_right;
     stop_fwd_right= stop_lift_right+fwd_right;
-
-    // Fighting poses
-
 }
 
 void Poses::set_step_length(double length) {
