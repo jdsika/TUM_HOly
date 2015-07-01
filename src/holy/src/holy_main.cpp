@@ -16,14 +16,16 @@
 
 int main(int argc, char **argv)
 {
-    std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
+    ros::init(argc, argv, "holy");
 
-    Helper::setWorkingDirectory(Helper::getPackagePath("holy"));
+    //std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
+
+    //Helper::setWorkingDirectory(Helper::getPackagePath("holy"));
 
     // reading files in the directory set before is working
     //Parser::printCSVRows(Parser::filename);
 
-    ros::init(argc, argv, "holy_walk");
+
 
     Core core(argc, argv);
 

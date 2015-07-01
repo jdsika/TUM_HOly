@@ -32,10 +32,10 @@ void Kinect::updateTF()
 {
 
     // Left right is swapped in Kinect frame!
-    kin_listener->lookupTransform("/torso_1", "/left_foot_1", ros::Time(0), kin_transforms[Core::Limb::RIGHT_FOOT]);
-    kin_listener->lookupTransform("/torso_1", "/right_foot_1", ros::Time(0), kin_transforms[Core::Limb::LEFT_FOOT]);
-    kin_listener->lookupTransform("/torso_1", "/left_hand_1", ros::Time(0), kin_transforms[Core::Limb::RIGHT_HAND]);
-    kin_listener->lookupTransform("/torso_1", "/right_hand_1", ros::Time(0), kin_transforms[Core::Limb::LEFT_HAND]);
+    kin_listener->lookupTransform("tracker/user_1/torso", "tracker/user_1/left_foot", ros::Time(0), kin_transforms[Core::Limb::LEFT_FOOT]);
+    kin_listener->lookupTransform("tracker/user_1/torso", "tracker/user_1/right_foot", ros::Time(0), kin_transforms[Core::Limb::RIGHT_FOOT]);
+    kin_listener->lookupTransform("tracker/user_1/torso", "tracker/user_1/left_hand", ros::Time(0), kin_transforms[Core::Limb::LEFT_HAND]);
+    kin_listener->lookupTransform("tracker/user_1/torso", "tracker/user_1/right_hand", ros::Time(0), kin_transforms[Core::Limb::RIGHT_HAND]);
 }
 
 double Kinect::compute_norm(tf::StampedTransform &frame1) {
@@ -61,7 +61,10 @@ void Kinect::human_to_robopose()
 
 void Kinect::StateMachine() {
     // Wait until new Kinect TF data is available
-    bool success= kin_listener->waitForTransform("/torso_1", "/right_hand_1",ros::Time(0), ros::Duration(3));
+    bool success= kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_foot",ros::Time(0), ros::Duration(2));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_foot",ros::Time(0), ros::Duration(2));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_hand",ros::Time(0), ros::Duration(2));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_hand",ros::Time(0), ros::Duration(2));
     if (!success) {
         ROS_INFO("no Kinect data found");
     }
