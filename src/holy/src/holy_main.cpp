@@ -12,6 +12,8 @@
 #include "poses/parser.h"
 #include "core/helper.h"
 
+#define USE_COMPLIANCE 1
+
 int main(int argc, char **argv)
 {
     std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
@@ -46,8 +48,10 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::STAIRS;
 
+#if USE_COMPLIANCE
                 // trying to call the service for compliance here
                 Helper::runComplianceBash(Helper::setBashFilename);
+#endif
 
                 // initializing stairs fsm
                 stairs.init_StateMachine();
@@ -59,8 +63,12 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::WALK;
 
+#if USE_COMPLIANCE
                 // trying to call the service for compliance here
-                Helper::runComplianceBash(Helper::resetBashFilename);
+                if (holy_fsm_tmp == Holy_FSM::STAIRS) {
+                    Helper::runComplianceBash(Helper::resetBashFilename);
+                }
+#endif
 
                 // initializing walk fsm
                 walk.init_StateMachine();
@@ -72,8 +80,12 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::KINECT;
 
+#if USE_COMPLIANCE
                 // trying to call the service for compliance here
-                Helper::runComplianceBash(Helper::resetBashFilename);
+                if (holy_fsm_tmp == Holy_FSM::STAIRS) {
+                    Helper::runComplianceBash(Helper::resetBashFilename);
+                }
+#endif
 
                 // initializing kinect fsm
                 kinect.init_StateMachine();
@@ -85,8 +97,12 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::FIGHT;
 
+#if USE_COMPLIANCE
                 // trying to call the service for compliance here
-                Helper::runComplianceBash(Helper::resetBashFilename);
+                if (holy_fsm_tmp == Holy_FSM::STAIRS) {
+                    Helper::runComplianceBash(Helper::resetBashFilename);
+                }
+#endif
 
                 // initializing fight fsm
                 fight.init_StateMachine();
