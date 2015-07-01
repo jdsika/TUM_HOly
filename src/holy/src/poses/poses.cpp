@@ -116,14 +116,6 @@ void Poses::update() {
                         }, "lean_fwd_right");
 
 
-    // carlo compensate for walking - not used
-//    comp_left_pad_forward =
-//            RoboPose( std::vector<LimbPose> {
-//                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(-5), d2r(0), d2r(0), 0.00, 0.00, 0.00),
-//                            LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
-//                        }, "comp_left_pad_forward");
-
-
     // Extra poses to compensate the stair climbing
     comp_dual_right =
             RoboPose( std::vector<LimbPose> {
@@ -201,8 +193,8 @@ void Poses::update() {
     // STAIRS absolute
     stairs_shift_toleft = pose_default + shift_toleft + arms_fwd_right_foot;
     stairs_lift_right = stairs_shift_toleft + lift_right + comp_shift_toleft;
-    stairs_fwd_right = stairs_lift_right + fwd_right + arm_right_fwd;
-    stairs_dual_right = stairs_fwd_right + dual_right - shift_toleft - arms_fwd_right_foot - comp_shift_toleft;
+    stairs_fwd_right = stairs_lift_right + fwd_right + arm_right_fwd + comp_fwd_right;
+    stairs_dual_right = stairs_fwd_right + dual_right - shift_toleft - arms_fwd_right_foot - comp_shift_toleft - comp_fwd_right;
     stairs_right_down = stairs_dual_right + comp_right_down + shift_toright + comp_shift_toright + arm_left_fwd - arm_right_fwd;
     stairs_shift_frontright = stairs_right_down + lift_left ;
     stairs_lean_frontright = stairs_shift_frontright + lean_fwd_right + fwd_left + comp_left_pad;

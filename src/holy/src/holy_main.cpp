@@ -115,6 +115,13 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 holy_fsm = Holy_FSM::START;
 
+#if USE_COMPLIANCE
+                // trying to call the service for compliance here
+                if (holy_fsm_tmp == Holy_FSM::STAIRS) {
+                    Helper::runComplianceBash(Helper::resetBashFilename);
+                }
+#endif
+
                 ROS_INFO("Holy_FSM -> RELAX");
             }
         }
