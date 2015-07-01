@@ -18,14 +18,12 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "holy");
 
-    //std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
+    std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
 
-    //Helper::setWorkingDirectory(Helper::getPackagePath("holy"));
+    Helper::setWorkingDirectory(Helper::getPackagePath("holy"));
 
     // reading files in the directory set before is working
     //Parser::printCSVRows(Parser::filename);
-
-
 
     Core core(argc, argv);
 

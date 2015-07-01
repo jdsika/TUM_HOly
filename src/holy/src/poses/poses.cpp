@@ -116,41 +116,48 @@ void Poses::update() {
                         }, "lean_fwd_right");
 
 
+    // Extra poses for walking
+    comp_walk_dual_right =
+            RoboPose( std::vector<LimbPose> {
+                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
+                            LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
+                        }, "comp_walk_dual_right");
+
     // Extra poses to compensate the stair climbing
-    comp_dual_right =
+    comp_stairs_dual_right =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0, -0.01),
                             LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.00, 0, 0),
-                        }, "comp_dual_right");
-    comp_fwd_right =
+                        }, "comp_stairs_dual_right");
+    comp_stairs_fwd_right =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::RIGHT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0,0),
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(-3), d2r(0), d2r(0), 0, 0,0),
-                        }, "comp_fwd_right");
-    comp_shift_toleft =
+                        }, "comp_stairs_fwd_right");
+    comp_stairs_shift_toleft =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.01, 0, 0),
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(8), d2r(0), -0.02, 0, -0.00),
-                        }, "comp_shift_toleft");
-    comp_shift_toright =
+                        }, "comp_stairs_shift_toleft");
+    comp_stairs_shift_toright =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(-4), d2r(0), -0.015, 0, 0.00),
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(-10), d2r(0), d2r(0), 0.01, 0, -0.00),
-                        }, "comp_shift_toleft");
-    comp_right_down =
+                        }, "comp_stairs_shift_toleft");
+    comp_stairs_right_down =
             RoboPose( std::vector<LimbPose> {
                           LimbPose (Core::Limb::LEFT_FOOT,  d2r(-40), d2r(0), d2r(0), 0, -0.03, +0.008),
                           LimbPose (Core::Limb::RIGHT_FOOT, d2r(18), d2r(0), d2r(0), 0, 0, -0.004)
-                        }, "comp_right_down");
-    comp_left_pad =
+                        }, "comp_stairs_right_down");
+    comp_stairs_left_pad =
             RoboPose( std::vector<LimbPose> {
                           LimbPose (Core::Limb::RIGHT_FOOT, d2r(-6), d2r(0), d2r(0), 0, 0, 0.00),
                           LimbPose (Core::Limb::LEFT_FOOT,  d2r(46), d2r(0), d2r(0), 0, 0, -0.01)
-                        }, "comp_right_down");
-    comp_shift_frontright =
+                        }, "comp_stairs_right_down");
+    comp_stairs_shift_frontright =
             RoboPose( std::vector<LimbPose> {
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0, 0, 0)
-                        }, "comp_shift_frontright");
+                        }, "comp_stairs_shift_frontright");
 
 
     // Fighting Poses
@@ -192,12 +199,12 @@ void Poses::update() {
 
     // STAIRS absolute
     stairs_shift_toleft = pose_default + shift_toleft + arms_fwd_right_foot;
-    stairs_lift_right = stairs_shift_toleft + lift_right + comp_shift_toleft;
-    stairs_fwd_right = stairs_lift_right + fwd_right + arm_right_fwd + comp_fwd_right;
-    stairs_dual_right = stairs_fwd_right + dual_right - shift_toleft - arms_fwd_right_foot - comp_shift_toleft - comp_fwd_right;
-    stairs_right_down = stairs_dual_right + comp_right_down + shift_toright + comp_shift_toright + arm_left_fwd - arm_right_fwd;
+    stairs_lift_right = stairs_shift_toleft + lift_right + comp_stairs_shift_toleft;
+    stairs_fwd_right = stairs_lift_right + fwd_right + arm_right_fwd + comp_stairs_fwd_right;
+    stairs_dual_right = stairs_fwd_right + dual_right - shift_toleft - arms_fwd_right_foot - comp_stairs_shift_toleft - comp_stairs_fwd_right;
+    stairs_right_down = stairs_dual_right + comp_stairs_right_down + shift_toright + comp_stairs_shift_toright + arm_left_fwd - arm_right_fwd;
     stairs_shift_frontright = stairs_right_down + lift_left ;
-    stairs_lean_frontright = stairs_shift_frontright + lean_fwd_right + fwd_left + comp_left_pad;
+    stairs_lean_frontright = stairs_shift_frontright + lean_fwd_right + fwd_left + comp_stairs_left_pad;
     stairs_adjust_left_pad = pose_default ;
     stairs_jippie = pose_default + arms_fwd_left_foot + arms_fwd_left_foot + arms_fwd_right_foot + arms_fwd_right_foot;
 
