@@ -10,7 +10,7 @@ private:
     Motors();
 
 public:
-    static bool setCompliance();
+    static bool setCompliance(bool setReset);
     static int runComplianceBash(std::string filename);
 
     const static std::string resetBashFilename;

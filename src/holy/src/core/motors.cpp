@@ -9,7 +9,7 @@ const std::string Motors::setBashFilename = "setcompliance_stairs.sh";
 const std::string Motors::resetBashFilename = "resetcompliance_stairs.sh";
 
 
-bool Motors::setCompliance()
+bool Motors::setCompliance(bool setReset)
 {
     std::vector<std::string> side = {"/L_","/R_"};
     std::vector<std::string> joint = {"HAA", "HR", "HFE", "KFE", "AFE", "AR"};
@@ -31,7 +31,7 @@ bool Motors::setCompliance()
             for(int i = 0; i < values.size(); ++i)
             {
                 //ros::service::call(s+m+service.at(i), values[i], answers[i]);
-                std::cout << s+m+service.at(i) << std::endl;
+                //std::cout << s+m+service.at(i) << std::endl;
             }
         }
     }
