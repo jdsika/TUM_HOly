@@ -56,6 +56,7 @@ public:
 
     // The default pose is the basic pose that must be used as offset for other relatively defined poses
     static RoboPose pose_default;
+    static RoboPose pose_default_stairs;
     static RoboPose pose_relax;
 
     // Relative poses
@@ -77,7 +78,8 @@ public:
     RoboPose lean_fwd_right;
 
     // Carlo compensate for walking
-    RoboPose comp_walk_dual_right;
+    RoboPose comp_walk_fwd_left;
+    RoboPose comp_walk_fwd_right;
 
     // Stairs compensates
     RoboPose comp_stairs_shift_toleft;
