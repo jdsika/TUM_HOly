@@ -73,7 +73,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::KINECT;
 
                 // trying to call the service for compliance here
-                //Helper::runComplianceBash(Motors::resetBashFilename);
+                Helper::runComplianceBash(Helper::resetBashFilename);
 
                 // initializing kinect fsm
                 kinect.init_StateMachine();
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::FIGHT;
 
                 // trying to call the service for compliance here
-                //Helper::runComplianceBash(Motors::resetBashFilename);
+                Helper::runComplianceBash(Helper::resetBashFilename);
 
                 // initializing fight fsm
                 fight.init_StateMachine();

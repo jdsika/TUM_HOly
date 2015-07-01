@@ -55,7 +55,9 @@ int Helper::runComplianceBash(std::string filename)
     std::cout << "Executing command DIR..." << std::endl;
     std::cout << "Name: " << filename.c_str() << std::endl;
 
-    i = system(filename.c_str());
+    std::string fullQualifier = Helper::getPackagePath("holy") + "/" + filename;
+
+    i = system(fullQualifier.c_str());
 
     std::cout << "The value returned was: " << i << std::endl;
 
