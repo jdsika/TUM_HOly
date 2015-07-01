@@ -167,6 +167,8 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     bool zeros = std::all_of(joy->buttons.begin(), joy->buttons.end(), [](int i) { return i==0; });
 
     if(!zeros) {
+
+        velocity = 1.0;
         // always fetch the buttons
         buttons=joy->buttons;
 
