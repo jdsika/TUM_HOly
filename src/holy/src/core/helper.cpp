@@ -71,11 +71,11 @@ std::string Helper::getPackagePath(std::string libname)
     return path;
 }
 
-std::string Helper::setWorkingDirectory(std::string path)
+int Helper::setWorkingDirectory(const std::string path)
 {
     std::cout << "The current working directory is: " << path << std::endl;
 
-    chdir(path.c_str());
+    return chdir(path.c_str());
 }
 
 Helper::Helper()
