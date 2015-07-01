@@ -14,7 +14,6 @@ private:
 public:
     static bool printCSVRows(std::string filename);
     static bool parseRoboPositions(std::string filename);
-    static bool setWorkingDirectory(std::string mypath);
 
     static const std::string filename;
     static std::vector<RoboPose> walkingPoses;

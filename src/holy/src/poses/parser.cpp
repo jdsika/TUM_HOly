@@ -9,17 +9,9 @@
 
 
 #include "../CSV/csviterator.h"
-#include <stdio.h>  /* defines FILENAME_MAX */
-#ifdef WINDOWS  // @Carlo: ROS doesnt even exist for windows........
-    #include <direct.h>
-    #define GetCurrentDir _getcwd
-#else
-    #include <unistd.h>
-    #define GetCurrentDir getcwd
- #endif
 
 
-const std::string Parser::filename = "position_test.csv";
+const std::string Parser::filename = "positions.csv";
 
 
 Parser::Parser()
@@ -128,24 +120,4 @@ bool Parser::parseRoboPositions(std::string filename)
     }
 
     return true;
-}
-
-bool Parser::setWorkingDirectory(std::string mypath)
-{
-    char cCurrentPath[FILENAME_MAX];
-
-     if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
-         {
-         return false;
-         }
-
-    cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
-
-    std::string path = std::string(cCurrentPath);
-
-    path = path.substr(0, path.size()-4) + mypath;
-
-    std::cout << "The current working directory is: " << path << std::endl;
-
-    chdir(path.c_str());
 }

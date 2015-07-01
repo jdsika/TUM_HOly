@@ -9,12 +9,17 @@
 #include "fsm/stairs.h"
 
 #include "poses/poses.h"
-#include "core/motors.h"
 #include "poses/parser.h"
+#include "core/helper.h"
 
 int main(int argc, char **argv)
 {
-    Parser::setWorkingDirectory("");
+    std::cout << "HOly package path: " << Helper::getPackagePath("holy") << std::endl;
+
+    Helper::setWorkingDirectory(Helper::getPackagePath("holy"));
+
+    // reading files in the directory set before is working
+    //Parser::printCSVRows(Parser::filename);
 
     ros::init(argc, argv, "holy_walk");
 
@@ -42,7 +47,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::STAIRS;
 
                 // trying to call the service for compliance here
-                Motors::runComplianceBash(Motors::setBashFilename);
+                Helper::runComplianceBash(Helper::setBashFilename);
 
                 // initializing stairs fsm
                 stairs.init_StateMachine();
@@ -55,7 +60,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::WALK;
 
                 // trying to call the service for compliance here
-                Motors::runComplianceBash(Motors::resetBashFilename);
+                Helper::runComplianceBash(Helper::resetBashFilename);
 
                 // initializing walk fsm
                 walk.init_StateMachine();
@@ -68,7 +73,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::KINECT;
 
                 // trying to call the service for compliance here
-                Motors::runComplianceBash(Motors::resetBashFilename);
+                //Helper::runComplianceBash(Motors::resetBashFilename);
 
                 // initializing kinect fsm
                 kinect.init_StateMachine();
@@ -81,7 +86,7 @@ int main(int argc, char **argv)
                 holy_fsm = Holy_FSM::FIGHT;
 
                 // trying to call the service for compliance here
-                Motors::runComplianceBash(Motors::resetBashFilename);
+                //Helper::runComplianceBash(Motors::resetBashFilename);
 
                 // initializing fight fsm
                 fight.init_StateMachine();

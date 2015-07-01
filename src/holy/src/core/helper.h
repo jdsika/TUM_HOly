@@ -4,14 +4,16 @@
 #include <stdbool.h>
 #include <string>
 
-class Motors
+class Helper
 {
 private:
-    Motors();
+    Helper();
 
 public:
     static bool setCompliance(bool setReset);
     static int runComplianceBash(std::string filename);
+    static std::string getPackagePath(std::string libname);
+    static std::string setWorkingDirectory(std::string path);
 
     const static std::string resetBashFilename;
     const static std::string setBashFilename;

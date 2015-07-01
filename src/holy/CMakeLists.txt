@@ -23,7 +23,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
 
 ## Declare a cpp executable
 add_executable(holy
-    src/core/motors.cpp
+    src/core/helper.cpp
     src/fsm/fsm_defines
     src/holy_main.cpp
     src/core/core.cpp

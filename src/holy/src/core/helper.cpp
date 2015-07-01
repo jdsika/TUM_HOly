@@ -1,15 +1,17 @@
-#include "motors.h"
+#include "helper.h"
 
 #include <ros/service.h>    // this is used to set the compliance slope, margin and punch
+#include <ros/package.h>
+
 #include <vector>
 #include <stdlib.h>
 //#include <iostream>
 
-const std::string Motors::setBashFilename = "setcompliance_stairs.sh";
-const std::string Motors::resetBashFilename = "resetcompliance_stairs.sh";
+const std::string Helper::setBashFilename = "setcompliance.sh";
+const std::string Helper::resetBashFilename = "resetcompliance.sh";
 
 
-bool Motors::setCompliance(bool setReset)
+bool Helper::setCompliance(bool setReset)
 {
     std::vector<std::string> side = {"/L_","/R_"};
     std::vector<std::string> joint = {"HAA", "HR", "HFE", "KFE", "AFE", "AR"};
@@ -39,7 +41,7 @@ bool Motors::setCompliance(bool setReset)
     return true;
 }
 
-int Motors::runComplianceBash(std::string filename)
+int Helper::runComplianceBash(std::string filename)
 {
     int i;
     std::cout << "Checking if processor is available..." << std::endl;
@@ -60,6 +62,20 @@ int Motors::runComplianceBash(std::string filename)
     return i;
 }
 
-Motors::Motors()
+std::string Helper::getPackagePath(std::string libname)
+{
+    std::string path = ros::package::getPath(libname);
+
+    return path;
+}
+
+std::string Helper::setWorkingDirectory(std::string path)
+{
+    std::cout << "The current working directory is: " << path << std::endl;
+
+    chdir(path.c_str());
+}
+
+Helper::Helper()
 {
 }
