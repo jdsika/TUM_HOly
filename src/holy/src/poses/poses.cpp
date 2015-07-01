@@ -13,16 +13,18 @@
 
 RoboPose Poses::pose_default = RoboPose (std::vector<LimbPose> {
                                              //changed to have lower arms
-                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(10),  0, d2r(90-1), -0.15, 0, 0.03),
-                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(10),  0, d2r(-90+1),  0.15, 0, 0.03),
+                                            // LimbPose(Core::Limb::LEFT_HAND,  d2r(10),  0, d2r(90-1), -0.15, 0, 0.03),
+                                            // LimbPose(Core::Limb::RIGHT_HAND, d2r(10),  0, d2r(-90+1),  0.15, 0, 0.03),
+                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  d2r(10),  d2r(0),  0, 0, 0),
+                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  d2r(-10), d2r(0),  0, 0, 0),
                                              LimbPose(Core::Limb::LEFT_FOOT,  d2r(5),  0,  0, -0.03, 0.02, -0.2),
                                              LimbPose(Core::Limb::RIGHT_FOOT, d2r(5),  0,  0,  0.03, 0.02, -0.2)
                                          } , "pose_default"); // Carlo: tried 1 degree angle here for better stance (lean forward)
 
 RoboPose Poses::pose_relax = RoboPose (std::vector<LimbPose> {
                                              //changed to have lower arms
-                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(10),  0, d2r(90-1), -0.15, 0, 0.03),
-                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(10),  0, d2r(-90+1),  0.15, 0, 0.03),
+                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  d2r(20), d2r(0),  0, 0, 0),
+                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  d2r(-20), d2r(0),  0, 0, 0),
                                              LimbPose(Core::Limb::LEFT_FOOT,  d2r(0),  0,  0, -0.03, 0.00, -0.215),
                                              LimbPose(Core::Limb::RIGHT_FOOT, d2r(0),  0,  0,  0.03, 0.00, -0.215)
                                          } , "pose_relax");
@@ -157,33 +159,33 @@ void Poses::update() {
     // R, P, Y, X, Y, Z
     fight_stance = pose_default +
             RoboPose( std::vector<LimbPose> {
-                            LimbPose(Core::Limb::LEFT_HAND,  d2r(10), 0, 0, 0, 0, 0),
-                            LimbPose(Core::Limb::RIGHT_HAND, d2r(10), 0, 0, 0, 0, 0),
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(10), d2r(0), d2r(0), 0, 0, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(10), d2r(0), d2r(0), 0, 0, 0),
                             LimbPose(Core::Limb::LEFT_FOOT,  d2r(3), 0, 0, -0.02, -0.02, 0.01),
                             LimbPose(Core::Limb::RIGHT_FOOT, d2r(-1), 0, 0,  0.02,  0.03, 0.025)
                         }, "fight_stance");
 
     fight_punch_right_forward = fight_stance +
             RoboPose( std::vector<LimbPose> {
-                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0), d2r(0), d2r(60), 0.0, 0.0, 0.0),
-                            LimbPose(Core::Limb::RIGHT_HAND, d2r(70), d2r(80), d2r(85), 0, 0.03, 0.03)
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0), d2r(0), d2r(0), 0, 0, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(80), d2r(-10), d2r(0), 0, 0, 0)
                         }, "punch_right_forward");
 
     fight_punch_left_forward = fight_stance +
             RoboPose( std::vector<LimbPose> {
-                            LimbPose(Core::Limb::LEFT_HAND,  d2r(70), d2r(-80), d2r(-85), 0, 0.03, 0.03),
-                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0), d2r(0), d2r(-60), 0, 0, 0)
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(80), d2r(10), d2r(0), 0, 0, 0),
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0), d2r(0), d2r(0), 0, 0, 0)
                         }, "punch_left_forward");
 
     fight_punch_right_sideways = fight_stance +
             RoboPose( std::vector<LimbPose> {
                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0), d2r(0), d2r(0), 0, 0, 0),
-                            LimbPose(Core::Limb::RIGHT_HAND, d2r(70), d2r(80), 0, 0, 0.03, 0.03)
+                            LimbPose(Core::Limb::RIGHT_HAND, d2r(0), d2r(-80), d2r(0), 0, 0, 0)
                         }, "punch_right");
 
     fight_punch_left_sideways = fight_stance +
             RoboPose( std::vector<LimbPose> {
-                            LimbPose(Core::Limb::LEFT_HAND,  d2r(70), d2r(-80), 0, 0, 0.03, 0.03),
+                            LimbPose(Core::Limb::LEFT_HAND,  d2r(0), d2r(80), d2r(0), 0, 0, 0),
                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0), d2r(0), d2r(0), 0, 0, 0)
                         }, "punch_left");
 

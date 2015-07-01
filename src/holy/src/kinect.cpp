@@ -48,23 +48,23 @@ void Kinect::human_to_robopose()
     // Get orientation from Kinect
     double alroll,alpitch=0,alyaw=0;
     alroll= acos(kin_transforms[Core::Limb::LEFT_HAND].getOrigin().x()/compute_norm(kin_transforms[Core::Limb::LEFT_HAND]));
-    alyaw= acos(kin_transforms[Core::Limb::LEFT_HAND].getOrigin().z()/compute_norm(kin_transforms[Core::Limb::LEFT_HAND]));
-    alpitch= acos(kin_transforms[Core::Limb::LEFT_HAND].getOrigin().y()/compute_norm(kin_transforms[Core::Limb::LEFT_HAND]));
+    alyaw= 0;//acos(kin_transforms[Core::Limb::LEFT_HAND].getOrigin().z()/compute_norm(kin_transforms[Core::Limb::LEFT_HAND]));
+    alpitch= acos(-kin_transforms[Core::Limb::LEFT_HAND].getOrigin().z()/compute_norm(kin_transforms[Core::Limb::LEFT_HAND]));
     //ROS_INFO("%lf,%lf,%lf",kin_transforms[Core::Limb::LEFT_HAND].getOrigin().x(),kin_transforms[Core::Limb::LEFT_HAND].getOrigin().y(),kin_transforms[Core::Limb::LEFT_HAND].getOrigin().z());
     ROS_INFO("%lf,%lf,%lf",Poses::r2d(alroll),Poses::r2d(alpitch),Poses::r2d(alyaw));
     pose_from_kinect = RoboPose (std::vector<LimbPose> {
                            //changed to have lower arms
-                                           LimbPose(Core::Limb::LEFT_HAND,  alroll+Poses::d2r(80), alpitch, alyaw, 0, 0, 0),
+                                           LimbPose(Core::Limb::LEFT_HAND,  alroll, alpitch+Poses::d2r(90), alyaw, 0, 0, 0),
                                            LimbPose(Core::Limb::RIGHT_HAND, 0,  0, 0,  0, 0, 0),
                                        } , "pose_kinect");
 }
 
 void Kinect::StateMachine() {
     // Wait until new Kinect TF data is available
-    bool success= kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_foot",ros::Time(0), ros::Duration(2));
-    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_foot",ros::Time(0), ros::Duration(2));
-    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_hand",ros::Time(0), ros::Duration(2));
-    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_hand",ros::Time(0), ros::Duration(2));
+    bool success= kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_foot",ros::Time(0), ros::Duration(0.5));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_foot",ros::Time(0), ros::Duration(0.5));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/left_hand",ros::Time(0), ros::Duration(0.5));
+    success= success*kin_listener->waitForTransform("tracker/user_1/torso", "tracker/user_1/right_hand",ros::Time(0), ros::Duration(0.5));
     if (!success) {
         ROS_INFO("no Kinect data found");
     }
