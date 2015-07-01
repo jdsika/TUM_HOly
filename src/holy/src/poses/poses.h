@@ -74,19 +74,19 @@ public:
     RoboPose arms_fwd_dual;
     RoboPose arm_left_fwd;
     RoboPose arm_right_fwd;
+    RoboPose lean_fwd_right;
 
     // Carlo compensate for walking
-    RoboPose comp_left_pad_forward;
+    RoboPose comp_walk_dual_right;
 
     // Stairs compensates
-    RoboPose comp_shift_toleft;
-    RoboPose comp_shift_toright;
-    RoboPose comp_left_pad;
-    RoboPose comp_fwd_right;
-    RoboPose comp_dual_right;
-    RoboPose comp_right_down;
-    RoboPose comp_shift_frontright;
-    RoboPose lean_fwd_right;
+    RoboPose comp_stairs_shift_toleft;
+    RoboPose comp_stairs_shift_toright;
+    RoboPose comp_stairs_left_pad;
+    RoboPose comp_stairs_fwd_right;
+    RoboPose comp_stairs_dual_right;
+    RoboPose comp_stairs_right_down;
+    RoboPose comp_stairs_shift_frontright;
 
     // Absolute poses
     RoboPose init_shift_toleft;
