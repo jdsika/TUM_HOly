@@ -97,7 +97,7 @@ void Walk::StateMachine() {
         // Loop
         if (loop_fsm==lFWD_LEFT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(walk_poses.loop_fwd_left).move(core->get_vel());
+                core->setPoseTarget(walk_poses.loop_fwd_left + walk_poses.comp_walk_fwd_left).move(core->get_vel());
                 loop_fsm=lDUAL_LEFT;
                 if (DEBUG) ROS_INFO("lFWD_LEFT");
             }

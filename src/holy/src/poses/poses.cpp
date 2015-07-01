@@ -117,9 +117,9 @@ void Poses::update() {
 
 
     // Extra poses for walking
-    comp_walk_dual_right =
+    comp_walk_fwd_left =
             RoboPose( std::vector<LimbPose> {
-                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
+                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(-3), d2r(-3), d2r(0), 0.00, 0.00, 0.00),
                             LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
                         }, "comp_walk_dual_right");
 
