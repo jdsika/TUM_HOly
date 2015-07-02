@@ -48,7 +48,7 @@ public:
     static const std::string getLimbGroup (const Core::Limb limb);
     static const Core::Limb getLimbEnum(const std::string limbString);
 
-    Core& move(const double speed_scale = 1.0);
+    Core& move(const double speed_scale = 1.0, bool immediate=false);
 
     Core& moveto_default_state();
 
@@ -69,6 +69,8 @@ public:
     void set_isstanding(bool yes_no);
     std::vector<int> get_buttons() const;
     void set_buttons(const int position, const int value);
+    void set_left_elbow_min_max(double angle);
+    void set_right_elbow_min_max(double angle);
 
 private:
     // Control inputs
@@ -78,6 +80,7 @@ private:
     std::vector<int> buttons;
     bool init_buttons;
     bool show_buttons;
+
 
     std::string controller;
 
@@ -101,6 +104,9 @@ private:
     ros::Subscriber joy_sub;
 
     void updateTF();
+
+    std::vector<ros::Publisher> position_pub;
+
 };
 
 #endif

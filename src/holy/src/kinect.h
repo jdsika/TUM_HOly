@@ -29,7 +29,8 @@ public:
 
     std::map<Core::Limb, tf::StampedTransform> kin_transforms;
     double compute_norm(tf::StampedTransform &frame1);
-
+    tf::StampedTransform left_shoulder_hand;
+    tf::StampedTransform right_shoulder_hand;
     RoboPose pose_from_kinect;
     RoboPose pose_dual_stand;
     RoboPose pose_right_stand;
