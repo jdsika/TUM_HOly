@@ -13,8 +13,8 @@
 
 RoboPose Poses::pose_default = RoboPose (std::vector<LimbPose> {
                                              //changed to have lower arms
-                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  d2r(10), d2r(-1),  0, 0, 0),
-                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  d2r(-15), d2r(1),  0, 0, 0),
+                                             LimbPose(Core::Limb::LEFT_HAND,  d2r(0),  d2r(10), d2r(+1),  0, 0, 0),
+                                             LimbPose(Core::Limb::RIGHT_HAND, d2r(0),  d2r(-15), d2r(-1),  0, 0, 0),
                                              LimbPose(Core::Limb::LEFT_FOOT,  d2r(5),  0,  0, -0.03, 0.02, -0.2),
                                              LimbPose(Core::Limb::RIGHT_FOOT, d2r(5),  0,  0,  0.03, 0.02, -0.2)
                                          } , "pose_default");

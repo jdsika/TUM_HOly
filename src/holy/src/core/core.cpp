@@ -21,6 +21,7 @@
 #include "../poses/limbpose.h"
 #include "../poses/robopose.h"
 #include "actionlib_msgs/GoalStatusArray.h"
+#include <std_msgs/Float64.h>
 
 #define DEBUG 0
 
@@ -97,6 +98,11 @@ Core::Core(int argc, char** argv)
     goal_id_of_last_success="";
 
     ros::param::get("/move_group/moveit_controller_manager",controller);
+    position_pub.resize(18);
+    //std::vector<std::string> immediate_names {"R_SAA","R_SFE","R_EB","R_HAA","R_HR","R_HFE","R_KFE","R_AFE","R_AR","L_SAA","L_SFE","L_EB","L_HAA","L_HR","L_HFE","L_KFE","L_AFE","L_AR"};
+    for (int i=0; i<18; i++) {
+        position_pub[i]= node_handle->advertise<std_msgs::Float64>(IDs[i]+"/command", 10);
+    }
 }
 
 Core::~Core()
@@ -243,6 +249,18 @@ void Core::set_buttons(const int position, const int value)
         buttons[position] = value;
 }
 
+void Core::set_left_elbow_min_max(double angle)
+{
+    map_max["L_EB"] =  angle+0.1;
+    map_min["L_EB"] = angle-0.1;
+}
+
+void Core::set_right_elbow_min_max(double angle)
+{
+    map_max["R_EB"] = angle+0.1;
+    map_min["R_EB"] = angle-0.1;
+}
+
 bool Core::get_stop() {
     return stop;
 }
@@ -349,89 +367,103 @@ const Core::Limb Core::getLimbEnum(const std::string limbString)
 
 static std::vector<double> last_positions(18);
 
-Core &Core::move(const double speed_scale)
+Core &Core::move(const double speed_scale, bool immediate)
 {
     std::vector<double> end_positions(18);
     group->getJointValueTarget().copyJointGroupPositions("All", end_positions);
-    if( last_positions != end_positions)
-    {
-        this->set_goal_success(false);
-
-        last_positions = end_positions;
-        //group->move();
-        moveit::planning_interface::MoveGroup::Plan plan;
-        bool success = group->plan(plan);
-
-
-        if(success)
+    if (!immediate) {
+        // If planning and goal checking is wanted
+        if( last_positions != end_positions)
         {
-            const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
-            std::vector<double> start_positions = plan.trajectory_.joint_trajectory.points.front().positions;
-            std::vector<double> length(18);
-            std::vector<double> acc(18);
-            int max_length_id=0;
-            double max_length=-1;
+            this->set_goal_success(false);
 
-            for( int i=0; i<18; i++ )
+            last_positions = end_positions;
+            //group->move();
+            moveit::planning_interface::MoveGroup::Plan plan;
+            bool success = group->plan(plan);
+
+
+            if(success)
             {
-                length[i]=plan.trajectory_.joint_trajectory.points.back().positions[i]-plan.trajectory_.joint_trajectory.points.front().positions[i];
-                if (fabs(length[i])>max_length) {
-                    max_length=fabs(length[i]);
-                    max_length_id=i;
+                const ros::Duration startTime = plan.trajectory_.joint_trajectory.points.front().time_from_start;
+                std::vector<double> start_positions = plan.trajectory_.joint_trajectory.points.front().positions;
+                std::vector<double> length(18);
+                std::vector<double> acc(18);
+                int max_length_id=0;
+                double max_length=-1;
+
+                for( int i=0; i<18; i++ )
+                {
+                    length[i]=plan.trajectory_.joint_trajectory.points.back().positions[i]-plan.trajectory_.joint_trajectory.points.front().positions[i];
+                    if (fabs(length[i])>max_length) {
+                        max_length=fabs(length[i]);
+                        max_length_id=i;
+                    }
                 }
-            }
-            double a_max = speed_scale;
-            for( int i=0; i<18; i++ )
-            {
-                acc[i]=a_max*(length[i]/max_length);
+                double a_max = speed_scale;
+                for( int i=0; i<18; i++ )
+                {
+                    acc[i]=a_max*(length[i]/max_length);
 
-            }
+                }
 
-            double t_end=2*sqrt(max_length/a_max)+startTime.toSec();
-            double num_points = 100;
-            plan.trajectory_.joint_trajectory.points.resize(num_points,plan.trajectory_.joint_trajectory.points.front());
-            double delta_t = (t_end - startTime.toSec())/(num_points-1);
+                double t_end=2*sqrt(max_length/a_max)+startTime.toSec();
+                double num_points = 100;
+                plan.trajectory_.joint_trajectory.points.resize(num_points,plan.trajectory_.joint_trajectory.points.front());
+                double delta_t = (t_end - startTime.toSec())/(num_points-1);
 
-            for( int point=0; point<num_points; point++ )
-            {
-                plan.trajectory_.joint_trajectory.points[point].time_from_start = ros::Duration().fromSec(startTime.toSec() + delta_t*point);
-                if (point<num_points/2) {
+                for( int point=0; point<num_points; point++ )
+                {
+                    plan.trajectory_.joint_trajectory.points[point].time_from_start = ros::Duration().fromSec(startTime.toSec() + delta_t*point);
+                    if (point<num_points/2) {
+                        for (int joint=0; joint<18; joint++) {
+                            plan.trajectory_.joint_trajectory.points[point].positions[joint]=start_positions[joint]+0.5*acc[joint]*(point*delta_t)*(point*delta_t);
+                        }
+
+                    }
+                    else {
+                        for (int joint=0; joint<18; joint++) {
+                            plan.trajectory_.joint_trajectory.points[point].positions[joint]=end_positions[joint]-0.5*acc[joint]*((num_points-1-point)*delta_t)*((num_points-1-point)*delta_t);
+                        }
+                    }
                     for (int joint=0; joint<18; joint++) {
-                        plan.trajectory_.joint_trajectory.points[point].positions[joint]=start_positions[joint]+0.5*acc[joint]*(point*delta_t)*(point*delta_t);
+                        plan.trajectory_.joint_trajectory.points[point].accelerations[joint] = acc[joint];
                     }
-
-                }
-                else {
                     for (int joint=0; joint<18; joint++) {
-                        plan.trajectory_.joint_trajectory.points[point].positions[joint]=end_positions[joint]-0.5*acc[joint]*((num_points-1-point)*delta_t)*((num_points-1-point)*delta_t);
-                    }
-                }
-                for (int joint=0; joint<18; joint++) {
-                    plan.trajectory_.joint_trajectory.points[point].accelerations[joint] = acc[joint];
-                }
-                for (int joint=0; joint<18; joint++) {
-                    if(point == 0 || point == num_points-1)
-                    {
-                        plan.trajectory_.joint_trajectory.points[point].velocities[joint]= 0;
-                    } else {
-                        double p_last = plan.trajectory_.joint_trajectory.points[point-1].positions[joint];
-                        double p_next = plan.trajectory_.joint_trajectory.points[point+1].positions[joint];
-                        plan.trajectory_.joint_trajectory.points[point].velocities[joint] = (p_next - p_last) / (2 * delta_t);
+                        if(point == 0 || point == num_points-1)
+                        {
+                            plan.trajectory_.joint_trajectory.points[point].velocities[joint]= 0;
+                        } else {
+                            double p_last = plan.trajectory_.joint_trajectory.points[point-1].positions[joint];
+                            double p_next = plan.trajectory_.joint_trajectory.points[point+1].positions[joint];
+                            plan.trajectory_.joint_trajectory.points[point].velocities[joint] = (p_next - p_last) / (2 * delta_t);
+                        }
+
                     }
 
                 }
 
+                group->asyncExecute(plan);
+
+                // if simulation, wait a second and go on
+                if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
+                    ros::Duration(0.3).sleep();
+                    this->set_goal_success(true);
+                }
             }
-
-            group->asyncExecute(plan);
-
-            // if simulation, wait a second and go on
-            if (controller=="moveit_fake_controller_manager/MoveItFakeControllerManager") {
-                ros::Duration(0.3).sleep();
-                this->set_goal_success(true);
-            }
-
         }
+    }
+    else {
+        // Immediately publish the joint values in realtime without any goal checking (good for Kinect)
+
+        std_msgs::Float64 position;
+        for (int i=0; i<18 ; i++) {
+           // position_pub = node_handle->advertise<std_msgs::Float64>(immediate_names[i]+"/command", 1000);
+            //position=end_positions[i];
+            position.data=end_positions[i];
+            position_pub[i].publish(position);
+        }
+
     }
     return *this;
 }

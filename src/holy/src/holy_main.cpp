@@ -149,7 +149,9 @@ int main(int argc, char **argv)
                 core.set_isstanding(true); // init is true but we should check this
                 ROS_INFO("Went to relaxed stance");
                 holy_fsm_tmp = holy_fsm;
-                holy_fsm = Holy_FSM::WAIT;
+                core.set_left_elbow_min_max(0);
+                core.set_right_elbow_min_max(0);
+                holy_fsm = Holy_FSM::KINECT;
             }
         }
         else {
