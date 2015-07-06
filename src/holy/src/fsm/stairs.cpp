@@ -67,33 +67,27 @@ void Stairs::StateMachine() {
         else if (init_fsm==iDUAL_RIGHT) {
             if (core->get_goal_success()) {
                 core->setPoseTarget(stairs_poses.stairs_dual_right).move(velocity);
-                init_fsm=iRIGHT_DOWN;
+                init_fsm=iSHIFT_RIGHT;
             }
         }
-        else if (init_fsm==iRIGHT_DOWN) {
+        else if (init_fsm==iSHIFT_RIGHT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(stairs_poses.stairs_right_down).move(velocity);
-                init_fsm=iSHIFT_FRONT_RIGHT;
+                core->setPoseTarget(stairs_poses.stairs_lean_right).move(velocity);
+                init_fsm=iLIFT_LEFT;
             }
         }
-        else if (init_fsm==iSHIFT_FRONT_RIGHT) {
+        else if (init_fsm==iLIFT_LEFT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(stairs_poses.stairs_shift_frontright).move(velocity);
-                init_fsm=iLEAN_FWD_RIGHT;
+                core->setPoseTarget(stairs_poses.stairs_lift_left).move(velocity);
+                init_fsm=iFWD_LEFT;
             }
         }
-        else if (init_fsm==iLEAN_FWD_RIGHT) {
+        else if (init_fsm==iFWD_LEFT) {
             if (core->get_goal_success()) {
-                core->setPoseTarget(stairs_poses.stairs_lean_frontright).move(velocity);
+                core->setPoseTarget(stairs_poses.stairs_left_fwd).move(velocity);
                 init_StateMachine();
             }
         }
-        //        else if (init_fsm==iADJUST_LEFT_PAD) {
-        //            if (core->get_goal_success()) {
-        //                core->setPoseTarget(stairs_poses.stairs_adjust_left_pad).move(velocity);
-        //                init_fsm=iJIPPIE;
-        //            }
-        //        }
 
     } break;
 

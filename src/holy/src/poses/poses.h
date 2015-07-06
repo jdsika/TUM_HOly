@@ -115,10 +115,9 @@ public:
     RoboPose stairs_lift_right;
     RoboPose stairs_fwd_right;
     RoboPose stairs_dual_right;
-    RoboPose stairs_right_down;
-    RoboPose stairs_shift_frontright;
-    RoboPose stairs_lean_frontright;
-    RoboPose stairs_adjust_left_pad;
+    RoboPose stairs_lean_right;
+    RoboPose stairs_lift_left;
+    RoboPose stairs_left_fwd;
     RoboPose stairs_fwd_left;
     RoboPose stairs_jippie;
 

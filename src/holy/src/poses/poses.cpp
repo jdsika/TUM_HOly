@@ -218,24 +218,11 @@ void Poses::update() {
     stairs_lift_right = stairs_shift_toleft + lift_right + comp_stairs_shift_toleft;
     stairs_fwd_right = stairs_lift_right + fwd_right + arm_right_fwd + comp_stairs_fwd_right;
     stairs_dual_right = stairs_fwd_right + dual_right - shift_toleft - arms_fwd_right_foot - comp_stairs_shift_toleft - comp_stairs_fwd_right;
-    stairs_right_down = stairs_dual_right + comp_stairs_right_down + shift_toright + comp_stairs_shift_toright + arm_left_fwd - arm_right_fwd;
-    stairs_shift_frontright = stairs_right_down + lift_left ;
-    stairs_lean_frontright = stairs_shift_frontright + lean_fwd_right + fwd_left + comp_stairs_left_pad;
-    stairs_adjust_left_pad = pose_default_stairs ;
+    stairs_lean_right = stairs_dual_right + comp_stairs_right_down + shift_toright + comp_stairs_shift_toright + arm_left_fwd - arm_right_fwd;
+    stairs_lift_left = stairs_lean_right + lift_left ;
+    stairs_left_fwd = stairs_lift_left + lean_fwd_right + fwd_left + comp_stairs_left_pad;
     stairs_jippie = pose_default_stairs + arms_fwd_left_foot + arms_fwd_left_foot + arms_fwd_right_foot + arms_fwd_right_foot;
 
-    stairs_shift_toleft.objname="stairs_shift_toleft";
-    stairs_lift_right.objname="stairs_lift_right";
-    stairs_fwd_right.objname="stairs_fwd_right";
-    stairs_dual_right.objname="stairs_dual_right";
-    stairs_right_down.objname="stairs_right_down";
-    stairs_shift_frontright.objname="stairs_shift_frontright";
-    stairs_lean_frontright.objname="stairs_lean_frontright";
-    stairs_adjust_left_pad.objname="stairs_adjust_left_pad";
-    stairs_fwd_left.objname="stairs_fwd_left";
-
-//    stairs_dual_right.printInfo();
-//    stairs_right_down.printInfo();
 
     // walking poses
     // Init
