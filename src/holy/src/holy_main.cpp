@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     Holy_FSM holy_fsm = Holy_FSM::START;
     Holy_FSM holy_fsm_tmp = Holy_FSM::START;
 
-    ros::Rate rate(100);
+    ros::Rate rate(1e6);
 
     ROS_INFO("Waiting for action");
 

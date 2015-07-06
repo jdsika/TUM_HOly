@@ -31,7 +31,11 @@ void Walk::executeStateMachine()
 void Walk::StateMachine() {
 
     // update parameters
+<<<<<<< HEAD
     walk_poses.set_step_height(0.022); // max 0.05 // 0.15 before Carlo
+=======
+    walk_poses.set_step_height(0.013); // max 0.05
+>>>>>>> ca81610e42104f89a0a057d30c4aa2cc7502490d
     walk_poses.set_turning_angle(core->get_turning_angle());
     walk_poses.set_step_length(core->getStep_length()); // max 0.033
     walk_poses.update();

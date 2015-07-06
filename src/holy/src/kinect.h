@@ -43,6 +43,11 @@ private:
     Core* core;
     // poses object
     Poses kinect_poses;
+    ros::Time lastUpdate;
+    bool dirty;
+
+    double alroll_last,arroll_last, alpitch_last, arpitch_last, z_robo_last;
+    bool lpf_init;
 
 };
 
