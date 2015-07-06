@@ -31,7 +31,7 @@ void Walk::executeStateMachine()
 void Walk::StateMachine() {
 
     // update parameters
-    walk_poses.set_step_height(0.019); // max 0.05
+    walk_poses.set_step_height(0.013); // max 0.05
     walk_poses.set_turning_angle(core->get_turning_angle());
     walk_poses.set_step_length(core->getStep_length()); // max 0.033
     walk_poses.update();

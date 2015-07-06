@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     Holy_FSM holy_fsm = Holy_FSM::START;
     Holy_FSM holy_fsm_tmp = Holy_FSM::START;
 
-    ros::Rate rate(100);
+    ros::Rate rate(1e6);
 
     ROS_INFO("Waiting for action");
 
@@ -151,7 +151,7 @@ int main(int argc, char **argv)
                 holy_fsm_tmp = holy_fsm;
                 core.set_left_elbow_min_max(0);
                 core.set_right_elbow_min_max(0);
-                holy_fsm = Holy_FSM::KINECT;
+                holy_fsm = Holy_FSM::WAIT;
             }
         }
         else {

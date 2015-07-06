@@ -101,7 +101,7 @@ Core::Core(int argc, char** argv)
     position_pub.resize(18);
     //std::vector<std::string> immediate_names {"R_SAA","R_SFE","R_EB","R_HAA","R_HR","R_HFE","R_KFE","R_AFE","R_AR","L_SAA","L_SFE","L_EB","L_HAA","L_HR","L_HFE","L_KFE","L_AFE","L_AR"};
     for (int i=0; i<18; i++) {
-        position_pub[i]= node_handle->advertise<std_msgs::Float64>(IDs[i]+"/command", 10);
+        position_pub[i]= node_handle->advertise<std_msgs::Float64>(IDs[i]+"_controller/command", 1);
     }
 }
 
@@ -203,7 +203,7 @@ void Core::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         stop=false;
 
         velocity = 1.0 + joy->axes[1] * 12; // adjust vel
-        turning_angle = 20 * joy->axes[2]; // adjust turn
+        turning_angle = 30 * joy->axes[2]; // adjust turn
         step_length = 0.03 * joy->axes[3]; // adjust stepsize
 
         // Buttons: 0-> , 1-> ,2 ->
@@ -462,7 +462,10 @@ Core &Core::move(const double speed_scale, bool immediate)
             //position=end_positions[i];
             position.data=end_positions[i];
             position_pub[i].publish(position);
+
         }
+
+        // ROS_INFO("published kinect positions");
 
     }
     return *this;
