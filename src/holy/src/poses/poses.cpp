@@ -164,13 +164,8 @@ void Poses::update() {
 
     comp_walk_fwd_right =
             RoboPose( std::vector<LimbPose> {
-<<<<<<< HEAD
-                            LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(1), -0.001, 0.00, 0.00),
-                            LimbPose (Core::Limb::RIGHT_FOOT, d2r(4), d2r(-10), d2r(0), 0.001, 0.00, 0.00),
-=======
                             LimbPose (Core::Limb::LEFT_FOOT,  d2r(0), d2r(0), d2r(0), 0.00, 0.00, 0.00),
                             LimbPose (Core::Limb::RIGHT_FOOT, d2r(0), d2r(0), d2r(0), 0.000, 0.00, 0.00),
->>>>>>> ca81610e42104f89a0a057d30c4aa2cc7502490d
                         }, "comp_walk_fwd_right");
 
     // Extra poses to compensate the stair climbing

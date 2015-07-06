@@ -15,9 +15,9 @@ public:
                   iLIFT_RIGHT,
                   iFWD_RIGHT,
                   iDUAL_RIGHT,
-                  iRIGHT_DOWN,
-                  iSHIFT_FRONT_RIGHT,
-                  iLEAN_FWD_RIGHT,
+                  iSHIFT_RIGHT,
+                  iLIFT_LEFT,
+                  iFWD_LEFT,
                   /*iADJUST_LEFT_PAD*/} CLIMB_FSM;
 
     Stairs_FSM stairs_fsm;
