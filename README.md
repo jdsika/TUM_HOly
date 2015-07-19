@@ -1,18 +1,8 @@
-# HOly
-Humanoid Ol (project practical training) at the ICS - Programming a humanoid robot to compete in 3 competitions. (<http://www.ics.ei.tum.de/teaching/ss2015/humanoid-olympics/>)
+# TUM ICS Humanoid Olympics 2015, Team HOly
 
-## Manual Control
-Publishing torque and motor commands
-```bash
-rostopic pub /bioloid_interface/bioloid_msg bioloid_interface/bioloid_msg '{motor_torque: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}'
-rostopic pub /bioloid_interface/command sensor_msgs/JointState '{header: {stamp: now, frame_id: /world}, name: ['R_SAA', 'L_SAA', 'R_SFE', 'L_SFE', 'R_EB', 'L_EB', 'R_HAA', 'L_HAA', 'R_HR', 'L_HR', 'R_HFE', 'L_HFE', 'R_KFE', 'L_KFE', 'R_AFE', 'L_AFE', 'R_AR', 'L_AR'], position: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], velocity: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], effort: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]}' 
-```
+This report presents the results and achievements of Team HOly in the TUM ICS's Humanoid Olympics challenge.
+Three teams competed in making their provided Bioloid robot succeed in walking and climbing stairs.
+We give details on how we successfully implemented both the mandatory tasks and additional special fight and rgb-d human imitation modes: Utilizing ROS, MoveIt, OpenRave's IKfast and RViz. Furthermore, we share insights on our hardware observations and modifications.
+On a final note, our soulution's performance is documented in the video linked in the appendix.
 
-## Links
-* <https://dxydas.wordpress.com/>
-* <http://web.ics.ei.tum.de/~bren/Teaching.php>
-* <https://github.com/brennand/bioloid_indigo.git>
-* [Autonomous Reinforcement Learning with Experience Replay for Humanoid Gait Optimization](http://www.sciencedirect.com/science/article/pii/S1877050912007375)
-* [Explicit analytic solution for inverse kinematics of Bioloid
-humanoid robot](http://ieeexplore.ieee.org.eaccess.ub.tum.de/stamp/stamp.jsp?tp=&arnumber=6363315)
-* [center of gravity] (http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5937193&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D5937htt)
+[Check out this need video](https://www.youtube.com/watch?v=PQb3ZKncxoc&feature=youtu.be)
