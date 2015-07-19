@@ -90,6 +90,11 @@ const std::string RoboPose::getRoboPosName() const
     return this->objname;
 }
 
+void RoboPose::setRoboPosName(const std::string &value)
+{
+    this->objname = value;
+}
+
 const RoboPose &RoboPose::printInfo() const
 {
     printInfoImpl();
@@ -199,8 +204,4 @@ RoboPose& RoboPose::operator-=(const RoboPose &rrp)
     return *this;
 }
 
-/*RoboPose &RoboPose::set_step_height(Core::Limb limb,double height) {
-    getLimb(limb).z+=height;
-    return *this;
-}*/
 

@@ -116,7 +116,7 @@ bool Parser::parseRoboPositions(std::string filename)
         Parser::walkingPoses[numberOfPositions] += RoboPose(limbPosVector,
                                                     currentPosName);
 
-        Parser::walkingPoses[numberOfPositions].objname = currentPosName;
+        Parser::walkingPoses[numberOfPositions].setRoboPosName(currentPosName);
     }
 
     return true;

@@ -36,6 +36,7 @@ public:
 
     // return the name of the position
     const std::string getRoboPosName() const;
+    void setRoboPosName(const std::string &value);
 
     // Prints orientation and position of contained limbs
     const RoboPose &printInfo() const;
@@ -46,18 +47,16 @@ public:
     RoboPose& operator+=(const RoboPose& rrp);
     RoboPose operator- (const RoboPose& rrp) const;
     RoboPose& operator-=(const RoboPose& rrp);
-    // Compute Z offset because of weight shifting
-    double compute_Z_off(double angle);
 
-    std::string objname;
 
-    //RoboPose& set_step_height(Core::Limb limb,double height);
+    std::string getObjname() const;
+    void setObjname(const std::string &value);
 
 private:
     // The limb poses that constitute this RoboPose
     std::vector<LimbPose> limbs;
+    std::string objname;
 
     void printInfoImpl() const;
-
 };
 #endif // ROBOPOSE_H
